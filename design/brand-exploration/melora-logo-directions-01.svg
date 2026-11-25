@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1120" viewBox="0 0 1600 1120">
+<defs>
+ <linearGradient id="bg" x2="1" y2="1"><stop stop-color="#111319"/><stop offset="1" stop-color="#1c2029"/></linearGradient>
+ <linearGradient id="pulse" x2="1" y2="1"><stop stop-color="#c6f06d"/><stop offset="1" stop-color="#70d6c5"/></linearGradient>
+ <linearGradient id="sleeve" x2="1" y2="1"><stop stop-color="#fb8c76"/><stop offset="1" stop-color="#f6c67c"/></linearGradient>
+ <linearGradient id="orbit" x2="1" y2="1"><stop stop-color="#8d9cff"/><stop offset="1" stop-color="#d4a6f5"/></linearGradient>
+ <filter id="shadow" x="-30%" y="-30%" width="160%" height="180%"><feDropShadow dx="0" dy="20" stdDeviation="24" flood-color="#000" flood-opacity=".35"/></filter>
+</defs>
+<rect width="1600" height="1120" fill="url(#bg)"/>
+<text x="92" y="94" fill="#f5f4f0" font-family="Inter,Arial,sans-serif" font-size="20" letter-spacing="4" font-weight="600">MELORA  /  IDENTITY EXPLORATION 01</text>
+<text x="92" y="166" fill="#f8f7f4" font-family="Inter,Arial,sans-serif" font-size="58" font-weight="650">A home for the music you keep.</text>
+<text x="94" y="213" fill="#a7aab4" font-family="Inter,Arial,sans-serif" font-size="22">Three early marks: streaming energy, editorial calm, and a personal local library.</text>
+<!-- card 1 -->
+<g filter="url(#shadow)"><rect x="88" y="272" width="456" height="710" rx="30" fill="#20242d" stroke="#353a45"/></g>
+<text x="124" y="328" fill="#c6f06d" font-family="Inter,Arial,sans-serif" font-size="15" font-weight="700" letter-spacing="2.5">01  /  SIGNAL</text>
+<text x="124" y="371" fill="#f4f4ef" font-family="Inter,Arial,sans-serif" font-size="29" font-weight="650">Sound, in motion</text>
+<text x="124" y="406" fill="#aeb2bb" font-family="Inter,Arial,sans-serif" font-size="17">An open pulse that feels alive and yours.</text>
+<rect x="187" y="454" width="258" height="258" rx="62" fill="#171a20" stroke="#343943"/>
+<path d="M233 585h32l23-58 35 115 35-92 22 35h54" fill="none" stroke="url(#pulse)" stroke-width="17" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="124" y="775" fill="#f4f4ef" font-family="Inter,Arial,sans-serif" font-size="33" font-weight="650">melora</text>
+<text x="124" y="813" fill="#aeb2bb" font-family="Inter,Arial,sans-serif" font-size="17">Bright, rhythmic, unmistakable at a glance.</text>
+<rect x="124" y="854" width="176" height="70" rx="18" fill="#f4f3ef"/><path d="M151 890h14l10-23 14 46 14-36 9 13h23" fill="none" stroke="#22262e" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="321" y="894" fill="#969ba6" font-family="Inter,Arial,sans-serif" font-size="14" letter-spacing="1.2">ONE-COLOR TEST</text>
+<!-- card 2 -->
+<g filter="url(#shadow)"><rect x="572" y="272" width="456" height="710" rx="30" fill="#20242d" stroke="#353a45"/></g>
+<text x="608" y="328" fill="#f6a48e" font-family="Inter,Arial,sans-serif" font-size="15" font-weight="700" letter-spacing="2.5">02  /  SLEEVE</text>
+<text x="608" y="371" fill="#f4f4ef" font-family="Inter,Arial,sans-serif" font-size="29" font-weight="650">A collection, held close</text>
+<text x="608" y="406" fill="#aeb2bb" font-family="Inter,Arial,sans-serif" font-size="17">A soft frame with a path through its center.</text>
+<rect x="671" y="454" width="258" height="258" rx="62" fill="#171a20" stroke="#343943"/>
+<path d="M735 634V532q0-15 16-15h100q16 0 16 15v102q0 15-16 15H751q-16 0-16-15Z" fill="none" stroke="url(#sleeve)" stroke-width="13"/>
+<path d="M757 612l35-59 32 46 23-29" fill="none" stroke="#f3eee6" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="849" cy="548" r="7" fill="#f6a48e"/>
+<text x="608" y="775" fill="#f4f4ef" font-family="Inter,Arial,sans-serif" font-size="33" font-weight="650">melora</text>
+<text x="608" y="813" fill="#aeb2bb" font-family="Inter,Arial,sans-serif" font-size="17">Warm, tactile, shaped around owned music.</text>
+<rect x="608" y="854" width="176" height="70" rx="18" fill="#f4f3ef"/><path d="M653 910v-32h62v32h-62Z" fill="none" stroke="#22262e" stroke-width="6"/><path d="M665 902l14-17 13 13 10-10" fill="none" stroke="#22262e" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="805" y="894" fill="#969ba6" font-family="Inter,Arial,sans-serif" font-size="14" letter-spacing="1.2">ONE-COLOR TEST</text>
+<!-- card 3 -->
+<g filter="url(#shadow)"><rect x="1056" y="272" width="456" height="710" rx="30" fill="#20242d" stroke="#353a45"/></g>
+<text x="1092" y="328" fill="#b4adff" font-family="Inter,Arial,sans-serif" font-size="15" font-weight="700" letter-spacing="2.5">03  /  ORBIT</text>
+<text x="1092" y="371" fill="#f4f4ef" font-family="Inter,Arial,sans-serif" font-size="29" font-weight="650">Your sound, your world</text>
+<text x="1092" y="406" fill="#aeb2bb" font-family="Inter,Arial,sans-serif" font-size="17">A centered note held by quiet sound rings.</text>
+<rect x="1155" y="454" width="258" height="258" rx="62" fill="#171a20" stroke="#343943"/>
+<circle cx="1284" cy="583" r="49" fill="none" stroke="url(#orbit)" stroke-width="12" stroke-dasharray="206 102" stroke-linecap="round" transform="rotate(-34 1284 583)"/>
+<circle cx="1284" cy="583" r="78" fill="none" stroke="#a3aafa" stroke-opacity=".72" stroke-width="9" stroke-dasharray="280 210" stroke-linecap="round" transform="rotate(148 1284 583)"/>
+<circle cx="1284" cy="583" r="11" fill="#f4f1ff"/>
+<text x="1092" y="775" fill="#f4f4ef" font-family="Inter,Arial,sans-serif" font-size="33" font-weight="650">melora</text>
+<text x="1092" y="813" fill="#aeb2bb" font-family="Inter,Arial,sans-serif" font-size="17">Calm, considered, clear in small sizes.</text>
+<rect x="1092" y="854" width="176" height="70" rx="18" fill="#f4f3ef"/><circle cx="1180" cy="889" r="20" fill="none" stroke="#22262e" stroke-width="5" stroke-dasharray="85 42" stroke-linecap="round" transform="rotate(-34 1180 889)"/><circle cx="1180" cy="889" r="4" fill="#22262e"/>
+<text x="1289" y="894" fill="#969ba6" font-family="Inter,Arial,sans-serif" font-size="14" letter-spacing="1.2">ONE-COLOR TEST</text>
+<text x="92" y="1040" fill="#777d89" font-family="Inter,Arial,sans-serif" font-size="15" letter-spacing="1.4">DIRECTION ONLY  •  NO FINAL LOGO, PREMIUM SYSTEM, OR APP-ASSET CHANGES YET</text>
+</svg>
