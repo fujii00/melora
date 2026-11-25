@@ -249,3 +249,9 @@ Current task: clarify local playlist behavior and wire AutoMix into library and 
 - The extension contacts `api.zarz.moe` and Tidal/Qobuz/Deezer/Amazon-related hosts, uses an in-app web verification flow, and stores verification sessions locally. Its README says song metadata/ISRC, track ID and install ID may be sent to those services. It accepts only direct, unencrypted FLAC streams and explicitly says Deezer/Amazon coverage is partial; playback and downloads are not guaranteed.
 - Porting requires an explicit Melora source integration with equivalent user-visible host/auth permissions, private session storage and source controls; a direct script copy would fail and bypass the app's current addon consent model. GPL-3.0 is compatible with Melora's GPL-3.0 project license, with attribution and third-party notices retained.
 - No bridge code has been copied into Melora yet. The private GitHub backup is being initialized separately before integration work.
+
+### Private GitHub backup (2026-11-25)
+
+- Initialized this checkout as a Git repository on `main` and pushed the full source tree to the user-provided private remote `https://github.com/fujii00/melora.git`.
+- Initial source snapshot commit: `e20654c` (`Add Melora project source and handoff log`).
+- Generated build outputs, local SDK settings, signing keys, and signing passwords are excluded by the existing ignore rules. No Myspoti/FLAC Bridge implementation has been added yet; integration remains a Melora-native port because the upstream JavaScript requires Myspoti-only runtime APIs.
