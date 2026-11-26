@@ -12,6 +12,8 @@ Melora is an Android music player for the music stored on your device. Browse yo
 
 [Download](#download) · [Features](#features) · [Build](#build) · [Contributing](#contributing) · [License](#license)
 
+[![Join our Discord](https://img.shields.io/badge/Join%20our%20Discord-5865F2?logo=discord&logoColor=white)](https://discord.gg/7D8jd5XAnP)
+
 </div>
 
 <div align="center">
