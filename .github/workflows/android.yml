@@ -35,11 +35,27 @@ jobs:
         printf 'LASTFM_SECRET=%s\n' "$LASTFM_SECRET" >> local.properties
         printf 'LISTEN_TOGETHER_SERVER=%s\n' "$LISTEN_TOGETHER_SERVER" >> local.properties
 
-        printf '%s' "$KEYSTORE_BASE64" | base64 --decode > melora-release.jks
-        if ! keytool -list -keystore melora-release.jks -storepass "$KEYSTORE_PASSWORD" -alias "$KEY_ALIAS" >/dev/null 2>&1; then
-          echo '::error::The KEYSTORE_BASE64, KEYSTORE_PASSWORD, or KEY_ALIAS repository secret is invalid. Re-encode the release JKS and update the matching GitHub Actions secret.'
+        if [ -z "$KEYSTORE_BASE64" ]; then
+          echo '::error::KEYSTORE_BASE64 is empty or unavailable to this workflow.'
           exit 1
         fi
+        if [ -z "$KEYSTORE_PASSWORD" ] || [ -z "$KEY_ALIAS" ] || [ -z "$KEY_PASSWORD" ]; then
+          echo '::error::One or more signing secrets are empty. Set KEYSTORE_PASSWORD, KEY_ALIAS, and KEY_PASSWORD in GitHub Actions secrets.'
+          exit 1
+        fi
+        if ! printf '%s' "$KEYSTORE_BASE64" | base64 --decode > melora-release.jks; then
+          echo '::error::KEYSTORE_BASE64 is not valid Base64. Encode the complete melora-release.jks file and replace that secret.'
+          exit 1
+        fi
+        if ! keytool -list -keystore melora-release.jks -storepass "$KEYSTORE_PASSWORD" -alias "$KEY_ALIAS" >/dev/null 2>&1; then
+          echo '::error::The keystore cannot be opened with KEYSTORE_PASSWORD and KEY_ALIAS. Confirm both secrets match keystore.properties.'
+          exit 1
+        fi
+        if ! keytool -certreq -keystore melora-release.jks -storepass "$KEYSTORE_PASSWORD" -keypass "$KEY_PASSWORD" -alias "$KEY_ALIAS" -file "$RUNNER_TEMP/melora-release.csr" -noprompt >/dev/null 2>&1; then
+          echo '::error::KEY_PASSWORD does not unlock the signing key for KEY_ALIAS. Confirm the secret matches keystore.properties.'
+          exit 1
+        fi
+        rm -f "$RUNNER_TEMP/melora-release.csr"
         {
           printf 'storeFile=melora-release.jks\n'
           printf 'storePassword=%s\n' "$KEYSTORE_PASSWORD"
