@@ -14,6 +14,12 @@ Melora is an Android music player for the music stored on your device. Browse yo
 
 </div>
 
+<div align="center">
+
+<img src="meloba%20banner.png" alt="Melora app banner" width="100%" />
+
+</div>
+
 ---
 
 ## Features
