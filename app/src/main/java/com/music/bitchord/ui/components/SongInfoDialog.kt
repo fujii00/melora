@@ -1,5 +1,11 @@
 package com.music.bitchord.ui.components
 
+import android.content.Context
+import android.media.MediaExtractor
+import android.media.MediaFormat
+import android.media.MediaMetadataRetriever
+import android.net.Uri
+import android.provider.OpenableColumns
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
@@ -23,11 +29,15 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
+import androidx.compose.ui.platform.LocalContext
 import com.music.bitchord.R
 import com.music.bitchord.data.SongInfo
 import com.music.bitchord.data.SongInfoRepository
 import com.music.bitchord.data.compactCount
 import com.music.bitchord.data.model.Song
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
+import java.util.Locale
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.KeyboardArrowDown
 
@@ -46,10 +56,14 @@ import androidx.compose.material.icons.rounded.KeyboardArrowDown
  */
 @Composable
 internal fun SongInfoDialog(song: Song, onDismiss: () -> Unit) {
+    val context = LocalContext.current
     var retry by remember(song.videoId) { mutableIntStateOf(0) }
     val info by produceState<SongInfo?>(null, song, retry) {
         value = null
         value = SongInfoRepository.load(song)
+    }
+    val localTechnicalInfo by produceState<LocalTrackTechnicalInfo?>(null, song.localUri, retry) {
+        value = song.localUri?.let { readLocalTrackTechnicalInfo(context, it) }
     }
     val creditsScroll = rememberScrollState()
     val onSurface = MaterialTheme.colorScheme.onSurface
@@ -97,8 +111,8 @@ internal fun SongInfoDialog(song: Song, onDismiss: () -> Unit) {
             AlertRule()
             val surface = MaterialTheme.colorScheme.surface
             SubcomposeLayout(Modifier.fillMaxWidth()) { constraints ->
-                val rowsHeight = subcompose("rows") { SongInfoStandardRows(info, song) }
-                    .first().measure(constraints).height
+                val rowsHeight = subcompose("rows") { SongInfoStandardRows(info, song, localTechnicalInfo) }
+                .first().measure(constraints).height
                 val body = subcompose("content") {
                     Box(Modifier.fillMaxWidth().height(rowsHeight.toDp())) {
                         Column(
@@ -119,7 +133,7 @@ internal fun SongInfoDialog(song: Song, onDismiss: () -> Unit) {
                                     }
                                 },
                         ) {
-                            SongInfoStandardRows(info, song)
+                            SongInfoStandardRows(info, song, localTechnicalInfo)
                             info?.credits?.takeIf { it.isNotEmpty() }?.forEach { credit ->
                                 AlertRule(Modifier.padding(start = 16.dp))
                                 SongInfoCreditRow(role = credit.role, names = credit.text)
@@ -157,15 +171,25 @@ internal fun SongInfoDialog(song: Song, onDismiss: () -> Unit) {
 }
 
 @Composable
-private fun SongInfoStandardRows(info: SongInfo?, song: Song) {
+private fun SongInfoStandardRows(info: SongInfo?, song: Song, local: LocalTrackTechnicalInfo?) {
     val unavailable = stringResource(R.string.song_info_unavailable)
     val rows = listOf(
         R.string.song_info_album to (info?.album ?: song.albumName),
         R.string.song_info_release_date to (info?.releaseDate ?: info?.releaseYear),
+        R.string.song_info_duration to song.durationText,
         R.string.song_info_views to info?.views?.let(::compactCount),
         R.string.song_info_likes to info?.likes,
         R.string.song_info_comments to info?.comments,
-    )
+    ).filter { song.localUri == null || it.first in setOf(R.string.song_info_album, R.string.song_info_release_date, R.string.song_info_duration) } +
+        if (song.localUri != null) listOf(
+            R.string.song_info_format to local?.format,
+            R.string.song_info_file_size to local?.fileSize,
+            R.string.song_info_bitrate to local?.bitrate,
+            R.string.song_info_sample_rate to local?.sampleRate,
+            R.string.song_info_channels to local?.channels,
+            R.string.song_info_track_number to song.trackNumber?.toString(),
+            R.string.song_info_genre to local?.genre,
+        ) else emptyList()
     Column {
         rows.forEachIndexed { index, (label, value) ->
             if (index > 0) AlertRule(Modifier.padding(start = 16.dp))
@@ -176,6 +200,77 @@ private fun SongInfoStandardRows(info: SongInfo?, song: Song) {
         }
     }
 }
+
+private data class LocalTrackTechnicalInfo(
+    val format: String? = null,
+    val fileSize: String? = null,
+    val bitrate: String? = null,
+    val sampleRate: String? = null,
+    val channels: String? = null,
+    val genre: String? = null,
+)
+
+private suspend fun readLocalTrackTechnicalInfo(context: Context, rawUri: String): LocalTrackTechnicalInfo =
+    withContext(Dispatchers.IO) {
+        val uri = Uri.parse(rawUri)
+        var displayName: String? = null
+        var size: Long? = null
+        runCatching {
+            context.contentResolver.query(uri, null, null, null, null)?.use { cursor ->
+                val nameColumn = cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME)
+                val sizeColumn = cursor.getColumnIndex(OpenableColumns.SIZE)
+                if (cursor.moveToFirst()) {
+                    if (nameColumn >= 0) displayName = cursor.getString(nameColumn)
+                    if (sizeColumn >= 0 && !cursor.isNull(sizeColumn)) size = cursor.getLong(sizeColumn)
+                }
+            }
+        }
+        var bitrate: Int? = null
+        var sampleRate: Int? = null
+        var channels: Int? = null
+        var genre: String? = null
+        runCatching {
+            MediaMetadataRetriever().use { retriever ->
+                retriever.setDataSource(context, uri)
+                bitrate = retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_BITRATE)?.toIntOrNull()
+                genre = retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_GENRE)?.takeIf(String::isNotBlank)
+            }
+        }
+        runCatching {
+            val extractor = MediaExtractor()
+            try {
+                extractor.setDataSource(context, uri, null)
+                for (index in 0 until extractor.trackCount) {
+                    val format = extractor.getTrackFormat(index)
+                    if (format.getString(MediaFormat.KEY_MIME)?.startsWith("audio/") == true) {
+                        if (format.containsKey(MediaFormat.KEY_SAMPLE_RATE)) sampleRate = format.getInteger(MediaFormat.KEY_SAMPLE_RATE)
+                        if (format.containsKey(MediaFormat.KEY_CHANNEL_COUNT)) channels = format.getInteger(MediaFormat.KEY_CHANNEL_COUNT)
+                        if (format.containsKey(MediaFormat.KEY_BIT_RATE)) bitrate = format.getInteger(MediaFormat.KEY_BIT_RATE)
+                        break
+                    }
+                }
+            } finally {
+                extractor.release()
+            }
+        }
+        val name = displayName ?: uri.lastPathSegment.orEmpty()
+        val format = name.substringAfterLast('.', "").takeIf(String::isNotBlank)?.uppercase(Locale.ROOT)
+        LocalTrackTechnicalInfo(
+            format = format,
+            fileSize = size?.let { bytes ->
+                when {
+                    bytes >= 1_073_741_824 -> String.format(Locale.getDefault(), "%.1f GB", bytes / 1_073_741_824.0)
+                    bytes >= 1_048_576 -> String.format(Locale.getDefault(), "%.1f MB", bytes / 1_048_576.0)
+                    bytes >= 1_024 -> String.format(Locale.getDefault(), "%.0f KB", bytes / 1_024.0)
+                    else -> "$bytes B"
+                }
+            },
+            bitrate = bitrate?.takeIf { it > 0 }?.let { "${it / 1000} kbps" },
+            sampleRate = sampleRate?.takeIf { it > 0 }?.let { rate -> if (rate % 1000 == 0) "${rate / 1000} kHz" else "%.1f kHz".format(Locale.getDefault(), rate / 1000f) },
+            channels = channels?.takeIf { it > 0 }?.toString(),
+            genre = genre,
+        )
+    }
 
 /** Label on the left, value on the right; a small spinner stands in for the value while it loads. */
 @Composable

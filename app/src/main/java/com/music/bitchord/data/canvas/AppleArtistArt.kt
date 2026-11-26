@@ -1,5 +1,6 @@
 package com.music.bitchord.data.canvas
 
+import android.content.Context
 import com.music.bitchord.data.DebugLog as Log
 import com.music.bitchord.data.AppleCatalogue
 import com.music.bitchord.data.Http
@@ -70,6 +71,49 @@ object AppleArtistArtRepository {
             "(KHTML, like Gecko) Chrome/124.0 Safari/537.36"
 
     private class Entry(val art: AppleArtistArt?)
+    @Volatile private var preferences: android.content.SharedPreferences? = null
+
+    /** Restores settled artist metadata across ordinary app process restarts. */
+    fun init(context: Context) {
+        if (preferences != null) return
+        synchronized(cache) {
+            if (preferences != null) return
+            val prefs = context.applicationContext.getSharedPreferences("artist_art_cache", Context.MODE_PRIVATE)
+            preferences = prefs
+            runCatching {
+                val rows = JSONObject(prefs.getString("apple", "{}") ?: "{}")
+                rows.keys().asSequence().forEach { id ->
+                    val value = rows.optJSONObject(id) ?: return@forEach
+                    val art = if (!value.optBoolean("hasArt")) null else AppleArtistArt(
+                        heroUrl = value.optString("hero"),
+                        logoUrl = value.optString("logo").takeIf(String::isNotBlank),
+                        logoAspect = value.optDouble("aspect", 1.0).toFloat(),
+                        videoUrl = value.optString("video").takeIf(String::isNotBlank),
+                        background = value.optInt("background"),
+                        accent = value.optInt("accent"),
+                        keyColor = if (value.isNull("keyColor")) null else value.optInt("keyColor"),
+                    )
+                    cache[id] = Entry(art)
+                }
+            }.onFailure { Log.d(TAG, "could not restore artist metadata: $it") }
+        }
+    }
+
+    private fun persist() {
+        val prefs = preferences ?: return
+        val rows = JSONObject()
+        synchronized(cache) {
+            cache.forEach { (id, entry) ->
+                val art = entry.art
+                rows.put(id, if (art == null) JSONObject().put("hasArt", false) else JSONObject()
+                    .put("hasArt", true).put("hero", art.heroUrl).put("logo", art.logoUrl)
+                    .put("aspect", art.logoAspect.toDouble()).put("video", art.videoUrl)
+                    .put("background", art.background).put("accent", art.accent)
+                    .put("keyColor", art.keyColor ?: JSONObject.NULL))
+            }
+        }
+        prefs.edit().putString("apple", rows.toString()).apply()
+    }
 
     private val cache = object : LinkedHashMap<String, Entry>(CACHE_SIZE, 0.75f, true) {
         override fun removeEldestEntry(eldest: MutableMap.MutableEntry<String, Entry>) =
@@ -120,6 +164,7 @@ object AppleArtistArtRepository {
                 .getOrNull()
         } ?: return null
         synchronized(cache) { cache[browseId] = entry }
+        persist()
         _updates.value++
         return entry.art
     }

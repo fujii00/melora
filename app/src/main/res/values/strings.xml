@@ -357,28 +357,9 @@
     <string name="app_icon_ember">Ember</string>
     <string name="app_icon_velvet">Velvet</string>
     <string name="app_icon_bone">Bone</string>
-    <string name="app_icon_monochrome" translatable="false">Monochrome</string>
-    <string name="app_icon_liquid_glass" translatable="false">Liquid Glass</string>
-    <string name="app_icon_liquid_glass_dark" translatable="false">Liquid Glass Dark</string>
-    <string name="app_icon_liquid_glass_clear" translatable="false">Liquid Glass Clear</string>
-    <string name="app_icon_liquid_glass_clear_dark" translatable="false">Liquid Glass Clear Dark</string>
-    <string name="app_icon_samsung_glass" translatable="false">Samsung Glass</string>
-    <string name="app_icon_samsung_glass_dark" translatable="false">Samsung Glass Dark</string>
-    <string name="app_icon_samsung_glass_clear" translatable="false">Samsung Glass Clear</string>
-    <string name="app_icon_samsung_glass_clear_dark" translatable="false">Samsung Glass Clear Dark</string>
-    <string name="app_icon_pixel_glass" translatable="false">Pixel Glass</string>
-    <string name="app_icon_pixel_glass_dark" translatable="false">Pixel Glass Dark</string>
-    <string name="app_icon_pixel_glass_clear" translatable="false">Pixel Glass Clear</string>
-    <string name="app_icon_pixel_glass_clear_dark" translatable="false">Pixel Glass Clear Dark</string>
-    <string name="app_icon_neon_silver" translatable="false">Neon Silver</string>
-    <string name="app_icon_neon_cyan" translatable="false">Neon Cyan</string>
-    <string name="app_icon_neon_violet" translatable="false">Neon Violet</string>
-    <string name="app_icon_samsung_neon_silver" translatable="false">Samsung Neon Silver</string>
-    <string name="app_icon_samsung_neon_cyan" translatable="false">Samsung Neon Cyan</string>
-    <string name="app_icon_samsung_neon_violet" translatable="false">Samsung Neon Violet</string>
-    <string name="app_icon_pixel_neon_silver" translatable="false">Pixel Neon Silver</string>
-    <string name="app_icon_pixel_neon_cyan" translatable="false">Pixel Neon Cyan</string>
-    <string name="app_icon_pixel_neon_violet" translatable="false">Pixel Neon Violet</string>
+    <string name="app_icon_cute_cat" translatable="false">Cute Cat</string>
+    <string name="app_icon_liquid_glass_red" translatable="false">Liquid Glass Red</string>
+    <string name="app_icon_midnight_blue" translatable="false">Midnight Blue</string>
     <string name="theme">Theme</string>
     <string name="font">Font</string>
     <string name="font_default">Default</string>
@@ -1526,4 +1507,20 @@
     <string name="replay_year_summary_minutes">Minutes listened</string>
     <string name="replay_year_mute">Mute the story</string>
     <string name="replay_year_unmute">Unmute the story</string>
+
+    <string name="home_shuffle_all">Shuffle all</string>
+    <string name="home_artists_of_the_day">Artists of the Day</string>
+    <string name="home_albums_of_the_day">Albums of the Day</string>
+    <string name="home_songs_of_the_day">Songs of the Day</string>
+    <string name="home_liked_songs">Liked Songs</string>
+    <string name="artist_favorite">Favorite artist</string>
+    <string name="artist_remove_favorite">Remove favorite artist</string>
+    <string name="song_info_format">File format</string>
+    <string name="song_info_file_size">File size</string>
+    <string name="song_info_bitrate">Bitrate</string>
+    <string name="song_info_sample_rate">Sample rate</string>
+    <string name="song_info_channels">Channels</string>
+    <string name="song_info_track_number">Track number</string>
+    <string name="song_info_genre">Genre</string>
+    <string name="song_info_duration">Duration</string>
 </resources>

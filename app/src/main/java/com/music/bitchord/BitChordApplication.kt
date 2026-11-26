@@ -71,6 +71,10 @@ class BitChordApplication : Application(), SingletonImageLoader.Factory, Configu
         AndroidStreamHooks.installEarly()
         PlayerPlatform.install(AndroidPlayerHost(this))
         com.music.bitchord.ui.AppUi.install(com.music.bitchord.ui.AndroidAppUiHost)
+        // Artist metadata and verified fallback image URLs are small persistent
+        // caches; keep them warm across force-stop and process recreation.
+        com.music.bitchord.data.canvas.AppleArtistArtRepository.init(this)
+        com.music.bitchord.data.canvas.ArtistArtworkFallbacks.init(this)
         // The shared data layer (lyrics, the YouTube Music client) logs to
         // logcat on debug builds only, as the app's own DebugLog always has.
         if (BuildConfig.DEBUG) {
@@ -108,6 +112,9 @@ class BitChordApplication : Application(), SingletonImageLoader.Factory, Configu
         Innertube.appLanguage = { AppCompatDelegate.getApplicationLocales().get(0)?.toLanguageTag() }
         migrateScriptOnlyAppLocale()
         LyricsTranslation.cacheDir = cacheDir
+        // Fetched timed lyrics belong in durable private storage, unlike
+        // translations and image bytes that Android may evict from cacheDir.
+        com.music.bitchord.data.lyrics.LyricsRepository.cacheDir = java.io.File(filesDir, "fetched_lyrics")
         // PlaybackService shares this process, so seeding the cookie here means
         // stream resolution is authenticated from the first play onwards.
         authStore = AuthStore(this)
@@ -150,6 +157,7 @@ class BitChordApplication : Application(), SingletonImageLoader.Factory, Configu
             CoroutineScope(Dispatchers.IO).launch { Innertube.ensureSessionScope() }
         }
         AppSettings.init(this, authStore)
+        com.music.bitchord.data.profile.MeloraProfileStore.init(this)
         // After AppSettings: fetches Automix's models as soon as Automix is on,
         // rather than waiting for the first song it would mix.
         com.music.bitchord.playback.smart.AutomixModels.install(this)

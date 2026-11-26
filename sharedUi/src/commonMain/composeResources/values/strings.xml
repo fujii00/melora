@@ -294,4 +294,26 @@
     <string name="queue_download">Download</string>
     <string name="queue_selection_remove">Remove</string>
     <string name="queue_add_all_to_playlist">Add all to playlist</string>
+
+    <string name="home_shuffle_all">Shuffle all</string>
+    <string name="home_artists_of_the_day">Artists of the Day</string>
+    <string name="home_albums_of_the_day">Albums of the Day</string>
+    <string name="home_songs_of_the_day">Songs of the Day</string>
+    <string name="home_liked_songs">Liked Songs</string>
+    <string name="artist_favorite">Favorite artist</string>
+    <string name="artist_remove_favorite">Remove favorite artist</string>
+    <string name="song_info_format">File format</string>
+    <string name="song_info_file_size">File size</string>
+    <string name="song_info_bitrate">Bitrate</string>
+    <string name="song_info_sample_rate">Sample rate</string>
+    <string name="song_info_channels">Channels</string>
+    <string name="song_info_track_number">Track number</string>
+    <string name="song_info_genre">Genre</string>
+    <string name="song_info_duration">Duration</string>
+
+    <string name="home_greeting_morning">Good morning, %1$s</string>
+    <string name="home_greeting_afternoon">Good afternoon, %1$s</string>
+    <string name="home_greeting_evening">Good evening, %1$s</string>
+    <string name="home_greeting_hello">Hello, %1$s</string>
+    <string name="home_profile_picture">Your profile picture</string>
 </resources>

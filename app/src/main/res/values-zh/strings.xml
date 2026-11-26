@@ -89,7 +89,7 @@
     <string name="youtube_premium_audio_subtitle">我有 Premium：串流更高音质的约 256 kbps Opus，而不是标准的 160 kbps</string>
     <string name="account_scrobbling">账号与Scrobbling</string>
     <string name="rich_presence">Rich Presence</string>
-    <string name="scrobbling">Scrobbling</string>
+    <string name="scrobbling">乱写乱画</string>
     <string name="now_playing">正在播放</string>
     <string name="selected">已选择</string>
     <string name="password">密码</string>
@@ -755,7 +755,7 @@
     <string name="listen_together_official_server_dialog_message">此派对托管在 Melora 官方服务器上。\n\n要切换回官方服务器并加入派对 %1$s 吗？</string>
     <string name="listen_together_switch_failed_stayed_in_party">无法加入派对：%1$s。仍留在派对 %2$s 中。</string>
     <string name="listen_together_switch_failed">无法加入派对：%1$s。</string>
-    <string name="listen_together_ping">%1$d ms</string>
+    <string name="listen_together_ping">%1$d 毫秒</string>
     <string name="listen_together_server_offline_dash">—</string>
     <string name="listen_together_invalid_server_url">服务器 URL 无效。请输入有效地址（例如 https://your-server.com）</string>
     <string name="listen_together_err_whitespace">服务器 URL 不能包含空格</string>
@@ -901,7 +901,7 @@
     <string name="pipeline_loudness_measured">测量值</string>
     <string name="pipeline_bit_exact">比特精确</string>
     <string name="loudness_measuring">正在测量…</string>
-    <string name="loudness_gain_db">%1$s dB</string>
+    <string name="loudness_gain_db">%1$s 分贝</string>
     <string name="loudness_lufs">%1$s LUFS</string>
 
     <string name="profile_unavailable">此页面暂无已登录的个人资料。</string>
@@ -1030,220 +1030,220 @@
     <string name="use_this_profile">使用此资料</string>
 
 
-    <string name="lyrics_offset">Lyrics offset</string>
+    <string name="lyrics_offset">歌词偏移</string>
 
 
 
 
 
-    <string name="auto_quick_picks">Quick picks</string>
+    <string name="auto_quick_picks">快速选择</string>
 
-    <string name="auto_recents">Recent</string>
+    <string name="auto_recents">最近</string>
 
-    <string name="auto_liked">Liked songs</string>
+    <string name="auto_liked">喜欢的歌曲</string>
 
-    <string name="auto_login_title">Sign in to YouTube on your phone</string>
+    <string name="auto_login_title">在手机上登录 YouTube</string>
 
-    <string name="auto_login_subtitle">Open Melora on your phone to sign in</string>
+    <string name="auto_login_subtitle">在手机上打开Melora进行登录</string>
 
-    <string name="auto_empty_recents_title">No recent songs</string>
+    <string name="auto_empty_recents_title">没有最近的歌曲</string>
 
-    <string name="auto_empty_recents_subtitle">Songs you play will appear here</string>
+    <string name="auto_empty_recents_subtitle">您播放的歌曲将出现在此处</string>
 
-    <string name="auto_empty_quick_picks_title">No suggestions</string>
+    <string name="auto_empty_quick_picks_title">没有建议</string>
 
-    <string name="auto_empty_quick_picks_subtitle">Check your connection and try again</string>
+    <string name="auto_empty_quick_picks_subtitle">检查您的连接并重试</string>
 
-    <string name="auto_empty_playlists_title">No playlists available</string>
+    <string name="auto_empty_playlists_title">没有可用的播放列表</string>
 
-    <string name="auto_empty_playlists_subtitle">Check your connection and try again</string>
+    <string name="auto_empty_playlists_subtitle">检查您的连接并重试</string>
 
-    <string name="auto_empty_liked_title">No liked songs</string>
+    <string name="auto_empty_liked_title">没有喜欢的歌曲</string>
 
-    <string name="auto_empty_liked_subtitle">Tap the heart on a song to save it here</string>
+    <string name="auto_empty_liked_subtitle">点击歌曲上的心形即可将其保存在此处</string>
 
-    <string name="auto_empty_offline_title">No offline songs</string>
+    <string name="auto_empty_offline_title">没有离线歌曲</string>
 
-    <string name="auto_empty_offline_subtitle">Download songs on your phone to listen here</string>
+    <string name="auto_empty_offline_subtitle">在手机上下载歌曲并在此处收听</string>
 
-    <string name="auto_unavailable_title">Content unavailable</string>
+    <string name="auto_unavailable_title">内容不可用</string>
 
-    <string name="auto_unavailable_subtitle">Reopen the folder and try again</string>
+    <string name="auto_unavailable_subtitle">重新打开文件夹并重试</string>
 
-    <string name="settings_search_hint">Search settings</string>
+    <string name="settings_search_hint">搜索设置</string>
 
-    <string name="settings_search_empty">No settings match “%1$s”</string>
+    <string name="settings_search_empty">没有匹配“%1$s”的设置</string>
 
 
-    <string name="content_preferences">Content Preferences</string>
-    <string name="hide_recents">Hide Recents</string>
-    <string name="hide_home_videos">Hide videos from Home</string>
-    <string name="hide_home_videos_subtitle">Shelves of only videos go too. Search, artists and playlists still show them</string>
-    <string name="hide_top_picks">Hide Top Picks for You</string>
-    <string name="hide_home_moods">Hide Find Your Mood</string>
-    <string name="square_video_thumbnails">Square video thumbnails</string>
-    <string name="square_video_thumbnails_subtitle">Show music videos as squares everywhere, including the player</string>
-    <string name="prefer_music_only">Prefer music-only version</string>
-    <string name="prefer_music_only_subtitle">Music videos play as their audio version, and the next track in the queue is converted ahead of time so Automix and crossfade work</string>
+    <string name="content_preferences">内容偏好</string>
+    <string name="hide_recents">隐藏最近记录</string>
+    <string name="hide_home_videos">隐藏主页中的视频</string>
+    <string name="hide_home_videos_subtitle">只放视频的架子也消失了。搜索、艺术家和播放列表仍然显示他们</string>
+    <string name="hide_top_picks">隐藏您的首选</string>
+    <string name="hide_home_moods">隐藏寻找你的心情</string>
+    <string name="square_video_thumbnails">方形视频缩略图</string>
+    <string name="square_video_thumbnails_subtitle">将音乐视频显示为方块，包括播放器</string>
+    <string name="prefer_music_only">更喜欢纯音乐版本</string>
+    <string name="prefer_music_only_subtitle">音乐视频以其音频版本播放，并且队列中的下一个曲目提前转换，以便 Automix 和交叉淡入淡出工作</string>
     <string name="smart_version_alignment">智能音频对齐</string>
     <string name="smart_version_alignment_subtitle">分析音频波形，精确匹配对应的播放时刻</string>
 
     <string name="equalizer_footer">Shapes the sound inside Melora， before it reaches the system.</string>
 
-    <string name="equalizer_dynamic">Dynamic</string>
+    <string name="equalizer_dynamic">动态</string>
 
-    <string name="equalizer_manual">Manual</string>
+    <string name="equalizer_manual">手册</string>
 
-    <string name="equalizer_tone">Tone</string>
+    <string name="equalizer_tone">语气</string>
 
-    <string name="equalizer_tilt">Tilt</string>
+    <string name="equalizer_tilt">倾斜</string>
 
-    <string name="equalizer_contour">Contour</string>
+    <string name="equalizer_contour">轮廓</string>
 
-    <string name="equalizer_broad">Broad</string>
+    <string name="equalizer_broad">布罗德</string>
 
-    <string name="equalizer_focused">Focused</string>
+    <string name="equalizer_focused">专注</string>
 
     <string name="equalizer_broad_footer">Drag left for a warmer sound and right for a brighter one； down scoops the middle， up brings it forward. Broad moves wide stretches of the spectrum at once.</string>
 
     <string name="equalizer_focused_footer">Drag left for a warmer sound and right for a brighter one； down scoops the middle， up brings it forward. Focused works on narrower stretches， so it changes less around what it moves.</string>
 
-    <string name="equalizer_preset">Preset</string>
+    <string name="equalizer_preset">预设</string>
 
-    <string name="equalizer_bands">Bands</string>
+    <string name="equalizer_bands">乐队</string>
 
-    <string name="equalizer_bands_footer">Moving a band leaves the preset behind and the curve becomes your own.</string>
+    <string name="equalizer_bands_footer">移动频段会留下预设，曲线将变成您自己的。</string>
 
-    <string name="equalizer_reset">Reset all bands</string>
+    <string name="equalizer_reset">重置所有频段</string>
 
-    <string name="equalizer_balance">Balance</string>
+    <string name="equalizer_balance">平衡</string>
 
     <string name="equalizer_balance_left">L</string>
 
     <string name="equalizer_balance_right">R</string>
 
-    <string name="equalizer_balance_footer">Shifts the sound towards one ear by quietening the other.</string>
+    <string name="equalizer_balance_footer">通过使另一只耳朵安静来将声音转移到一只耳朵。</string>
     <string name="equalizer_bitstream_title">当前未运行</string>
     <string name="equalizer_bitstream_subtitle">此曲目未经解码直接发送到输出</string>
     <string name="equalizer_bitstream_footer">均衡器作用于解码后的音频。此曲目以比特流形式直通，由你的设备解码，因此这里没有可供处理的采样。</string>
 
-    <string name="system_equalizer">System equalizer</string>
+    <string name="system_equalizer">系统均衡器</string>
 
-    <string name="system_equalizer_subtitle">Your device\'s own panel</string>
+    <string name="system_equalizer_subtitle">您设备自己的面板</string>
 
     <string name="system_equalizer_footer">Runs after Melora\'s， on the whole audio session. Using both applies both.</string>
 
-    <string name="eq_preset_flat">Flat</string>
+    <string name="eq_preset_flat">平</string>
 
-    <string name="eq_preset_acoustic">Acoustic</string>
+    <string name="eq_preset_acoustic">声学</string>
 
-    <string name="eq_preset_bass_boost">Bass boost</string>
+    <string name="eq_preset_bass_boost">低音增强</string>
 
-    <string name="eq_preset_bass_cut">Bass cut</string>
+    <string name="eq_preset_bass_cut">低音切</string>
 
-    <string name="eq_preset_vocal">Vocal</string>
+    <string name="eq_preset_vocal">声乐</string>
 
-    <string name="eq_preset_treble_boost">Treble boost</string>
+    <string name="eq_preset_treble_boost">高音增强</string>
 
-    <string name="eq_preset_treble_cut">Treble cut</string>
+    <string name="eq_preset_treble_cut">高音切</string>
 
-    <string name="eq_preset_loudness">Loudness</string>
+    <string name="eq_preset_loudness">响度</string>
 
-    <string name="eq_preset_spoken_word">Spoken word</string>
+    <string name="eq_preset_spoken_word">口语</string>
 
-    <string name="eq_preset_electronic">Electronic</string>
+    <string name="eq_preset_electronic">电子</string>
 
-    <string name="eq_preset_rock">Rock</string>
+    <string name="eq_preset_rock">摇滚</string>
 
-    <string name="eq_preset_hip_hop">Hip-hop</string>
+    <string name="eq_preset_hip_hop">嘻哈</string>
 
-    <string name="eq_preset_jazz">Jazz</string>
+    <string name="eq_preset_jazz">爵士乐</string>
 
-    <string name="eq_preset_classical">Classical</string>
+    <string name="eq_preset_classical">古典</string>
 
-    <string name="eq_preset_small_speakers">Small speakers</string>
+    <string name="eq_preset_small_speakers">小音箱</string>
 
-    <string name="eq_preset_late_night">Late night</string>
+    <string name="eq_preset_late_night">深夜</string>
 
-    <string name="eq_preset_custom">Custom</string>
+    <string name="eq_preset_custom">定制</string>
 
-    <string name="translation_language">Translation language</string>
+    <string name="translation_language">翻译语言</string>
 
-    <string name="translation_language_description">The language the translate button turns lyrics into.</string>
+    <string name="translation_language_description">翻译按钮将歌词转换成的语言。</string>
 
-    <string name="translation_language_app_default">App language</string>
+    <string name="translation_language_app_default">应用语言</string>
 
-    <string name="translation_language_subtitle">Follows the app language</string>
+    <string name="translation_language_subtitle">遵循应用程序语言</string>
 
-    <string name="search_languages">Search languages</string>
+    <string name="search_languages">搜索语言</string>
 
-    <string name="no_languages_match">No languages match</string>
+    <string name="no_languages_match">没有匹配的语言</string>
 
 
 
-    <string name="audio_pipeline">Audio Pipeline</string>
-    <string name="cast_dialog_title">Cast</string>
-    <string name="cast_dialog_subtitle">Play on a Chromecast or Google Cast speaker</string>
-    <string name="cast_searching">Looking for devices…</string>
-    <string name="cast_searching_hint">Your phone and the receiver need to be on the same Wi-Fi network.</string>
-    <string name="cast_device_connecting">Connecting…</string>
-    <string name="cast_device_connected">Casting</string>
-    <string name="cast_stop">Stop casting</string>
-    <string name="cast_track_unsupported">This track can\'t be cast</string>
-    <string name="cast_connect_failed">Couldn\'t connect to the receiver</string>
+    <string name="audio_pipeline">音频管道</string>
+    <string name="cast_dialog_title">演员阵容</string>
+    <string name="cast_dialog_subtitle">在 Chromecast 或 Google Cast 扬声器上播放</string>
+    <string name="cast_searching">正在寻找设备...</string>
+    <string name="cast_searching_hint">您的手机和接收器需要位于同一 Wi-Fi 网络。</string>
+    <string name="cast_device_connecting">正在连接…</string>
+    <string name="cast_device_connected">铸造</string>
+    <string name="cast_stop">停止投射</string>
+    <string name="cast_track_unsupported">无法投射该曲目</string>
+    <string name="cast_connect_failed">无法连接到接收器</string>
     <string name="audio_pipeline_subtitle">实时信号路径，从解码器到输出</string>
 
-    <string name="pipeline_track_info">Track Info</string>
+    <string name="pipeline_track_info">曲目信息</string>
 
-    <string name="pipeline_decoder">Decoder</string>
+    <string name="pipeline_decoder">解码器</string>
 
-    <string name="pipeline_resampler">Resampler</string>
+    <string name="pipeline_resampler">重采样器</string>
 
     <string name="pipeline_dsp">DSP</string>
 
-    <string name="pipeline_output_device">Output Device</string>
+    <string name="pipeline_output_device">输出设备</string>
 
-    <string name="pipeline_source">Source</string>
+    <string name="pipeline_source">来源</string>
 
-    <string name="pipeline_format">Format</string>
+    <string name="pipeline_format">格式</string>
 
-    <string name="pipeline_bit_depth">Bit Depth</string>
+    <string name="pipeline_bit_depth">位深度</string>
 
-    <string name="pipeline_sample_rate">Sample Rate</string>
+    <string name="pipeline_sample_rate">采样率</string>
 
-    <string name="pipeline_bitrate">Bitrate</string>
+    <string name="pipeline_bitrate">比特率</string>
 
-    <string name="pipeline_channels">Channels</string>
+    <string name="pipeline_channels">渠道</string>
 
-    <string name="pipeline_decoder_name">Decoder Name</string>
+    <string name="pipeline_decoder_name">解码器名称</string>
 
-    <string name="pipeline_io_rate">I/O Rate</string>
+    <string name="pipeline_io_rate">输入/输出速率</string>
 
-    <string name="pipeline_type">Type</string>
+    <string name="pipeline_type">类型</string>
 
-    <string name="pipeline_cutoff">Cutoff</string>
+    <string name="pipeline_cutoff">截止</string>
 
-    <string name="pipeline_quality">Quality</string>
+    <string name="pipeline_quality">品质</string>
 
-    <string name="pipeline_pcm_format">PCM Format</string>
+    <string name="pipeline_pcm_format">PCM 格式</string>
 
-    <string name="pipeline_eq_preset">EQ Preset</string>
+    <string name="pipeline_eq_preset">均衡器预设</string>
 
-    <string name="pipeline_stereo_expand">Stereo Expand</string>
+    <string name="pipeline_stereo_expand">立体声扩展</string>
 
-    <string name="pipeline_buffers">Buffers</string>
+    <string name="pipeline_buffers">缓冲器</string>
 
-    <string name="pipeline_output_api">Output API</string>
+    <string name="pipeline_output_api">输出接口</string>
 
-    <string name="pipeline_device_name">Device Name</string>
+    <string name="pipeline_device_name">设备名称</string>
 
 
 
-    <string name="shared_link">Shared link</string>
+    <string name="shared_link">共享链接</string>
 
-    <string name="song_will_play_next">Song will play next</string>
+    <string name="song_will_play_next">接下来将播放歌曲</string>
 
-    <string name="song_added_to_queue">Song added to queue</string>
+    <string name="song_added_to_queue">歌曲已添加至队列</string>
     <string name="song_added_to_playlist">已添加到播放列表</string>
     <string name="song_already_in_playlist">已在播放列表中</string>
     <plurals name="add_to_playlists_count">
@@ -1254,9 +1254,9 @@
     </plurals>
     <string name="party_queue_full">队列已满（派对最多 %d 首歌曲）</string>
 
-    <string name="paxsenix_api_key">PaxSenix API key</string>
+    <string name="paxsenix_api_key">PaxSenix API 密钥</string>
 
-    <string name="paxsenix_api_key_configured">PaxSenix API key — configured</string>
+    <string name="paxsenix_api_key_configured">PaxSenix API 密钥 — 已配置</string>
 
     <string name="paxsenix_api_key_missing">PaxSenix API key — optional， not configured</string>
 
@@ -1310,7 +1310,7 @@
     <string name="spotify_import_empty_playlist">此播放列表中没有歌曲</string>
     <string name="spotify_import_failed">无法导入播放列表：%1$s</string>
     <string name="spotify_import_fetching">正在读取 Spotify 播放列表…</string>
-    <string name="spotify_import_hint">open.spotify.com/playlist/…</string>
+    <string name="spotify_import_hint">打开.spotify.com/playlist/…</string>
     <string name="spotify_import_invalid">这不是 Spotify 播放列表链接。</string>
     <string name="spotify_import_local_fallback">无法在 YouTube Music 上创建，因此“%1$s”已保存到本设备。</string>
     <string name="spotify_import_matching">正在匹配歌曲 %1$d / %2$d</string>
@@ -1347,7 +1347,7 @@
     <string name="onboarding_skip_sign_in">跳过登录</string>
     <string name="onboarding_back">返回</string>
     <string name="wear_os_section">适用于 Wear OS 的 Melora</string>
-    <string name="wear_os_page_title">Wear OS</string>
+    <string name="wear_os_page_title">磨损操作系统</string>
     <string name="wear_os_your_watches">你的手表</string>
     <string name="wear_os_value_none">没有手表</string>
     <string name="wear_os_value_not_installed">未安装</string>
@@ -1395,9 +1395,9 @@
     <string name="song_info_unavailable">暂无信息</string>
     <string name="song_info_error">部分信息无法加载。</string>
     <string name="song_info_retry">重试</string>
-    <string name="no_audio_version">No audio version found for this video</string>
-    <string name="no_video_version">No video version found for this song</string>
-    <string name="version_switch_in_party">Everyone in Listen Together hears the same version</string>
+    <string name="no_audio_version">找不到该视频的音频版本</string>
+    <string name="no_video_version">没有找到这首歌的视频版本</string>
+    <string name="version_switch_in_party">Listen Together 中的每个人都听到相同的版本</string>
     <string name="opened_file">已打开的文件</string>
     <string name="folders">文件夹</string>
     <string name="folder">文件夹</string>
@@ -1536,4 +1536,120 @@
     <string name="drive_backup_row_subtitle">在你的所有设备间备份并同步 Replay</string>
     <string name="drive_over_cellular">使用移动数据同步</string>
     <string name="drive_over_cellular_subtitle">关闭时，自动同步会等待 Wi-Fi</string>
+    <string name="search_source_youtube" translatable="false">YouTube</string>
+    <string name="tester_code_title" translatable="false">Tester code</string>
+    <string name="tester_code_message" translatable="false">For Melora testers. Lets addon verification work on this phone with an unlocked bootloader.</string>
+    <string name="tester_code_message_saved" translatable="false">A tester code is saved on this phone. Enter a new one to replace it, or remove it.</string>
+    <string name="tester_code_placeholder" translatable="false">XXXXX-XXXXX-XXXXX-XXXXX-XXXXX</string>
+    <string name="tester_code_saved" translatable="false">Tester code saved</string>
+    <string name="tester_code_removed" translatable="false">Tester code removed</string>
+    <string name="automix_art_transition">艺术转型</string>
+    <string name="automix_art_transition_subtitle">在 AutoMix 期间平滑地混合曲目之间的封面艺术。</string>
+    <string name="automix_mini_art_transition">迷你玩家艺术过渡</string>
+    <string name="automix_mini_art_transition_subtitle">在 AutoMix 期间在迷你播放器中显示图稿过渡。</string>
+    <string name="show_best_part">最佳零件按钮</string>
+    <string name="show_best_part_subtitle">图画上有一个按钮，可以跳到歌曲中人replay最多的部分</string>
+    <string name="app_icon_ember">余烬</string>
+    <string name="app_icon_velvet">天鹅绒</string>
+    <string name="app_icon_bone">骨</string>
+    <string name="app_icon_cute_cat" translatable="false">Cute Cat</string>
+    <string name="app_icon_liquid_glass_red" translatable="false">Liquid Glass Red</string>
+    <string name="app_icon_midnight_blue" translatable="false">Midnight Blue</string>
+    <string name="pipeline_pcm_data_rate" translatable="false">PCM Data Rate</string>
+    <string name="lyrics_share_apple_canvas" translatable="false">Apple</string>
+    <string name="lyrics_share_spotify_canvas" translatable="false">Spotify</string>
+    <string name="spotify_import_language_preference" translatable="false">Language preference</string>
+    <string name="spotify_import_language_hint" translatable="false">e.g. Punjabi, Marathi, Korean…</string>
+    <string name="onboarding_local_title">将您的音乐带到 Melora</string>
+    <string name="onboarding_local_body">让 Melora 扫描此设备上的音频文件来构建您的库、查找歌词并离线播放您的收藏。您可以稍后在 Android 设置中更改访问权限。</string>
+    <string name="onboarding_local_allow">允许访问音乐文件</string>
+    <string name="onboarding_local_ready">继续您的图书馆</string>
+    <string name="onboarding_local_skip">现在不行</string>
+    <string name="local_explore_title">探索你的音乐</string>
+    <string name="local_explore_subtitle">您的歌曲，围绕此设备上的收藏进行组织。</string>
+    <string name="local_explore_count">%1$d 此设备上的歌曲</string>
+    <string name="local_explore_songs">歌曲</string>
+    <string name="local_explore_songs_detail">浏览并播放您收藏中的每首曲目</string>
+    <string name="local_explore_artists">艺术家</string>
+    <string name="local_explore_artists_detail">查找您的音乐库中的所有艺术家</string>
+    <string name="local_explore_albums">专辑</string>
+    <string name="local_explore_albums_detail">浏览专辑及其曲目列表</string>
+    <string name="local_explore_folders">文件夹</string>
+    <string name="local_explore_folders_detail">通过音乐在您设备上的位置探索音乐</string>
+    <string name="home_recommendation_card_size">家庭推荐卡</string>
+    <string name="home_recommendation_cards_large">大卡（默认）</string>
+    <string name="home_recommendation_cards_compact">紧凑型卡</string>
+    <string name="local_access_title">授予 Melora 访问您音乐的权限</string>
+    <string name="local_access_detail">Melora 读取此设备上的音频文件来构建您的库。您的音乐保留在您的设备上。</string>
+    <string name="local_access_action">允许音乐访问</string>
+    <string name="replay_year_open">打开你的Replay %1$s</string>
+    <string name="replay_year_building">打造你的一年……</string>
+    <string name="replay_year_opener_start">你的</string>
+    <string name="replay_year_opener_end">在Melora</string>
+    <string name="replay_year_opener_detail">让我们回顾一下您玩过的游戏。</string>
+    <string name="replay_year_minutes_start">今年你听了</string>
+    <string name="replay_year_minutes_days_start">那是</string>
+    <string name="replay_year_minutes_days_value">%1$s天</string>
+    <string name="replay_year_minutes_hours_value">%1$s 小时</string>
+    <string name="replay_year_minutes_days_end">的音乐。</string>
+    <string name="replay_year_busiest_start">你最重要的一天是</string>
+    <string name="replay_year_busiest_minutes">%1$s 一天音乐分钟数</string>
+    <string name="replay_year_busiest_song">大多是%1$s</string>
+    <string name="replay_year_clock_start">你在周围活过来了</string>
+    <string name="replay_year_night_owl">夜猫子</string>
+    <string name="replay_year_night_owl_detail">你的大部分听力都发生在晚上 10 点之后。</string>
+    <string name="replay_year_early_bird">早起者</string>
+    <string name="replay_year_early_bird_detail">上午 10 点之前，您的一天从音乐开始。</string>
+    <string name="replay_year_golden_hour">黄金时段</string>
+    <string name="replay_year_golden_hour_detail">晚上是音乐响起的时候。</string>
+    <string name="replay_year_daytime">白天漂流者</string>
+    <string name="replay_year_daytime_detail">你让音乐贯穿一整天。</string>
+    <string name="replay_year_all_day">全天候</string>
+    <string name="replay_year_all_day_detail">早上、中午或晚上，都有东西在演奏。</string>
+    <string name="replay_year_genres_start">今年你的声音</string>
+    <string name="replay_year_artist_start">今年您的最佳艺术家是……</string>
+    <string name="replay_year_minutes_together">%1$s 在一起分钟</string>
+    <string name="replay_year_top_artists">您的顶级艺术家</string>
+    <string name="replay_year_song_start">还有你的年度歌曲...</string>
+    <string name="replay_year_top_songs">其余的热门歌曲</string>
+    <string name="replay_year_albums">你住过的相册</string>
+    <string name="replay_year_months">你的一年，一月又一月</string>
+    <string name="replay_year_discovery_start">今年你探索了</string>
+    <string name="replay_year_summary_title">你的%1$s</string>
+    <string name="replay_year_summary_artists">顶尖艺术家</string>
+    <string name="replay_year_summary_songs">热门歌曲</string>
+    <string name="replay_year_summary_minutes">聆听分钟数</string>
+    <string name="replay_year_mute">让故事静音</string>
+    <string name="replay_year_unmute">取消故事静音</string>
+    <plurals name="replay_year_minutes_word">
+        <item quantity="other">分钟</item>
+    </plurals>
+    <plurals name="replay_year_played_times">
+        <item quantity="other">%1$s 次播放</item>
+    </plurals>
+    <plurals name="replay_year_songs_word">
+        <item quantity="other">首歌曲</item>
+    </plurals>
+    <plurals name="replay_year_artists_word">
+        <item quantity="other">位艺人</item>
+    </plurals>
+    <plurals name="replay_year_albums_word">
+        <item quantity="other">张专辑</item>
+    </plurals>
+
+    <string name="home_shuffle_all">随机播放全部</string>
+    <string name="home_artists_of_the_day">每日艺人</string>
+    <string name="home_albums_of_the_day">每日专辑</string>
+    <string name="home_songs_of_the_day">每日歌曲</string>
+    <string name="home_liked_songs">喜欢的歌曲</string>
+    <string name="artist_favorite">喜爱的艺人</string>
+    <string name="artist_remove_favorite">从收藏中移除</string>
+    <string name="song_info_format">文件格式</string>
+    <string name="song_info_file_size">文件大小</string>
+    <string name="song_info_bitrate">比特率</string>
+    <string name="song_info_sample_rate">采样率</string>
+    <string name="song_info_channels">声道</string>
+    <string name="song_info_track_number">曲目编号</string>
+    <string name="song_info_genre">流派</string>
+    <string name="song_info_duration">时长</string>
 </resources>

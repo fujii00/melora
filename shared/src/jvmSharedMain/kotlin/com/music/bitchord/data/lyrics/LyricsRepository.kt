@@ -8,7 +8,24 @@ import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.withTimeoutOrNull
 import java.util.Collections
+import java.io.File
+import java.security.MessageDigest
 import java.util.concurrent.ConcurrentHashMap
+import kotlinx.coroutines.sync.Mutex
+import kotlinx.coroutines.sync.withLock
+import kotlinx.coroutines.withContext
+import kotlinx.serialization.json.Json
+import kotlinx.serialization.json.JsonArray
+import kotlinx.serialization.json.JsonNull
+import kotlinx.serialization.json.JsonObject
+import kotlinx.serialization.json.JsonPrimitive
+import kotlinx.serialization.json.buildJsonArray
+import kotlinx.serialization.json.buildJsonObject
+import kotlinx.serialization.json.jsonArray
+import kotlinx.serialization.json.jsonObject
+import kotlinx.serialization.json.jsonPrimitive
+import kotlinx.serialization.json.long
+import kotlinx.serialization.json.longOrNull
 
 /**
  * Where the player gets its lyrics.
@@ -66,6 +83,14 @@ import java.util.concurrent.ConcurrentHashMap
  */
 object LyricsRepository {
 
+    /** Set by the app to private files storage so fetched timed lyrics survive process restarts. */
+    var cacheDir: File? = null
+
+    private const val LYRICS_CACHE_TTL_MS = 180L * 24 * 60 * 60 * 1000
+    private const val LYRICS_CACHE_MAX_BYTES = 48L * 1024 * 1024
+    private val diskCacheMutex = Mutex()
+    private val cacheJson = Json { ignoreUnknownKeys = true }
+
     /** Lyrics, and which source they turned out to come from. */
     data class Result(val source: LyricsSource, val lines: List<LyricLine>)
 
@@ -114,6 +139,15 @@ object LyricsRepository {
         val searchTitle = title.forLyricsSearch()
         val searchArtist = artist.artistForLyricsSearch()
 
+        // The key includes the caller's active source selection and ordering,
+        // so a saved answer never bypasses a provider the listener just enabled.
+        val cacheKey = lyricsCacheKey(videoId, title, artist, durationMs, album, sequence, prioritizeSyllableSync)
+        readLyricsCache(cacheKey)?.takeIf { it.source in sequence }?.let { cached ->
+            onSourceStarted?.invoke(cached.source)
+            onSourceResult?.invoke(cached.source, cached)
+            return@coroutineScope cached
+        }
+
         // Settled before anyone is asked for words, so every source that can
         // name the recording does. What the caller knows beats what we worked
         // out last time, and both beat asking again.
@@ -158,6 +192,7 @@ object LyricsRepository {
 
         try {
             pick(racing.map { (source, job) -> source to suspend { job.await() } }, prioritizeSyllableSync)
+                ?.also { writeLyricsCache(cacheKey, it) }
         } finally {
             // Whoever lost the race is no longer worth waiting on, and
             // coroutineScope will not return while they are still running.
@@ -165,6 +200,115 @@ object LyricsRepository {
             documents.cancel()
         }
     }
+
+    private fun lyricsCacheKey(
+        videoId: String,
+        title: String,
+        artist: String,
+        durationMs: Long,
+        album: String?,
+        sequence: List<LyricsSource>,
+        prioritizeSyllableSync: Boolean,
+    ): String {
+        val identity = listOf(
+            videoId, title, artist, durationMs.toString(), album.orEmpty(),
+            sequence.joinToString(",") { it.name }, prioritizeSyllableSync.toString(),
+        ).joinToString("\u001f")
+        return MessageDigest.getInstance("SHA-256").digest(identity.toByteArray(Charsets.UTF_8))
+            .joinToString("") { "%02x".format(it) }
+    }
+
+    private suspend fun readLyricsCache(key: String): Result? = withContext(Dispatchers.IO) {
+        diskCacheMutex.withLock {
+            val root = cacheDir ?: return@withLock null
+            val file = File(root, "$key.json")
+            if (!file.isFile || System.currentTimeMillis() - file.lastModified() > LYRICS_CACHE_TTL_MS) {
+                file.delete()
+                return@withLock null
+            }
+            runCatching {
+                val rootJson = cacheJson.parseToJsonElement(file.readText()).jsonObject
+                val sourceName = rootJson["source"]?.jsonPrimitive?.content ?: return@runCatching null
+                val source = LyricsSource.entries.firstOrNull { it.name == sourceName } ?: return@runCatching null
+                val rows = rootJson["lines"]?.jsonArray ?: return@runCatching null
+                Result(source, rows.mapNotNull { it.jsonObject.toLyricLine() }.takeIf { it.isNotEmpty() } ?: return@runCatching null)
+            }.getOrNull()
+        }
+    }
+
+    private suspend fun writeLyricsCache(key: String, result: Result) = withContext(Dispatchers.IO) {
+        diskCacheMutex.withLock {
+            val root = cacheDir ?: return@withLock
+            if (!root.exists() && !root.mkdirs()) return@withLock
+            val file = File(root, "$key.json")
+            runCatching {
+                val encoded = buildJsonObject {
+                    put("source", JsonPrimitive(result.source.name))
+                    put("lines", buildJsonArray { result.lines.forEach { add(it.toJson()) } })
+                }
+                val temporary = File(root, "$key.tmp")
+                temporary.writeText(encoded.toString())
+                if (!temporary.renameTo(file)) {
+                    temporary.copyTo(file, overwrite = true)
+                    temporary.delete()
+                }
+                file.setLastModified(System.currentTimeMillis())
+                trimLyricsCache(root)
+            }.onFailure { /* A cache write must never prevent lyrics from being shown. */ }
+        }
+    }
+
+    private fun trimLyricsCache(root: File) {
+        val entries = root.listFiles { file -> file.extension == "json" }?.sortedByDescending(File::lastModified) ?: return
+        var total = 0L
+        entries.forEachIndexed { index, file ->
+            total += file.length()
+            if (index >= 1000 || total > LYRICS_CACHE_MAX_BYTES || System.currentTimeMillis() - file.lastModified() > LYRICS_CACHE_TTL_MS) {
+                file.delete()
+            }
+        }
+    }
+
+    private fun LyricLine.toJson(depth: Int = 0): JsonObject = buildJsonObject {
+        put("time", JsonPrimitive(timeMs)); put("text", JsonPrimitive(text))
+        put("end", sungUntilMs?.let { JsonPrimitive(it) } ?: JsonNull)
+        put("alignment", JsonPrimitive(alignment.name))
+        put("words", buildJsonArray { words.forEach { word -> add(buildJsonObject {
+            put("start", JsonPrimitive(word.startMs)); put("end", JsonPrimitive(word.endMs)); put("text", JsonPrimitive(word.text))
+            put("syllables", buildJsonArray { word.syllables.forEach { part -> add(buildJsonObject {
+                put("start", JsonPrimitive(part.startMs)); put("end", JsonPrimitive(part.endMs))
+                put("from", JsonPrimitive(part.startChar)); put("to", JsonPrimitive(part.endChar))
+            }) } })
+        }) } })
+        put("background", if (depth < 2) background?.toJson(depth + 1) ?: JsonNull else JsonNull)
+        put("timing", if (depth < 2) timingSource?.toJson(depth + 1) ?: JsonNull else JsonNull)
+    }
+
+    private fun JsonObject.toLyricLine(depth: Int = 0): LyricLine? = runCatching {
+        val wordRows = this["words"]?.jsonArray.orEmpty()
+        val words = wordRows.map { value ->
+            val word = value.jsonObject
+            LyricWord(
+                startMs = word.getValue("start").jsonPrimitive.long,
+                endMs = word.getValue("end").jsonPrimitive.long,
+                text = word.getValue("text").jsonPrimitive.content,
+                syllables = word["syllables"]?.jsonArray.orEmpty().map { syllableValue ->
+                    val part = syllableValue.jsonObject
+                    LyricSyllable(part.getValue("start").jsonPrimitive.long, part.getValue("end").jsonPrimitive.long,
+                        part.getValue("from").jsonPrimitive.content.toInt(), part.getValue("to").jsonPrimitive.content.toInt())
+                },
+            )
+        }
+        LyricLine(
+            timeMs = getValue("time").jsonPrimitive.long,
+            text = getValue("text").jsonPrimitive.content,
+            words = words,
+            sungUntilMs = get("end")?.takeUnless { it == JsonNull }?.jsonPrimitive?.longOrNull,
+            background = if (depth < 2) get("background")?.takeUnless { it == JsonNull }?.jsonObject?.toLyricLine(depth + 1) else null,
+            alignment = LyricAlignment.entries.firstOrNull { it.name == get("alignment")?.jsonPrimitive?.content } ?: LyricAlignment.Start,
+            timingSource = if (depth < 2) get("timing")?.takeUnless { it == JsonNull }?.jsonObject?.toLyricLine(depth + 1) else null,
+        )
+    }.getOrNull()
 
     /**
      * The first word-synced result in [racing] order; failing that, the first

@@ -274,7 +274,7 @@ private fun LocalLibraryArtistRow(
             Text(artist.item.subtitle, style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant, maxLines = 1)
         }
         if (artist.favorite) {
-            Icon(Icons.Rounded.Star, contentDescription = "Favorite artist", tint = MaterialTheme.colorScheme.primary, modifier = Modifier.size(20.dp))
+            Icon(Icons.Rounded.Star, contentDescription = stringResource(Res.string.artist_favorite), tint = MaterialTheme.colorScheme.primary, modifier = Modifier.size(20.dp))
         }
     }
     HorizontalDivider(color = MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.38f), modifier = Modifier.padding(start = 88.dp, end = PAGE_GUTTER))

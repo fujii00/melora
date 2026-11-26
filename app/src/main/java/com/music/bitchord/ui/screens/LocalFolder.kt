@@ -68,6 +68,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil3.compose.AsyncImage
 import com.music.bitchord.data.canvas.AppleArtistArtRepository
+import com.music.bitchord.data.canvas.ArtistArtworkFallbacks
 import com.music.bitchord.data.settings.AppSettings
 import com.music.bitchord.R
 import com.music.bitchord.data.LocalGroup
@@ -568,12 +569,17 @@ private fun ArtistAvatar(group: LocalGroup, modifier: Modifier) {
     var artistArt by remember(group.browseId) {
         mutableStateOf(AppleArtistArtRepository.cached(group.browseId))
     }
+    var fallbackArtistArt by remember(group.browseId) { mutableStateOf<String?>(null) }
     LaunchedEffect(group.browseId, group.title, group.songs) {
         artistArt = AppleArtistArtRepository.artFor(group.browseId, group.title) {
             group.songs.map { it.title }
         } ?: artistArt
+        if (artistArt?.heroUrl == null) {
+            fallbackArtistArt = ArtistArtworkFallbacks.afterApple(group.title, group.songs.map { it.title })
+        }
     }
-    val art = artistArt?.heroUrl ?: remember(group.songs) { group.songs.firstNotNullOfOrNull { it.thumbnailUrl } }
+    val art = artistArt?.heroUrl ?: fallbackArtistArt
+        ?: remember(group.songs) { group.songs.firstNotNullOfOrNull { it.thumbnailUrl } }
     Box(modifier.clip(CircleShape).thumbnailBorder(CircleShape)) {
         CoverPlaceholder(Icons.Rounded.Person, Modifier.fillMaxSize(), iconFraction = 0.5f)
         if (art != null) {

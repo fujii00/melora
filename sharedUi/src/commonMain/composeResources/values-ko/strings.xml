@@ -186,7 +186,7 @@
     <string name="shelf_quick_picks">빠른 선곡</string>
     <string name="shelf_recents">최근</string>
     <string name="shelf_recommended_music_videos">추천 뮤직비디오</string>
-    <string name="shelf_shorts">Shorts</string>
+    <string name="shelf_shorts">반바지</string>
     <string name="shelf_similar_to">%1$s 느낌 음악</string>
     <string name="shelf_single">싱글</string>
     <string name="shelf_song_item">음악</string>
@@ -289,4 +289,32 @@
     <string name="queue_download">다운로드</string>
     <string name="queue_selection_remove">제거</string>
     <string name="queue_add_all_to_playlist">모두 재생목록에 추가</string>
+    <string name="best_part">최고의 부분</string>
+    <string name="best_part_description">가장 좋은 부분으로 건너뛰기</string>
+    <string name="local_music_home_empty">이 도서관을 당신의 것으로 만드십시오. 여기에서 노래, 아티스트, 앨범을 보려면 이 기기의 오디오를 추가하세요.</string>
+    <string name="local_music_home_ready">귀하의 전체 컬렉션이 지역 음악 라이브러리에서 기다리고 있습니다.</string>
+    <string name="open_local_music">지역 음악 열기</string>
+    <string name="automix_overview_unavailable">Automix 전환이 나오지 않습니다.</string>
+
+    <string name="home_shuffle_all">모두 셔플</string>
+    <string name="home_artists_of_the_day">오늘의 아티스트</string>
+    <string name="home_albums_of_the_day">오늘의 앨범</string>
+    <string name="home_songs_of_the_day">오늘의 노래</string>
+    <string name="home_liked_songs">좋아요한 노래</string>
+    <string name="artist_favorite">좋아하는 아티스트</string>
+    <string name="artist_remove_favorite">즐겨찾기에서 삭제</string>
+    <string name="song_info_format">파일 형식</string>
+    <string name="song_info_file_size">파일 크기</string>
+    <string name="song_info_bitrate">비트레이트</string>
+    <string name="song_info_sample_rate">샘플링 레이트</string>
+    <string name="song_info_channels">채널</string>
+    <string name="song_info_track_number">트랙 번호</string>
+    <string name="song_info_genre">장르</string>
+    <string name="song_info_duration">재생 시간</string>
+
+    <string name="home_greeting_morning">좋은 아침입니다, %1$s</string>
+    <string name="home_greeting_afternoon">좋은 오후입니다, %1$s</string>
+    <string name="home_greeting_evening">좋은 저녁입니다, %1$s</string>
+    <string name="home_greeting_hello">안녕하세요, %1$s</string>
+    <string name="home_profile_picture">프로필 사진</string>
 </resources>

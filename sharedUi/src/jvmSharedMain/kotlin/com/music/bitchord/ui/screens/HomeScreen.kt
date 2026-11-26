@@ -81,7 +81,6 @@ import com.music.bitchord.data.model.TopPick
 import com.music.bitchord.data.model.TopPickMood
 import com.music.bitchord.data.model.UiState
 import java.util.Locale
-import java.time.LocalDate
 import java.time.LocalTime
 import com.music.bitchord.data.model.artworkAt
 import com.music.bitchord.ui.components.MessageState
@@ -142,6 +141,14 @@ fun HomeScreen(
     localAutoMix: List<Song> = emptyList(),
     localArtistSpotlight: List<Song> = emptyList(),
     localArtistSpotlightName: String = "",
+    localAlbumSpotlight: List<Song> = emptyList(),
+    localAlbumSpotlightName: String = "",
+    localArtistPicks: List<List<Song>> = emptyList(),
+    localArtistPickArtwork: Map<String, String> = emptyMap(),
+    localAlbumPicks: List<List<Song>> = emptyList(),
+    localSongPicks: List<Song> = emptyList(),
+    onOpenLocalArtist: (String) -> Unit = {},
+    onOpenLocalAlbum: (Song) -> Unit = {},
     onPlayLocalCollection: (List<Song>, String, Boolean) -> Unit = { _, _, _ -> },
     onOpenLocalMix: (String, String, List<Song>) -> Unit = { _, _, _ -> },
     localMixCardsLarge: Boolean = true,
@@ -173,6 +180,8 @@ fun HomeScreen(
     topPicksLoading: Boolean = false,
     /** The signed-in account's name, for the personal station's "Name's Station". */
     listenerName: String? = null,
+    listenerAvatarUri: String? = null,
+    listenerAvatarShape: String? = null,
     onTopPickClick: ((TopPick, String) -> Unit)? = null,
     onTopPickLongPress: ((TopPick) -> Unit)? = null,
     /** A Find Your Mood tile, and its name. The shelf is only drawn when this is set. */
@@ -186,6 +195,10 @@ fun HomeScreen(
 ) {
     // Top Picks' pictures and motion wait for the feed — see LocalArtworkImages.
     val feedReady = localFirst || state !is UiState.Loading
+    val shuffleAllLabel = stringResource(Res.string.home_shuffle_all)
+    val recentlyAddedLabel = stringResource(Res.string.shelf_recents)
+    val songsOfTheDayLabel = stringResource(Res.string.home_songs_of_the_day)
+    val weekInMusicLabel = stringResource(Res.string.your_replay)
     CompositionLocalProvider(
         LocalArtworkMotion provides (artworkMotion && feedReady),
         LocalArtworkImages provides feedReady,
@@ -215,40 +228,17 @@ fun HomeScreen(
             },
         ) {
             if (title != null) {
-                item { HomeTitle(title, replayYear, listenerName = listenerName) }
+                item { HomeTitle(title, replayYear, listenerName = listenerName, listenerAvatarUri = listenerAvatarUri, listenerAvatarShape = listenerAvatarShape) }
             }
             if (localSongs.isNotEmpty()) {
                 item(key = "local-quick-actions") {
                     LocalHomeQuickActions(
                         spotlight = localArtistSpotlight,
                         spotlightName = localArtistSpotlightName,
-                        onShuffleAll = { onPlayLocalCollection(localSongs, "Shuffle all music", true) },
-                        onRecentlyAdded = { onPlayLocalCollection(localSongs.sortedByDescending { it.localDateAddedSeconds ?: 0L }.take(30), "Recently added", false) },
+                        onShuffleAll = { onPlayLocalCollection(localSongs, shuffleAllLabel, true) },
+                        onRecentlyAdded = { onPlayLocalCollection(localSongs.sortedByDescending { it.localDateAddedSeconds ?: 0L }.take(30), recentlyAddedLabel, false) },
                         onSpotlight = { onPlayLocalCollection(localArtistSpotlight, localArtistSpotlightName, true) },
                     )
-                }
-                if (localRecentlyPlayed.isNotEmpty() || localDailyMix.isNotEmpty() || localAutoMix.isNotEmpty() || localWeeklyMix.isNotEmpty() || localArtistSpotlight.isNotEmpty()) {
-                    // One streaming-style shelf keeps the daily playlists together and
-                    // avoids spending a full screen section on each individual mix.
-                    item(key = "local-made-for-you") {
-                        LocalMixShelf(
-                            mixes = buildList {
-                                if (localRecentlyPlayed.isNotEmpty()) add(LocalMixCardData(
-                                    "Continue listening", "${localRecentlyPlayed.size} recent songs", localRecentlyPlayed,
-                                ) { onOpenLocalMix("continue", "Continue listening", localRecentlyPlayed) })
-                                if (localDailyMix.isNotEmpty()) add(LocalMixCardData(
-                                    "Picked for today", "A fresh daily mix", localDailyMix,
-                                ) { onOpenLocalMix("daily", "Picked for today", localDailyMix) })
-                                if (localWeeklyMix.isNotEmpty()) add(LocalMixCardData(
-                                    "Your week in music", "Your last seven days", localWeeklyMix,
-                                ) { onOpenLocalMix("weekly", "Your week in music", localWeeklyMix) })
-                                if (localArtistSpotlight.isNotEmpty()) add(LocalMixCardData(
-                                    "Artist mix", localArtistSpotlightName, localArtistSpotlight,
-                                ) { onOpenLocalMix("artist-${localArtistSpotlightName.hashCode()}", "Artist mix · $localArtistSpotlightName", localArtistSpotlight) })
-                            },
-                            largeCards = localMixCardsLarge,
-                        )
-                    }
                 }
                 if (localFavorites.isNotEmpty() || localAutoMix.isNotEmpty()) {
                     item(key = "local-favorites-playlist") {
@@ -260,9 +250,76 @@ fun HomeScreen(
                         )
                     }
                 }
+                if (localRecentlyPlayed.isNotEmpty() || localDailyMix.isNotEmpty() || localAutoMix.isNotEmpty() || localWeeklyMix.isNotEmpty() || localArtistSpotlight.isNotEmpty()) {
+                    // One streaming-style shelf keeps the daily playlists together and
+                    // avoids spending a full screen section on each individual mix.
+                    item(key = "local-made-for-you") {
+                        val recentsLabel = stringResource(Res.string.shelf_recents)
+                        val dailyTitle = stringResource(Res.string.home_songs_of_the_day)
+                        val localReady = stringResource(Res.string.local_music_home_ready)
+                        val weekTitle = stringResource(Res.string.your_replay)
+                        val artistsLabel = stringResource(Res.string.artists)
+                        LocalMixShelf(
+                            sectionTitle = stringResource(Res.string.top_pick_made_for_you),
+                            sectionSubtitle = stringResource(Res.string.local_music_home_ready),
+                            mixes = buildList {
+                                if (localRecentlyPlayed.isNotEmpty()) add(LocalMixCardData(
+                                    recentsLabel, recentsLabel, localRecentlyPlayed,
+                                ) { onOpenLocalMix("continue", recentsLabel, localRecentlyPlayed) })
+                                if (localDailyMix.isNotEmpty()) add(LocalMixCardData(
+                                    songsOfTheDayLabel, localReady, localDailyMix,
+                                ) { onOpenLocalMix("daily", songsOfTheDayLabel, localDailyMix) })
+                                if (localWeeklyMix.isNotEmpty()) add(LocalMixCardData(
+                                    weekInMusicLabel, localReady, localWeeklyMix,
+                                ) { onOpenLocalMix("weekly", weekInMusicLabel, localWeeklyMix) })
+                                if (localArtistSpotlight.isNotEmpty()) add(LocalMixCardData(
+                                    artistsLabel, localArtistSpotlightName, localArtistSpotlight,
+                                ) { onOpenLocalMix("artist-${localArtistSpotlightName.hashCode()}", "$artistsLabel · $localArtistSpotlightName", localArtistSpotlight) })
+                            },
+                            largeCards = localMixCardsLarge,
+                        )
+                    }
+                }
+                if (localArtistPicks.isNotEmpty()) {
+                    item(key = "made-for-you-artists") {
+                        LocalArtistDayShelf(
+                            artists = localArtistPicks,
+                            artworkByArtist = localArtistPickArtwork,
+                            onArtistClick = onOpenLocalArtist,
+                        )
+                    }
+                }
+                if (localAlbumPicks.isNotEmpty()) {
+                    item(key = "made-for-you-albums") {
+                        val unknownAlbumLabel = stringResource(Res.string.albums)
+                        LocalMixShelf(
+                            sectionTitle = stringResource(Res.string.home_albums_of_the_day),
+                            sectionSubtitle = stringResource(Res.string.on_device),
+                            mixes = localAlbumPicks.map { pick ->
+                                val artist = pick.firstOrNull()?.artist.orEmpty()
+                                val name = pick.firstOrNull()?.albumName?.trim().orEmpty()
+                                    .takeIf { it.isNotBlank() && !it.equals(artist.trim(), ignoreCase = true) }
+                                    ?: unknownAlbumLabel
+                                LocalMixCardData(name, artist, pick) {
+                                    pick.firstOrNull()?.copy(albumName = name)?.let(onOpenLocalAlbum)
+                                }
+                            },
+                            largeCards = localMixCardsLarge,
+                        )
+                    }
+                }
+                if (localSongPicks.isNotEmpty()) {
+                    item(key = "songs-of-the-day") {
+                        LocalSongCardShelf(
+                            title = stringResource(Res.string.home_songs_of_the_day),
+                            songs = localSongPicks,
+                            onSongClick = onLocalSongClick,
+                        )
+                    }
+                }
                 item(key = "local-recent-additions") {
                     LocalSongCardShelf(
-                        title = "Recently added",
+                        title = stringResource(Res.string.shelf_recents),
                         songs = localSongs.sortedByDescending { it.localDateAddedSeconds ?: 0L }.take(12),
                         onSongClick = onLocalSongClick,
                     )
@@ -465,7 +522,7 @@ private fun RecentSectionHeader(title: String, subtitle: String, onPlayAll: (() 
         }
         if (onPlayAll != null) {
             Text(
-                "Play",
+                stringResource(Res.string.play),
                 style = MaterialTheme.typography.labelLarge,
                 color = MaterialTheme.colorScheme.primary,
                 modifier = Modifier.clickable(onClick = onPlayAll).padding(start = 12.dp, top = 6.dp, bottom = 6.dp),
@@ -483,25 +540,25 @@ private fun LocalHomeQuickActions(
     onSpotlight: () -> Unit,
 ) {
     Column(Modifier.padding(bottom = 12.dp)) {
-        SectionHeader("Your music, ready to go", "Made from the songs on this device")
+        SectionHeader(stringResource(Res.string.local_music_home_ready), stringResource(Res.string.on_device))
         Row(
             Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()).padding(horizontal = PAGE_GUTTER),
             horizontalArrangement = Arrangement.spacedBy(10.dp),
         ) {
             AssistChip(
                 onClick = onShuffleAll,
-                label = { Text("Shuffle all") },
+                label = { Text(stringResource(Res.string.home_shuffle_all)) },
                 leadingIcon = { Icon(Icons.Rounded.Shuffle, contentDescription = null) },
             )
             AssistChip(
                 onClick = onRecentlyAdded,
-                label = { Text("Recently added") },
+                label = { Text(stringResource(Res.string.shelf_recents)) },
                 leadingIcon = { Icon(Icons.Rounded.History, contentDescription = null) },
             )
             if (spotlight.isNotEmpty()) {
                 AssistChip(
                     onClick = onSpotlight,
-                    label = { Text("Artist mix · $spotlightName", maxLines = 1, overflow = TextOverflow.Ellipsis) },
+                    label = { Text("${stringResource(Res.string.artists)} · $spotlightName", maxLines = 1, overflow = TextOverflow.Ellipsis) },
                     leadingIcon = { Icon(Icons.Rounded.Person, contentDescription = null) },
                 )
             }
@@ -511,17 +568,21 @@ private fun LocalHomeQuickActions(
 
 @Composable
 private fun LocalMixShelf(
+    sectionTitle: String,
+    sectionSubtitle: String = "",
     mixes: List<LocalMixCardData>,
     largeCards: Boolean,
 ) {
     if (mixes.isEmpty()) return
     Column(Modifier.padding(bottom = 26.dp)) {
-        SectionHeader("Made for you", "Local mixes, ready when you are")
+        SectionHeader(sectionTitle, sectionSubtitle)
         ShelfRow(
             contentPadding = PaddingValues(horizontal = PAGE_GUTTER),
             horizontalArrangement = Arrangement.spacedBy(14.dp),
         ) {
-            items(mixes, key = { it.title }) { mix ->
+            items(mixes, key = { mix ->
+                "${mix.title}-${mix.subtitle}-${mix.songs.firstOrNull()?.localUri ?: mix.songs.firstOrNull()?.videoId.orEmpty()}"
+            }) { mix ->
                 LocalPlaylistCard(
                     title = mix.title,
                     subtitle = mix.subtitle,
@@ -529,6 +590,65 @@ private fun LocalMixShelf(
                     width = if (largeCards) LOCAL_HOME_CARD_LARGE else SHELF_CARD_WIDTH,
                     onClick = mix.onClick,
                 )
+            }
+        }
+    }
+}
+
+@Composable
+private fun LocalArtistDayShelf(
+    artists: List<List<Song>>,
+    artworkByArtist: Map<String, String>,
+    onArtistClick: (String) -> Unit,
+) {
+    if (artists.isEmpty()) return
+    Column(Modifier.padding(bottom = 26.dp)) {
+        SectionHeader(stringResource(Res.string.home_artists_of_the_day), stringResource(Res.string.local_music_home_ready))
+        ShelfRow(
+            contentPadding = PaddingValues(horizontal = PAGE_GUTTER),
+            horizontalArrangement = Arrangement.spacedBy(18.dp),
+        ) {
+            items(artists, key = { pick -> "artist-${pick.firstOrNull()?.artist.orEmpty()}" }) { pick ->
+                val firstSong = pick.firstOrNull()
+                val name = firstSong?.artist.orEmpty()
+                Column(
+                    modifier = Modifier.width(108.dp).clickable {
+                        if (name.isNotBlank()) onArtistClick(name)
+                    },
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                ) {
+                    Box(
+                        modifier = Modifier
+                            .size(96.dp)
+                            .clip(CircleShape)
+                            .background(MaterialTheme.colorScheme.surfaceVariant),
+                        contentAlignment = Alignment.Center,
+                    ) {
+                        // Prefer a real artist profile photo. If no provider
+                        // match exists, use that artist's own most recent
+                        // track sleeve rather than leaving the card blank.
+                        val artwork = artworkByArtist[name]
+                            ?: pick.firstNotNullOfOrNull { it.thumbnailUrl }
+                        if (artwork != null) {
+                            AsyncImage(
+                                model = artwork.artworkAt(CARD_ART_PX),
+                                contentDescription = name,
+                                contentScale = ContentScale.Crop,
+                                modifier = Modifier.fillMaxSize(),
+                            )
+                        } else {
+                            Icon(Icons.Rounded.Person, contentDescription = null, tint = MaterialTheme.colorScheme.onSurfaceVariant)
+                        }
+                    }
+                    Spacer(Modifier.height(9.dp))
+                    Text(
+                        name,
+                        style = MaterialTheme.typography.titleSmall,
+                        color = MaterialTheme.colorScheme.onSurface,
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis,
+                    )
+                }
             }
         }
     }
@@ -549,15 +669,15 @@ private fun LocalFavoritesShelf(
     onAutoMixClick: () -> Unit,
 ) {
     Column(Modifier.padding(bottom = 26.dp)) {
-        SectionHeader("Your playlists", "Music you have saved")
+        SectionHeader(stringResource(Res.string.playlists))
         ShelfRow(
             contentPadding = PaddingValues(horizontal = PAGE_GUTTER),
             horizontalArrangement = Arrangement.spacedBy(14.dp),
         ) {
             item(key = "liked-songs") {
                 LocalPlaylistCard(
-                    title = "Liked Songs",
-                    subtitle = "${songs.size} songs",
+                    title = stringResource(Res.string.home_liked_songs),
+                    subtitle = stringResource(Res.string.card_songs_format, songs.size.toString()),
                     artwork = songs.firstNotNullOfOrNull(Song::thumbnailUrl),
                     width = LOCAL_HOME_CARD_COMPACT,
                     onClick = onClick,
@@ -568,7 +688,7 @@ private fun LocalFavoritesShelf(
                 item(key = "automix-daily") {
                     LocalPlaylistCard(
                         title = "AutoMix",
-                        subtitle = "Today's smooth-flow mix",
+                        subtitle = stringResource(Res.string.local_music_home_ready),
                         artwork = autoMix.firstNotNullOfOrNull(Song::thumbnailUrl),
                         width = LOCAL_HOME_CARD_COMPACT,
                         onClick = onAutoMixClick,
@@ -744,16 +864,18 @@ private fun HomeTitle(
     title: String,
     replayYear: ReplayYearBadge? = null,
     listenerName: String? = null,
+    listenerAvatarUri: String? = null,
+    listenerAvatarShape: String? = null,
     modifier: Modifier = Modifier,
 ) {
     val style = MaterialTheme.typography.displayLarge
     val logoHeight = with(LocalDensity.current) { (style.fontSize * LOGO_TO_FONT).toDp() }
-    Column(modifier = modifier.padding(horizontal = PAGE_GUTTER, vertical = 8.dp)) {
+    Column(modifier = modifier.padding(start = PAGE_GUTTER, end = PAGE_GUTTER, top = 24.dp, bottom = 8.dp)) {
         // The wordmark, and the year story's button right after it when there
         // is a year to tell. Sized off the wordmark so the two keep their
         // proportion under the system font scale.
         Row(
-            modifier = Modifier.padding(bottom = 14.dp),
+            modifier = Modifier.fillMaxWidth().padding(bottom = 14.dp),
             verticalAlignment = Alignment.CenterVertically,
         ) {
             Icon(
@@ -768,6 +890,17 @@ private fun HomeTitle(
                 Spacer(Modifier.width(14.dp))
                 ReplayYearButton(replayYear, height = logoHeight * 0.68f)
             }
+            if (listenerAvatarUri != null) {
+                Spacer(Modifier.weight(1f))
+                AsyncImage(
+                    model = listenerAvatarUri,
+                    contentDescription = stringResource(Res.string.home_profile_picture),
+                    contentScale = ContentScale.Crop,
+                    modifier = Modifier
+                        .size(96.dp)
+                        .clip(if (listenerAvatarShape == "square") RoundedCornerShape(20.dp) else CircleShape),
+                )
+            }
         }
         // "Listen now" is hidden for now; the wordmark above stays.
         // Text(
@@ -777,25 +910,13 @@ private fun HomeTitle(
         // )
         val name = listenerName?.trim()?.takeIf { it.isNotEmpty() }
         if (name != null) {
-            val hour = LocalTime.now().hour
-            val timeGreeting = when (hour) {
-                in 5..11 -> "Good morning"
-                in 12..16 -> "Good afternoon"
-                in 17..21 -> "Good evening"
-                else -> "Hello"
+            val greeting = when (LocalTime.now().hour) {
+                in 5..11 -> Res.string.home_greeting_morning
+                in 12..16 -> Res.string.home_greeting_afternoon
+                in 17..21 -> Res.string.home_greeting_evening
+                else -> Res.string.home_greeting_hello
             }
-            val greetings = listOf(
-                "Welcome, $name", "Hello, $name", "Welcome back, $name", "Good to see you, $name",
-                "Your music is ready, $name", "Ready to listen, $name?", "A little music, $name?",
-                "Welcome to your listening room, $name", "Hey, $name", "Glad you're here, $name",
-                "Settle in, $name", "Let's play something, $name", "Your library awaits, $name",
-                "Back for more, $name?", "Make yourself at home, $name", "$timeGreeting, $name",
-            )
-            val greeting = remember(name) {
-                val index = Math.floorMod(LocalDate.now().toEpochDay().toInt() + name.hashCode(), greetings.size)
-                greetings[index]
-            }
-            Text(greeting, style = MaterialTheme.typography.titleLarge, color = MaterialTheme.colorScheme.onBackground)
+            Text(stringResource(greeting, name), style = MaterialTheme.typography.titleLarge, color = MaterialTheme.colorScheme.onBackground)
         }
     }
 }

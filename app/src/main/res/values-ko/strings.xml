@@ -269,16 +269,16 @@
     <string name="skip_silence">무음 건너뛰기</string>
     <string name="skip_silence_subtitle">1초보다 긴 공백 자르기</string>
     <string name="skip_silence_float_subtitle">32비트 부동소수점 출력에서는 이용 불가</string>
-    <string name="content_preferences">Content Preferences</string>
-    <string name="hide_recents">Hide Recents</string>
-    <string name="hide_home_videos">Hide videos from Home</string>
-    <string name="hide_home_videos_subtitle">Shelves of only videos go too. Search, artists and playlists still show them</string>
-    <string name="hide_top_picks">Hide Top Picks for You</string>
-    <string name="hide_home_moods">Hide Find Your Mood</string>
-    <string name="square_video_thumbnails">Square video thumbnails</string>
-    <string name="square_video_thumbnails_subtitle">Show music videos as squares everywhere, including the player</string>
-    <string name="prefer_music_only">Prefer music-only version</string>
-    <string name="prefer_music_only_subtitle">Music videos play as their audio version, and the next track in the queue is converted ahead of time so Automix and crossfade work</string>
+    <string name="content_preferences">콘텐츠 환경설정</string>
+    <string name="hide_recents">최근 항목 숨기기</string>
+    <string name="hide_home_videos">홈에서 비디오 숨기기</string>
+    <string name="hide_home_videos_subtitle">동영상만 보관하는 서가도 마찬가지입니다. 검색, 아티스트, 재생목록에는 계속 표시됩니다.</string>
+    <string name="hide_top_picks">당신을 위한 최고 추천 상품 숨기기</string>
+    <string name="hide_home_moods">숨기기 기분 찾기</string>
+    <string name="square_video_thumbnails">정사각형 동영상 미리보기 이미지</string>
+    <string name="square_video_thumbnails_subtitle">플레이어를 포함하여 어디에서나 뮤직 비디오를 사각형으로 표시합니다.</string>
+    <string name="prefer_music_only">음악 전용 버전을 선호하세요</string>
+    <string name="prefer_music_only_subtitle">뮤직 비디오는 오디오 버전으로 재생되며 대기열의 다음 트랙이 미리 변환되므로 Automix 및 크로스페이드가 작동합니다.</string>
     <string name="smart_version_alignment">스마트 오디오 정렬</string>
     <string name="smart_version_alignment_subtitle">오디오 파형을 분석해 정확히 일치하는 재생 시점을 맞춥니다</string>
     <string name="equalizer">이퀄라이저</string>
@@ -328,18 +328,6 @@
     <string name="show_nerd_stats_subtitle">플레이어에 코덱, 비트레이트, 샘플 레이트 표시</string>
     <string name="app_icon">앱 아이콘</string>
     <string name="app_icon_default">기본값</string>
-    <string name="app_icon_liquid_glass" translatable="false">Liquid Glass</string>
-    <string name="app_icon_liquid_glass_dark" translatable="false">Liquid Glass Dark</string>
-    <string name="app_icon_liquid_glass_clear" translatable="false">Liquid Glass Clear</string>
-    <string name="app_icon_liquid_glass_clear_dark" translatable="false">Liquid Glass Clear Dark</string>
-    <string name="app_icon_samsung_glass" translatable="false">Samsung Glass</string>
-    <string name="app_icon_samsung_glass_dark" translatable="false">Samsung Glass Dark</string>
-    <string name="app_icon_samsung_glass_clear" translatable="false">Samsung Glass Clear</string>
-    <string name="app_icon_samsung_glass_clear_dark" translatable="false">Samsung Glass Clear Dark</string>
-    <string name="app_icon_pixel_glass" translatable="false">Pixel Glass</string>
-    <string name="app_icon_pixel_glass_dark" translatable="false">Pixel Glass Dark</string>
-    <string name="app_icon_pixel_glass_clear" translatable="false">Pixel Glass Clear</string>
-    <string name="app_icon_pixel_glass_clear_dark" translatable="false">Pixel Glass Clear Dark</string>
     <string name="theme">테마</string>
     <string name="reduce_animation">애니메이션 줄이기</string>
     <string name="reduce_animation_subtitle">메인 플레이어의 그라데이션 움직임을 멈춥니다</string>
@@ -347,7 +335,7 @@
     <string name="reduce_dynamic_blur_subtitle">앱 전체의 반투명 유리 효과를 단색으로 교체합니다</string>
     <string name="disable_blend_effects">블렌드 효과 끄기</string>
     <string name="disable_blend_effects_subtitle">플레이어 아이콘, 텍스트, 어두운 메뉴를 앨범 아트 색으로 물들이지 않고 흰색으로 표시합니다</string>
-    <string name="liquid_glass">Liquid Glass</string>
+    <string name="liquid_glass">액체 유리</string>
     <string name="liquid_glass_subtitle">플로팅 탐색 막대에 사실적인 유리 질감을 적용합니다. Android 12 이상, GPU 사용량 증가.</string>
     <string name="liquid_glass_unavailable">Android 12 이상 필요</string>
     <string name="full_screen_cover_art">전체화면 커버 아트</string>
@@ -1071,7 +1059,7 @@
 
     <string name="loudness_measuring">측정 중…</string>
 
-    <string name="loudness_gain_db">%1$s dB</string>
+    <string name="loudness_gain_db">%1$sdB</string>
 
     <string name="loudness_lufs">%1$s LUFS</string>
 
@@ -1143,7 +1131,7 @@
 
     <string name="shelf_concerts">콘서트</string>
 
-    <string name="shelf_shorts">Shorts</string>
+    <string name="shelf_shorts">반바지</string>
 
     <string name="shelf_single">싱글</string>
 
@@ -1216,7 +1204,7 @@
     <string name="onboarding_back">뒤로</string>
     <!-- Settings: Melora for Wear OS -->
     <string name="wear_os_section">Wear OS용 Melora</string>
-    <string name="wear_os_page_title">Wear OS</string>
+    <string name="wear_os_page_title">OS를 착용</string>
     <string name="wear_os_your_watches">내 워치</string>
     <string name="wear_os_value_none">워치 없음</string>
     <string name="wear_os_value_not_installed">설치되지 않음</string>
@@ -1409,4 +1397,123 @@
     <string name="drive_backup_row_subtitle">모든 기기에서 Replay 백업 및 동기화</string>
     <string name="drive_over_cellular">모바일 데이터로 동기화</string>
     <string name="drive_over_cellular_subtitle">끄면 자동 동기화가 Wi-Fi를 기다립니다</string>
+    <string name="tester_code_title" translatable="false">Tester code</string>
+    <string name="tester_code_message" translatable="false">For Melora testers. Lets addon verification work on this phone with an unlocked bootloader.</string>
+    <string name="tester_code_message_saved" translatable="false">A tester code is saved on this phone. Enter a new one to replace it, or remove it.</string>
+    <string name="tester_code_placeholder" translatable="false">XXXXX-XXXXX-XXXXX-XXXXX-XXXXX</string>
+    <string name="tester_code_saved" translatable="false">Tester code saved</string>
+    <string name="tester_code_removed" translatable="false">Tester code removed</string>
+    <string name="automix_art_transition">예술의 전환</string>
+    <string name="automix_art_transition_subtitle">AutoMix 중에 트랙 사이의 커버 아트를 부드럽게 혼합합니다.</string>
+    <string name="automix_mini_art_transition">미니 플레이어 아트 전환</string>
+    <string name="automix_mini_art_transition_subtitle">AutoMix 동안 미니 플레이어에서 아트워크 전환을 표시합니다.</string>
+    <string name="show_best_part">베스트 파트 버튼</string>
+    <string name="show_best_part_subtitle">곡명 replay의 가장 많은 부분으로 건너뛰는 아트워크 버튼</string>
+    <string name="app_icon_ember">엠버</string>
+    <string name="app_icon_velvet">벨벳</string>
+    <string name="app_icon_bone">뼈</string>
+    <string name="app_icon_cute_cat" translatable="false">Cute Cat</string>
+    <string name="app_icon_liquid_glass_red" translatable="false">Liquid Glass Red</string>
+    <string name="app_icon_midnight_blue" translatable="false">Midnight Blue</string>
+    <string name="lyrics_share_apple_canvas" translatable="false">Apple</string>
+    <string name="lyrics_share_spotify_canvas" translatable="false">Spotify</string>
+    <string name="spotify_import_language_preference" translatable="false">Language preference</string>
+    <string name="spotify_import_language_hint" translatable="false">e.g. Punjabi, Marathi, Korean…</string>
+    <string name="onboarding_local_title">음악을 Melora로 가져오세요</string>
+    <string name="onboarding_local_body">Melora가 이 장치의 오디오 파일을 스캔하여 라이브러리를 구축하고, 가사를 찾고, 컬렉션을 오프라인에서 재생할 수 있습니다. 나중에 Android 설정에서 액세스 권한을 변경할 수 있습니다.</string>
+    <string name="onboarding_local_allow">음악 파일에 대한 액세스 허용</string>
+    <string name="onboarding_local_ready">라이브러리를 계속 사용하세요</string>
+    <string name="onboarding_local_skip">지금은 아님</string>
+    <string name="local_explore_title">음악 탐색</string>
+    <string name="local_explore_subtitle">이 기기의 컬렉션을 중심으로 노래가 정리됩니다.</string>
+    <string name="local_explore_count">이 기기의 %1$d 노래</string>
+    <string name="local_explore_songs">노래</string>
+    <string name="local_explore_songs_detail">컬렉션의 모든 트랙을 찾아보고 재생하세요.</string>
+    <string name="local_explore_artists">아티스트</string>
+    <string name="local_explore_artists_detail">음악 라이브러리에서 모든 아티스트를 찾아보세요</string>
+    <string name="local_explore_albums">앨범</string>
+    <string name="local_explore_albums_detail">앨범 및 트랙 목록 찾아보기</string>
+    <string name="local_explore_folders">폴더</string>
+    <string name="local_explore_folders_detail">기기의 위치별로 음악을 탐색하세요.</string>
+    <string name="home_recommendation_card_size">집 추천 카드</string>
+    <string name="home_recommendation_cards_large">대형 카드(기본값)</string>
+    <string name="home_recommendation_cards_compact">컴팩트 카드</string>
+    <string name="local_access_title">Melora에게 음악에 대한 액세스 권한을 부여하세요</string>
+    <string name="local_access_detail">Melora는 이 장치의 오디오 파일을 읽어 라이브러리를 구축합니다. 음악은 기기에 그대로 남아 있습니다.</string>
+    <string name="local_access_action">음악 액세스 허용</string>
+    <string name="replay_year_open">Replay %1$s를 엽니다.</string>
+    <string name="replay_year_building">당신의 한 해를 만들어가세요…</string>
+    <string name="replay_year_opener_start">당신의</string>
+    <string name="replay_year_opener_end">Melora에서</string>
+    <string name="replay_year_opener_detail">어떤 플레이를 했는지 다시 살펴보겠습니다.</string>
+    <string name="replay_year_minutes_start">올해 당신이 들었던</string>
+    <string name="replay_year_minutes_days_start">그건</string>
+    <string name="replay_year_minutes_days_value">%1$s일</string>
+    <string name="replay_year_minutes_hours_value">%1$s시간</string>
+    <string name="replay_year_minutes_days_end">음악의.</string>
+    <string name="replay_year_busiest_start">당신의 가장 큰 날은</string>
+    <string name="replay_year_busiest_minutes">하루에 %1$s분 분량의 음악 감상</string>
+    <string name="replay_year_busiest_song">대부분 %1$s</string>
+    <string name="replay_year_clock_start">당신은 살아 돌아왔죠</string>
+    <string name="replay_year_night_owl">올빼미</string>
+    <string name="replay_year_night_owl_detail">여러분이 듣는 일의 대부분은 오후 10시 이후에 이루어졌습니다.</string>
+    <string name="replay_year_early_bird">일찍 일어나는 사람</string>
+    <string name="replay_year_early_bird_detail">당신의 하루는 오전 10시 이전에 음악과 함께 시작되었습니다.</string>
+    <string name="replay_year_golden_hour">골든아워</string>
+    <string name="replay_year_golden_hour_detail">저녁은 음악이 나올 때였습니다.</string>
+    <string name="replay_year_daytime">주간 표류자</string>
+    <string name="replay_year_daytime_detail">당신은 하루 종일 음악을 계속했습니다.</string>
+    <string name="replay_year_all_day">24시간 내내</string>
+    <string name="replay_year_all_day_detail">아침, 정오, 밤, 뭔가가 연주되고 있었습니다.</string>
+    <string name="replay_year_genres_start">올해 당신의 소리</string>
+    <string name="replay_year_artist_start">올해 최고의 아티스트는…</string>
+    <string name="replay_year_minutes_together">%1$s분 함께</string>
+    <string name="replay_year_top_artists">최고의 아티스트</string>
+    <string name="replay_year_song_start">그리고 올해의 노래...</string>
+    <string name="replay_year_top_songs">나머지 인기곡</string>
+    <string name="replay_year_albums">당신이 살았던 앨범</string>
+    <string name="replay_year_months">당신의 연도, 월별</string>
+    <string name="replay_year_discovery_start">올해 당신이 탐험한</string>
+    <string name="replay_year_summary_title">당신의 %1$s</string>
+    <string name="replay_year_summary_artists">최고의 아티스트</string>
+    <string name="replay_year_summary_songs">인기곡</string>
+    <string name="replay_year_summary_minutes">청취 시간(분)</string>
+    <string name="replay_year_mute">스토리 음소거</string>
+    <string name="replay_year_unmute">스토리 음소거 해제</string>
+    <plurals name="replay_year_minutes_word">
+        <item quantity="one">분</item>
+        <item quantity="other">분</item>
+    </plurals>
+    <plurals name="replay_year_played_times">
+        <item quantity="one">%1$s회 재생</item>
+        <item quantity="other">%1$s회 재생</item>
+    </plurals>
+    <plurals name="replay_year_songs_word">
+        <item quantity="one">곡</item>
+        <item quantity="other">곡</item>
+    </plurals>
+    <plurals name="replay_year_artists_word">
+        <item quantity="one">아티스트 명</item>
+        <item quantity="other">아티스트 명</item>
+    </plurals>
+    <plurals name="replay_year_albums_word">
+        <item quantity="one">앨범 개</item>
+        <item quantity="other">앨범 개</item>
+    </plurals>
+
+    <string name="home_shuffle_all">모두 셔플</string>
+    <string name="home_artists_of_the_day">오늘의 아티스트</string>
+    <string name="home_albums_of_the_day">오늘의 앨범</string>
+    <string name="home_songs_of_the_day">오늘의 노래</string>
+    <string name="home_liked_songs">좋아요한 노래</string>
+    <string name="artist_favorite">좋아하는 아티스트</string>
+    <string name="artist_remove_favorite">즐겨찾기에서 삭제</string>
+    <string name="song_info_format">파일 형식</string>
+    <string name="song_info_file_size">파일 크기</string>
+    <string name="song_info_bitrate">비트레이트</string>
+    <string name="song_info_sample_rate">샘플링 레이트</string>
+    <string name="song_info_channels">채널</string>
+    <string name="song_info_track_number">트랙 번호</string>
+    <string name="song_info_genre">장르</string>
+    <string name="song_info_duration">재생 시간</string>
 </resources>

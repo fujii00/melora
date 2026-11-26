@@ -33,7 +33,7 @@
     <string name="local_music">Musique locale</string>
     <string name="audio_files_on_device">Fichiers audio sur l\'appareil</string>
     <string name="on_device">Sur l\'appareil</string>
-    <string name="playlists">Playlists</string>
+    <string name="playlists">Listes de lecture</string>
     <string name="new_playlist">Nouvelle playlist</string>
     <string name="saved_to_youtube_music">Enregistrée sur YouTube Music</string>
     <string name="sign_in">Se connecter</string>
@@ -95,7 +95,7 @@
     <string name="youtube_premium_audio_subtitle">J\'ai Premium : diffuser l\'Opus de meilleure qualité à ~256 kbps au lieu des 160 kbps standard</string>
     <string name="account_scrobbling">Compte et scrobbling</string>
     <string name="rich_presence">Présence enrichie</string>
-    <string name="scrobbling">Scrobbling</string>
+    <string name="scrobbling">Scrobbler</string>
     <string name="now_playing">Lecture en cours</string>
     <string name="selected">Sélectionné</string>
     <string name="password">Mot de passe</string>
@@ -174,7 +174,7 @@
     <string name="polish">Polonais</string>
     <string name="portuguese">Portugais</string>
     <string name="indonesian">Indonésien</string>
-    <string name="hindi">Hindi</string>
+    <string name="hindi">hindi</string>
     <string name="japanese">Japonais</string>
     <string name="russian">Russe</string>
     <string name="chinese">Chinois (simplifié)</string>
@@ -243,7 +243,7 @@
     <string name="low">Faible</string>
     <string name="medium">Moyenne</string>
     <string name="high">Élevée</string>
-    <string name="standard">Standard</string>
+    <string name="standard">Norme</string>
     <string name="lossless">Sans perte</string>
     <string name="system">Système</string>
     <string name="light">Clair</string>
@@ -256,7 +256,7 @@
     <string name="download_quality_subtitle">%1$s par piste, quelle que soit la connexion</string>
     <string name="filter_non_music_audio">Filtrer l\'audio non musical</string>
     <string name="filter_non_music_audio_subtitle">Masque les extraits de moins de 30 secondes, les fichiers WAV, les notes vocales, les enregistrements et les sons système</string>
-    <string name="performance">Performance</string>
+    <string name="performance">Performances</string>
     <string name="high_performance_mode">Mode haute performance</string>
     <string name="high_performance_subtitle">Utilise toutes les animations et le flou, et demande un taux de rafraîchissement plus élevé</string>
     <string name="high_performance_active">%1$d Hz demandés. Android peut le réduire si nécessaire.</string>
@@ -521,9 +521,9 @@
     <string name="lyrics_share_description">Les lignes que vous avez choisies, mises en page sur une carte avec la pochette.</string>
     <string name="lyrics_share_story">Convertir en story</string>
     <string name="lyrics_share_story_revert">Convertir en carte</string>
-    <string name="lyrics_share_canvas">Canvas</string>
+    <string name="lyrics_share_canvas">Toile</string>
     <string name="lyrics_share_video">Vidéo</string>
-    <string name="lyrics_share_image">Image</string>
+    <string name="lyrics_share_image">Images</string>
     <string name="lyrics_share_saving">Enregistrement…</string>
     <string name="lyrics_share_gradient">Dégradé</string>
     <string name="lyrics_share_show_logo">Afficher le logo Melora</string>
@@ -532,7 +532,7 @@
     <string name="member_since_value">Membre depuis %1$s</string>
     <string name="midday">midi</string>
     <string name="midnight">minuit</string>
-    <string name="minutes">Minutes</string>
+    <string name="minutes">Procès-verbal</string>
     <string name="minutes_grouped_short">%1$s min</string>
     <string name="minutes_listened">Minutes écoutées</string>
     <string name="minutes_short">%1$d min</string>
@@ -629,12 +629,12 @@
     <string name="smb_not_configured">Connectez un partage dans Sources</string>
     <string name="smb_empty">Aucun fichier audio trouvé sur le partage SMB. Vérifiez le serveur dans Sources.</string>
     <string name="smb_description">Reliez Melora à un dossier de musique partagé : un NAS ou un partage Windows via SMB.</string>
-    <string name="smb_server_hint">nas.local or 192.168.1.10:4445</string>
+    <string name="smb_server_hint">nas.local ou 192.168.1.10:4445</string>
     <string name="smb_share_hint">Nom du partage, ex. Music</string>
     <string name="smb_folder_hint">Dossier (facultatif)</string>
     <string name="smb_disconnect">Déconnecter</string>
     <string name="smb_test_failed">Impossible de l\'atteindre : %1$s</string>
-    <string name="playlist">playlist</string>
+    <string name="playlist">liste de lecture</string>
     <string name="open">Ouvrir</string>
     <string name="open_playlist">Ouvrir la playlist</string>
     <string name="pin">Épingler</string>
@@ -823,7 +823,7 @@
 
     <string name="automix_mode_efficient_subtitle">1 thread · chauffe et batterie minimales · analyse plus longue</string>
 
-    <string name="automix_mode_performance">Performance</string>
+    <string name="automix_mode_performance">Performances</string>
 
     <string name="automix_mode_performance_subtitle">4 threads · analyse la plus rapide · chauffe et batterie accrues</string>
 
@@ -909,7 +909,7 @@
     <string name="personal">Personnel</string>
 
 
-    <string name="playlist_action">Playlist</string>
+    <string name="playlist_action">Liste de lecture</string>
 
     <string name="prefer_usb_dac">Préférer le DAC USB</string>
     <string name="loudness_normalization">Normalisation du volume</string>
@@ -919,11 +919,11 @@
     <string name="loudness_target_subtitle">Plus bas pour un casque ; plus fort pour la voiture ou le haut-parleur du téléphone</string>
     <string name="loudness_target_value">%1$s LUFS</string>
     <string name="pipeline_loudness">Intensité</string>
-    <string name="pipeline_loudness_gain">Gain</string>
+    <string name="pipeline_loudness_gain">Gagner</string>
     <string name="pipeline_loudness_measured">Mesurée</string>
     <string name="pipeline_bit_exact">Bit-exact</string>
     <string name="loudness_measuring">Mesure…</string>
-    <string name="loudness_gain_db">%1$s dB</string>
+    <string name="loudness_gain_db">%1$sdB</string>
     <string name="loudness_lufs">%1$s LUFS</string>
 
     <string name="profile_unavailable">Aucun profil connecté disponible pour le moment.</string>
@@ -994,11 +994,11 @@
 
     <string name="shelf_sad">Mélancolie</string>
 
-    <string name="shelf_shorts">Shorts</string>
+    <string name="shelf_shorts">Short</string>
 
     <string name="shelf_similar_to">Similaire à %1$s</string>
 
-    <string name="shelf_single">Single</string>
+    <string name="shelf_single">Célibataire</string>
 
     <string name="shelf_sleep">Sommeil</string>
 
@@ -1097,16 +1097,16 @@
     <string name="settings_search_empty">Aucun paramètre ne correspond à « %1$s »</string>
 
 
-    <string name="content_preferences">Content Preferences</string>
-    <string name="hide_recents">Hide Recents</string>
-    <string name="hide_home_videos">Hide videos from Home</string>
-    <string name="hide_home_videos_subtitle">Shelves of only videos go too. Search, artists and playlists still show them</string>
-    <string name="hide_top_picks">Hide Top Picks for You</string>
-    <string name="hide_home_moods">Hide Find Your Mood</string>
-    <string name="square_video_thumbnails">Square video thumbnails</string>
-    <string name="square_video_thumbnails_subtitle">Show music videos as squares everywhere, including the player</string>
-    <string name="prefer_music_only">Prefer music-only version</string>
-    <string name="prefer_music_only_subtitle">Music videos play as their audio version, and the next track in the queue is converted ahead of time so Automix and crossfade work</string>
+    <string name="content_preferences">Préférences de contenu</string>
+    <string name="hide_recents">Masquer les récents</string>
+    <string name="hide_home_videos">Masquer les vidéos de l\'accueil</string>
+    <string name="hide_home_videos_subtitle">Les étagères contenant uniquement des vidéos sont également disponibles. La recherche, les artistes et les playlists les affichent toujours</string>
+    <string name="hide_top_picks">Masquer les meilleurs choix pour vous</string>
+    <string name="hide_home_moods">Cacher Trouvez votre humeur</string>
+    <string name="square_video_thumbnails">Miniatures vidéo carrées</string>
+    <string name="square_video_thumbnails_subtitle">Afficher les vidéos musicales sous forme de carrés partout, y compris sur le lecteur</string>
+    <string name="prefer_music_only">Préférer la version musicale uniquement</string>
+    <string name="prefer_music_only_subtitle">Les clips vidéo sont lus en tant que version audio et la piste suivante dans la file d\'attente est convertie à l\'avance afin que Automix et le fondu enchaîné fonctionnent.</string>
     <string name="smart_version_alignment">Alignement audio intelligent</string>
     <string name="smart_version_alignment_subtitle">Analyse les formes d\'onde pour retrouver le moment de lecture exactement correspondant</string>
 
@@ -1138,7 +1138,7 @@
 
     <string name="equalizer_reset">Réinitialiser toutes les bandes</string>
 
-    <string name="equalizer_balance">Balance</string>
+    <string name="equalizer_balance">Solde</string>
 
     <string name="equalizer_balance_left">G</string>
 
@@ -1169,13 +1169,13 @@
 
     <string name="eq_preset_treble_cut">Atténuation des aigus</string>
 
-    <string name="eq_preset_loudness">Loudness</string>
+    <string name="eq_preset_loudness">Volume sonore</string>
 
     <string name="eq_preset_spoken_word">Parole</string>
 
     <string name="eq_preset_electronic">Électronique</string>
 
-    <string name="eq_preset_rock">Rock</string>
+    <string name="eq_preset_rock">Roche</string>
 
     <string name="eq_preset_hip_hop">Hip-hop</string>
 
@@ -1227,7 +1227,7 @@
 
     <string name="pipeline_source">Source</string>
 
-    <string name="pipeline_format">Format</string>
+    <string name="pipeline_format">Formater</string>
 
     <string name="pipeline_bit_depth">Profondeur de bits</string>
 
@@ -1241,7 +1241,7 @@
 
     <string name="pipeline_io_rate">Fréquence d\'E/S</string>
 
-    <string name="pipeline_type">Type</string>
+    <string name="pipeline_type">Tapez</string>
 
     <string name="pipeline_cutoff">Fréquence de coupure</string>
 
@@ -1351,7 +1351,7 @@
     <string name="artist_signatures_url_hint">https://signatures.example.com</string>
     <string name="artist_signatures_unconfigured">Non configuré — touchez pour définir l\'URL de l\'API</string>
     <string name="artist_signatures_test_failed">Impossible de joindre l\'API à cette URL</string>
-    <string name="search_source_addons">Addons</string>
+    <string name="search_source_addons">Modules complémentaires</string>
     <string name="search_addons_none">Aucun addon n\'est activé. Ajoutez-en un dans Réglages → Sources.</string>
     <string name="app_icon">Icône de l\'app</string>
     <string name="app_icon_default">Par défaut</string>
@@ -1377,7 +1377,7 @@
     <string name="onboarding_skip_sign_in">Passer la connexion</string>
     <string name="onboarding_back">Retour</string>
     <string name="wear_os_section">Melora pour Wear OS</string>
-    <string name="wear_os_page_title">Wear OS</string>
+    <string name="wear_os_page_title">Porter le système d\'exploitation</string>
     <string name="wear_os_your_watches">Vos montres</string>
     <string name="wear_os_value_none">Aucune montre</string>
     <string name="wear_os_value_not_installed">Non installé</string>
@@ -1419,9 +1419,9 @@
     <string name="song_info_unavailable">Non disponible</string>
     <string name="song_info_error">Certaines informations n’ont pas pu être chargées.</string>
     <string name="song_info_retry">Réessayer</string>
-    <string name="no_audio_version">No audio version found for this video</string>
-    <string name="no_video_version">No video version found for this song</string>
-    <string name="version_switch_in_party">Everyone in Listen Together hears the same version</string>
+    <string name="no_audio_version">Aucune version audio trouvée pour cette vidéo</string>
+    <string name="no_video_version">Aucune version vidéo trouvée pour cette chanson</string>
+    <string name="version_switch_in_party">Tout le monde dans Listen Together entend la même version</string>
     <string name="opened_file">Fichier ouvert</string>
     <string name="folders">Dossiers</string>
     <string name="folder">Dossier</string>
@@ -1561,4 +1561,125 @@
     <string name="drive_backup_row_subtitle">Sauvegarder et synchroniser Replay entre vos appareils</string>
     <string name="drive_over_cellular">Synchroniser via les données mobiles</string>
     <string name="drive_over_cellular_subtitle">Désactivé, les synchronisations automatiques attendent le Wi-Fi</string>
+    <string name="search_source_youtube" translatable="false">YouTube</string>
+    <string name="tester_code_title" translatable="false">Tester code</string>
+    <string name="tester_code_message" translatable="false">For Melora testers. Lets addon verification work on this phone with an unlocked bootloader.</string>
+    <string name="tester_code_message_saved" translatable="false">A tester code is saved on this phone. Enter a new one to replace it, or remove it.</string>
+    <string name="tester_code_placeholder" translatable="false">XXXXX-XXXXX-XXXXX-XXXXX-XXXXX</string>
+    <string name="tester_code_saved" translatable="false">Tester code saved</string>
+    <string name="tester_code_removed" translatable="false">Tester code removed</string>
+    <string name="automix_art_transition">Transition artistique</string>
+    <string name="automix_art_transition_subtitle">Mélange en douceur les pochettes entre les pistes pendant AutoMix.</string>
+    <string name="automix_mini_art_transition">Transition artistique du mini-lecteur</string>
+    <string name="automix_mini_art_transition_subtitle">Affiche les transitions d\'illustration dans le mini-lecteur pendant AutoMix.</string>
+    <string name="show_best_part">Bouton Meilleure partie</string>
+    <string name="show_best_part_subtitle">Un bouton sur l\'illustration qui permet d\'accéder à la partie de la chanson la plus populaire replay.</string>
+    <string name="app_icon_ember">Braise</string>
+    <string name="app_icon_velvet">Velours</string>
+    <string name="app_icon_bone">Os</string>
+    <string name="app_icon_cute_cat" translatable="false">Cute Cat</string>
+    <string name="app_icon_liquid_glass_red" translatable="false">Liquid Glass Red</string>
+    <string name="app_icon_midnight_blue" translatable="false">Midnight Blue</string>
+    <string name="pipeline_pcm_data_rate" translatable="false">PCM Data Rate</string>
+    <string name="lyrics_share_apple_canvas" translatable="false">Apple</string>
+    <string name="lyrics_share_spotify_canvas" translatable="false">Spotify</string>
+    <string name="spotify_import_language_preference" translatable="false">Language preference</string>
+    <string name="spotify_import_language_hint" translatable="false">e.g. Punjabi, Marathi, Korean…</string>
+    <string name="onboarding_local_title">Apportez votre musique sur Melora</string>
+    <string name="onboarding_local_body">Laissez Melora analyser les fichiers audio sur cet appareil pour créer votre bibliothèque, rechercher des paroles et lire votre collection hors ligne. Vous pourrez modifier l\'accès ultérieurement dans les paramètres Android.</string>
+    <string name="onboarding_local_allow">Autoriser l\'accès aux fichiers musicaux</string>
+    <string name="onboarding_local_ready">Continuez avec votre bibliothèque</string>
+    <string name="onboarding_local_skip">Pas maintenant</string>
+    <string name="local_explore_title">Explorez votre musique</string>
+    <string name="local_explore_subtitle">Vos chansons, organisées autour de la collection sur cet appareil.</string>
+    <string name="local_explore_count">Chansons %1$d sur cet appareil</string>
+    <string name="local_explore_songs">Chansons</string>
+    <string name="local_explore_songs_detail">Parcourez et écoutez chaque morceau de votre collection</string>
+    <string name="local_explore_artists">Artistes</string>
+    <string name="local_explore_artists_detail">Retrouvez tous les artistes de votre bibliothèque musicale</string>
+    <string name="local_explore_albums">Albums</string>
+    <string name="local_explore_albums_detail">Parcourir les albums et leurs listes de pistes</string>
+    <string name="local_explore_folders">Dossiers</string>
+    <string name="local_explore_folders_detail">Explorez la musique en fonction de son emplacement sur votre appareil</string>
+    <string name="home_recommendation_card_size">Cartes de recommandation à domicile</string>
+    <string name="home_recommendation_cards_large">Grandes cartes (par défaut)</string>
+    <string name="home_recommendation_cards_compact">Cartes compactes</string>
+    <string name="local_access_title">Donnez à Melora accès à votre musique</string>
+    <string name="local_access_detail">Melora lit les fichiers audio sur cet appareil pour créer votre bibliothèque. Votre musique reste sur votre appareil.</string>
+    <string name="local_access_action">Autoriser l\'accès à la musique</string>
+    <string name="replay_year_open">Ouvrez votre Replay %1$s</string>
+    <string name="replay_year_building">Construire son année…</string>
+    <string name="replay_year_opener_start">Votre</string>
+    <string name="replay_year_opener_end">dans Melora</string>
+    <string name="replay_year_opener_detail">Revenons sur ce que vous avez joué.</string>
+    <string name="replay_year_minutes_start">Cette année, vous avez écouté</string>
+    <string name="replay_year_minutes_days_start">C\'est</string>
+    <string name="replay_year_minutes_days_value">%1$s jours</string>
+    <string name="replay_year_minutes_hours_value">%1$s heures</string>
+    <string name="replay_year_minutes_days_end">de musique.</string>
+    <string name="replay_year_busiest_start">Votre plus grand jour a été</string>
+    <string name="replay_year_busiest_minutes">%1$s minutes de musique en une journée</string>
+    <string name="replay_year_busiest_song">Principalement %1$s</string>
+    <string name="replay_year_clock_start">Tu es devenu vivant</string>
+    <string name="replay_year_night_owl">Oiseau de nuit</string>
+    <string name="replay_year_night_owl_detail">Une grande partie de votre écoute s\'est produite après 22 heures.</string>
+    <string name="replay_year_early_bird">Lève-tôt</string>
+    <string name="replay_year_early_bird_detail">Vos journées commençaient en musique avant 10 heures du matin.</string>
+    <string name="replay_year_golden_hour">Heure d\'or</string>
+    <string name="replay_year_golden_hour_detail">C\'était le soir où la musique sortait.</string>
+    <string name="replay_year_daytime">Vagabond de jour</string>
+    <string name="replay_year_daytime_detail">Vous avez gardé la musique toute la journée.</string>
+    <string name="replay_year_all_day">24 heures sur 24</string>
+    <string name="replay_year_all_day_detail">Matin, midi ou soir, quelque chose jouait.</string>
+    <string name="replay_year_genres_start">Ton son cette année</string>
+    <string name="replay_year_artist_start">Votre meilleur artiste cette année était…</string>
+    <string name="replay_year_minutes_together">%1$s minutes ensemble</string>
+    <string name="replay_year_top_artists">Vos meilleurs artistes</string>
+    <string name="replay_year_song_start">Et ta chanson de l\'année...</string>
+    <string name="replay_year_top_songs">Le reste de vos meilleures chansons</string>
+    <string name="replay_year_albums">Albums dans lesquels vous avez vécu</string>
+    <string name="replay_year_months">Votre année, mois par mois</string>
+    <string name="replay_year_discovery_start">Cette année, vous avez exploré</string>
+    <string name="replay_year_summary_title">Votre %1$s</string>
+    <string name="replay_year_summary_artists">Meilleurs artistes</string>
+    <string name="replay_year_summary_songs">Meilleures chansons</string>
+    <string name="replay_year_summary_minutes">Minutes écoutées</string>
+    <string name="replay_year_mute">Couper l\'histoire</string>
+    <string name="replay_year_unmute">Réactiver le son de l\'histoire</string>
+    <plurals name="replay_year_minutes_word">
+        <item quantity="one">minute</item>
+        <item quantity="other">minutes</item>
+    </plurals>
+    <plurals name="replay_year_played_times">
+        <item quantity="one">%1$s écoute</item>
+        <item quantity="other">%1$s écoutes</item>
+    </plurals>
+    <plurals name="replay_year_songs_word">
+        <item quantity="one">chanson</item>
+        <item quantity="other">chansons</item>
+    </plurals>
+    <plurals name="replay_year_artists_word">
+        <item quantity="one">artiste</item>
+        <item quantity="other">artistes</item>
+    </plurals>
+    <plurals name="replay_year_albums_word">
+        <item quantity="one">album</item>
+        <item quantity="other">albums</item>
+    </plurals>
+
+    <string name="home_shuffle_all">Tout mélanger</string>
+    <string name="home_artists_of_the_day">Artistes du jour</string>
+    <string name="home_albums_of_the_day">Albums du jour</string>
+    <string name="home_songs_of_the_day">Chansons du jour</string>
+    <string name="home_liked_songs">Titres aimés</string>
+    <string name="artist_favorite">Artiste favori</string>
+    <string name="artist_remove_favorite">Retirer des favoris</string>
+    <string name="song_info_format">Format du fichier</string>
+    <string name="song_info_file_size">Taille du fichier</string>
+    <string name="song_info_bitrate">Débit binaire</string>
+    <string name="song_info_sample_rate">Fréquence d’échantillonnage</string>
+    <string name="song_info_channels">Canaux</string>
+    <string name="song_info_track_number">Numéro de piste</string>
+    <string name="song_info_genre">Genre</string>
+    <string name="song_info_duration">Durée</string>
 </resources>

@@ -85,6 +85,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatDelegate
 import com.music.bitchord.data.lyrics.translationLanguageName
 import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.FilterChip
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
@@ -148,6 +149,7 @@ import coil3.SingletonImageLoader
 import coil3.compose.AsyncImage
 import com.music.bitchord.ui.components.PillSegmentedControl
 import com.music.bitchord.ui.components.isGlassSupported
+import com.music.bitchord.ui.components.lightweightLiquidGlass
 import com.music.bitchord.ui.components.languageDisplayNameRes
 import com.music.bitchord.ui.components.MessageState
 import com.music.bitchord.ui.components.SearchField
@@ -160,6 +162,7 @@ import com.music.bitchord.data.NerdStats
 import com.music.bitchord.data.scrobbling.LastFM
 import com.music.bitchord.data.listentogether.ListenTogether
 import com.music.bitchord.data.settings.AppSettings
+import com.music.bitchord.data.profile.MeloraProfileStore
 import com.music.bitchord.data.settings.OutputPcmMode
 import com.music.bitchord.data.settings.BitPerfectMode
 import com.music.bitchord.playback.AudioOutputStatus
@@ -231,6 +234,7 @@ fun SettingsScreen(
     onOpenChoice: (SettingsChoiceKind) -> Unit = {},
 ) {
     val context = LocalContext.current
+    val profile by MeloraProfileStore.profile.collectAsStateWithLifecycle()
 
     val wifiQuality by AppSettings.audioQualityWifi.collectAsStateWithLifecycle()
     val cellularQuality by AppSettings.audioQualityCellular.collectAsStateWithLifecycle()
@@ -464,6 +468,7 @@ fun SettingsScreen(
     ) {
         SettingsPageTitle(stringResource(section?.title ?: R.string.settings))
         if (section == null) {
+            LocalProfileSettingsCard(profile)
             SearchField(
                 query = searchQuery,
                 onQueryChange = { searchQuery = it },
@@ -472,137 +477,7 @@ fun SettingsScreen(
                 modifier = Modifier.padding(start = 20.dp, end = 20.dp, bottom = 4.dp),
             )
 
-            SearchableSettingsGroup(search) {
-                val accountTitle = stringResource(R.string.account_integrations)
-                // What the row opens is the scrobbling screen, so the services it
-                // signs into are worth typing at this field even though none of
-                // them is named on the row itself.
-                row(accountTitle, "scrobbling", "last.fm", "listenbrainz") {
-                    val avatarUrl = account?.thumbnailUrl?.takeIf { signedIn }
-                    SettingsRow(
-                        icon = SfIcons.Person,
-                        iconContent = avatarUrl?.let { url ->
-                            {
-                                AsyncImage(
-                                    model = url,
-                                    contentDescription = null,
-                                    contentScale = ContentScale.Crop,
-                                    modifier = Modifier.size(ICON_SIZE).clip(CircleShape),
-                                )
-                            }
-                        },
-                        title = accountTitle,
-                        subtitle = account?.email?.takeIf { it.isNotBlank() }
-                            ?: stringResource(if (signedIn) R.string.signed_in else R.string.not_signed_in),
-                        onClick = onAccountScrobbling,
-                    )
-                }
-                // Sits with the account rather than with Playback: a party is up to
-                // five signed-in people, and being signed in is the whole of what
-                // the row needs before it will do anything.
-                val listenTogetherTitle = stringResource(R.string.listen_together)
-                row(listenTogetherTitle, "jam", "party", "sync", "friends") {
-                    SettingsRow(
-                        icon = SfIcons.Groups,
-                        title = listenTogetherTitle,
-                        subtitle = party.code?.let {
-                            stringResource(R.string.listen_together_in_party, it)
-                        } ?: stringResource(R.string.listen_together_subtitle),
-                        badge = party.members.size.takeIf { party.inParty && it > 1 }?.toString(),
-                        onClick = onListenTogether,
-                    )
-                }
-            }
-
-            // The row that used to sit at the top of this group was called
-            // "Lossless / HQ Audio" and toggled `SourceRegistry.setModuleEnabled` —
-            // it switched the *module source* on and off, not lossless. Sources
-            // above lists that as the module's own row now. Lossless itself is no
-            // longer a setting at all — see
-            // [SourceResolver.requestForNow][com.music.bitchord.data.sources.SourceResolver.requestForNow].
-            SearchableSettingsGroup(search, header = stringResource(R.string.audio_quality)) {
-                val sourceTitle = stringResource(R.string.source)
-                val sourceSubtitle = stringResource(R.string.sources_subtitle)
-                row(sourceTitle, sourceSubtitle, "addon", "lossless") {
-                    SettingsRow(
-                        icon = SfIcons.Extension,
-                        title = sourceTitle,
-                        subtitle = sourceSubtitle,
-                        onClick = onSources,
-                    )
-                }
-                // One line on purpose: it qualifies the row above rather than
-                // being a setting of its own, so it reads as part of Sources.
-                val directSourceTitle = stringResource(R.string.direct_source_stream)
-                // Drawn like the animated-cover cellular line: no icon, no divider.
-                row(directSourceTitle, "addon", "direct", "prefetch", "read-ahead", divided = false) {
-                    // Off for the length of a party: holding every fetch until a
-                    // track is about to play would leave this phone behind the
-                    // others at each sync — see [DirectSourceGate.isActive].
-                    SettingsSubRow(
-                        title = directSourceTitle,
-                        checked = directSourceStream && !party.inParty,
-                        onCheckedChange = AppSettings::setDirectSourceStream,
-                        subtitle = stringResource(R.string.direct_source_stream_in_party).takeIf { party.inParty },
-                        enabled = !party.inParty,
-                    )
-                }
-                val onWifiTitle = stringResource(R.string.on_wifi)
-                row(onWifiTitle, "wi-fi", "streaming quality") {
-                    SettingsRow(
-                        icon = SfIcons.Wifi,
-                        title = onWifiTitle,
-                        badge = stringResource(R.string.in_use).takeIf { metered == false },
-                        value = wifiQuality.localizedLabel(),
-                        onClick = { onOpenChoice(SettingsChoiceKind.AUDIO_QUALITY_WIFI) },
-                    )
-                }
-                val onMobileDataTitle = stringResource(R.string.on_mobile_data)
-                row(onMobileDataTitle, "cellular", "streaming quality") {
-                    SettingsRow(
-                        icon = SfIcons.SignalCellularAlt,
-                        title = onMobileDataTitle,
-                        badge = stringResource(R.string.in_use).takeIf { metered == true },
-                        value = cellularQuality.localizedLabel(),
-                        onClick = { onOpenChoice(SettingsChoiceKind.AUDIO_QUALITY_CELLULAR) },
-                    )
-                }
-                // Sits with the quality ceilings rather than with Playback: it
-                // decides which version of a track gets fetched, the same question
-                // the two rows above answer, and not how one is played back.
-                //
-                // Greyed rather than hidden where the device can't decode E-AC-3.
-                // A missing row reads as a feature the app doesn't have; a disabled
-                // one with a reason under it is the difference between "BitChord
-                // has no Atmos" and "this phone has no Dolby decoder", and only the
-                // second is true. The stored preference is left untouched either
-                // way — see [AppSettings.dolbyAtmos].
-                val dolbyAtmosTitle = stringResource(R.string.dolby_atmos)
-                row(dolbyAtmosTitle, "surround", "e-ac-3") {
-                    BypassedByBitPerfect(bitPerfectReady) {
-                        SettingsRow(
-                            iconPainter = painterResource(R.drawable.ic_dolby_atmos),
-                            title = dolbyAtmosTitle,
-                            subtitle = stringResource(
-                                if (dolbyAtmosSupported) {
-                                    R.string.dolby_atmos_subtitle
-                                } else {
-                                    R.string.dolby_atmos_unavailable
-                                },
-                            ),
-                            enabled = dolbyAtmosSupported,
-                            trailing = {
-                                IosSwitch(
-                                    checked = dolbyAtmos && dolbyAtmosSupported,
-                                    onCheckedChange = AppSettings::setDolbyAtmos,
-                                    enabled = dolbyAtmosSupported,
-                                )
-                            },
-                            onClick = { AppSettings.setDolbyAtmos(!dolbyAtmos) },
-                        )
-                    }
-                }
-            }
+            // Streaming account, source addon and streaming quality controls are removed in local music mode.
 
             // The categories, each a page of its own — until there is a query,
             // when their rows answer here instead (below).
@@ -613,63 +488,6 @@ fun SettingsScreen(
                         WearOsSettingsRow(onClick = onWearOs)
                     }
                 }
-            }
-        }
-
-        // Its own group rather than rows bolted onto the two above, because a
-        // download is not a third kind of connection. The ceilings answer "what
-        // does this minute cost"; these answer "what am I keeping, and when may
-        // it be fetched" — and those two questions only make sense read
-        // together, which is what puts them side by side here.
-        if (shows(SettingsCategory.DOWNLOADS)) SearchableSettingsGroup(search, header = stringResource(R.string.downloads)) {
-            val downloadQualityTitle = stringResource(R.string.download_quality)
-            row(downloadQualityTitle, "offline", "lossless") {
-                SettingsRow(
-                    icon = SfIcons.Download,
-                    title = downloadQualityTitle,
-                    subtitle = stringResource(R.string.download_quality_subtitle, downloadQuality.perTrack),
-                    value = downloadQuality.localizedLabel(),
-                    onClick = { onOpenChoice(SettingsChoiceKind.DOWNLOAD_QUALITY) },
-                )
-            }
-            // Reads as part of Download quality above it, not as a setting
-            // of its own — same treatment as Play animated cover over
-            // cellular gets under Animated cover art.
-            val downloadWifiOnlyTitle = stringResource(R.string.download_wifi_only)
-            row(downloadWifiOnlyTitle, "wi-fi", "cellular", divided = false) {
-                SettingsSubRow(
-                    title = downloadWifiOnlyTitle,
-                    checked = wifiOnlyDownloads,
-                    onCheckedChange = AppSettings::setWifiOnlyDownloads,
-                    badge = stringResource(R.string.blocking).takeIf { wifiOnlyDownloads && metered == true },
-                )
-            }
-            val exportDownloadsTitle = stringResource(R.string.export_compatible_downloads)
-            row(exportDownloadsTitle, "music folder") {
-                SettingsSubRow(
-                    title = exportDownloadsTitle,
-                    checked = exportDownloads,
-                    onCheckedChange = AppSettings::setExportDownloads,
-                    subtitle = "Music/Melora".takeIf { exportDownloads },
-                )
-            }
-            val syncPlaylistsTitle = stringResource(R.string.sync_downloaded_playlists)
-            row(syncPlaylistsTitle, "playlist", "new songs", "background", "automatic") {
-                SettingsSubRow(
-                    title = syncPlaylistsTitle,
-                    checked = syncDownloadedPlaylists,
-                    onCheckedChange = AppSettings::setSyncDownloadedPlaylists,
-                    subtitle = stringResource(R.string.sync_downloaded_playlists_subtitle),
-                )
-            }
-            val downloadLikedTitle = stringResource(R.string.download_liked_songs)
-            row(downloadLikedTitle, "liked", "favorites", "offline", "automatic") {
-                SettingsSubRow(
-                    title = downloadLikedTitle,
-                    checked = downloadLikedSongs,
-                    onCheckedChange = AppSettings::setDownloadLikedSongs,
-                    subtitle = stringResource(R.string.download_liked_songs_subtitle),
-                )
             }
         }
 
@@ -1363,26 +1181,6 @@ fun SettingsScreen(
                         onCheckedChange = AppSettings::setCanvasOverCellular,
                     )
                 }
-                val spotifyCanvasTitle = stringResource(R.string.integrate_spotify_canvas)
-                row(spotifyCanvasTitle, "spotify", "canvas", divided = false) {
-                    Row(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .clickable(onClick = onSpotifyCanvasAuth)
-                            .padding(start = ROW_INSET, end = ROW_INSET, top = 4.dp, bottom = 10.dp),
-                        verticalAlignment = Alignment.CenterVertically,
-                    ) {
-                        Text(
-                            text = spotifyCanvasTitle,
-                            style = MaterialTheme.typography.bodyLarge,
-                            color = MaterialTheme.colorScheme.onBackground,
-                            modifier = Modifier.weight(1f),
-                            maxLines = 1,
-                            overflow = TextOverflow.Ellipsis,
-                        )
-                        Chevron()
-                    }
-                }
             }
             val artistSignaturesTitle = stringResource(R.string.artist_signatures)
             row(artistSignaturesTitle, "signature", "artist", "logo") {
@@ -1985,31 +1783,7 @@ fun SettingsScreen(
         // the whole list, so it goes when the list is narrowed to a few rows.
         if (section == null && searchQuery.isBlank()) {
         Text(
-            text = buildAnnotatedString {
-                append("bitchord $version  ")
-                val linkStyles = TextLinkStyles(
-                    style = SpanStyle(
-                        color = MaterialTheme.colorScheme.primary,
-                        textDecoration = TextDecoration.Underline,
-                    ),
-                )
-                withLink(LinkAnnotation.Url("https://github.com/kushagrasinghx/BitChord", linkStyles)) {
-                    append("GitHub")
-                }
-                append("  ")
-                withLink(LinkAnnotation.Url("https://github.com/kushagrasinghx", linkStyles)) {
-                    append("Developer")
-                }
-                append("  ")
-                withLink(LinkAnnotation.Url("https://discord.gg/pDdKfrdHY6", linkStyles)) {
-                    append("Discord")
-                }
-                append("  ")
-                withLink(LinkAnnotation.Url("https://bitchord.kushagrasingh.in/", linkStyles)) {
-                    append("Website")
-                }
-                append("\n~YouTube Music & Listen Together Backend")
-            },
+            text = "Melora $version",
             style = MaterialTheme.typography.labelSmall,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
             textAlign = TextAlign.Center,
@@ -3086,13 +2860,99 @@ internal fun SegmentedControl(
 
 // ---- Pages ------------------------------------------------------------------
 
+@Composable
+private fun LocalProfileSettingsCard(profile: com.music.bitchord.data.profile.MeloraProfile) {
+    val context = LocalContext.current
+    var editing by rememberSaveable { mutableStateOf(false) }
+    var name by rememberSaveable { mutableStateOf("") }
+    var picture by rememberSaveable { mutableStateOf<String?>(null) }
+    var pictureShape by rememberSaveable { mutableStateOf("circle") }
+    val liquidGlass by AppSettings.liquidGlass.collectAsStateWithLifecycle()
+    val useGlass = liquidGlass && isGlassSupported()
+    val picker = rememberLauncherForActivityResult(ActivityResultContracts.OpenDocument()) { uri ->
+        if (uri != null) {
+            runCatching {
+                context.contentResolver.takePersistableUriPermission(uri, Intent.FLAG_GRANT_READ_URI_PERMISSION)
+            }
+            picture = uri.toString()
+        }
+    }
+    val profileShape = RoundedCornerShape(24.dp)
+    val cardColor = MaterialTheme.colorScheme.surfaceVariant
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 20.dp, vertical = 8.dp)
+            .lightweightLiquidGlass(profileShape, cardColor)
+            .clickable {
+                name = profile.name
+                picture = profile.pictureUri
+                pictureShape = profile.pictureShape
+                editing = true
+            }
+            .padding(16.dp),
+        verticalAlignment = Alignment.CenterVertically,
+    ) {
+        if (profile.pictureUri != null) {
+            AsyncImage(profile.pictureUri, "Profile picture", contentScale = ContentScale.Crop,
+                modifier = Modifier.size(56.dp).clip(if (profile.pictureShape == "square") RoundedCornerShape(14.dp) else CircleShape))
+        } else {
+            Icon(Icons.Rounded.Person, contentDescription = null, modifier = Modifier.size(56.dp).padding(12.dp))
+        }
+        Column(Modifier.weight(1f).padding(start = 14.dp)) {
+            Text("Your profile", style = MaterialTheme.typography.titleMedium, color = MaterialTheme.colorScheme.onSurface)
+            Text(profile.name.ifBlank { "Set your name and picture" },
+                style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant,
+                maxLines = 1, overflow = TextOverflow.Ellipsis)
+        }
+        Icon(Icons.Rounded.ChevronRight, contentDescription = "Edit profile", tint = MaterialTheme.colorScheme.onSurfaceVariant)
+    }
+    if (editing) AlertDialog(
+        onDismissRequest = { editing = false },
+        modifier = Modifier.lightweightLiquidGlass(RoundedCornerShape(30.dp), MaterialTheme.colorScheme.surface),
+        containerColor = MaterialTheme.colorScheme.surface.copy(alpha = if (useGlass) 0.92f else 1f),
+        titleContentColor = MaterialTheme.colorScheme.onSurface,
+        textContentColor = MaterialTheme.colorScheme.onSurface,
+        title = { Text("Your profile", style = MaterialTheme.typography.headlineSmall) },
+        text = {
+            Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
+                OutlinedTextField(value = name, onValueChange = { name = it.take(48) },
+                    label = { Text("Name") }, singleLine = true, modifier = Modifier.fillMaxWidth(),
+                    shape = RoundedCornerShape(18.dp))
+                Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                    if (picture != null) AsyncImage(picture, "Profile picture preview", contentScale = ContentScale.Crop,
+                        modifier = Modifier.size(58.dp).clip(if (pictureShape == "square") RoundedCornerShape(14.dp) else CircleShape))
+                    else Icon(Icons.Rounded.Person, contentDescription = null,
+                        tint = MaterialTheme.colorScheme.onSurfaceVariant,
+                        modifier = Modifier.size(58.dp).padding(12.dp))
+                    TextButton(onClick = { picker.launch(arrayOf("image/*")) }) {
+                        Text(if (picture == null) "Choose photo or GIF" else "Change photo or GIF")
+                    }
+                    if (picture != null) TextButton(onClick = { picture = null }) { Text("Remove") }
+                    }
+                    Text("Picture shape", style = MaterialTheme.typography.labelLarge,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant)
+                    Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                        FilterChip(selected = pictureShape == "circle", onClick = { pictureShape = "circle" },
+                            label = { Text("Round") })
+                        FilterChip(selected = pictureShape == "square", onClick = { pictureShape = "square" },
+                            label = { Text("Square") })
+                    }
+                }
+            }
+        },
+        confirmButton = { TextButton(onClick = { MeloraProfileStore.save(name, picture, pictureShape); editing = false }) { Text("Save") } },
+        dismissButton = { TextButton(onClick = { editing = false }) { Text("Cancel") } },
+    )
+}
+
 /**
  * The groups of Settings that are pages of their own, in the order the main
  * page lists them. Account, Listen Together and Audio quality aren't here:
  * they stay on the main page, where they always were.
  */
 enum class SettingsCategory(@param:StringRes val title: Int) {
-    DOWNLOADS(R.string.downloads),
     PLAYBACK(R.string.playback),
     CONTENT_PREFERENCES(R.string.content_preferences),
     APPEARANCE(R.string.appearance),
@@ -3106,7 +2966,6 @@ enum class SettingsCategory(@param:StringRes val title: Int) {
 
     val icon: ImageVector
         get() = when (this) {
-            DOWNLOADS -> SfIcons.Download
             PLAYBACK -> SfIcons.PlayCircle
             CONTENT_PREFERENCES -> SfIcons.Video
             APPEARANCE -> SfIcons.Appearance

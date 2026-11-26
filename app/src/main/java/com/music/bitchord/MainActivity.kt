@@ -251,7 +251,6 @@ import com.music.bitchord.ui.components.BrowseActionsMenu
 import com.music.bitchord.ui.components.BrowseTarget
 import com.music.bitchord.ui.components.ConfirmationAlert
 import com.music.bitchord.ui.components.InfoAlert
-import com.music.bitchord.ui.components.DownloadManagerPage
 import com.music.bitchord.ui.components.PlaylistPickerSheet
 import com.music.bitchord.ui.components.QueuePlaylistPicker
 import com.music.bitchord.ui.components.ReorderPlaylistPage
@@ -302,7 +301,6 @@ import com.music.bitchord.sharedui.resources.Res as SharedRes
 import com.music.bitchord.sharedui.resources.search_hint
 import com.music.bitchord.sharedui.resources.search_addons_hint
 import com.music.bitchord.sharedui.resources.search_library_hint
-import com.music.bitchord.ui.components.TopBarDownloadButton
 import com.music.bitchord.ui.components.optimizedHazeEffect
 import com.music.bitchord.ui.components.topBarContentPadding
 import com.music.bitchord.ui.components.topBarHeight
@@ -325,6 +323,9 @@ import com.music.bitchord.ui.player.NowPlayingScreen
 import com.music.bitchord.ui.player.rememberMiniAutoMixArtwork
 import com.music.bitchord.ui.player.QueueBulkAction
 import kotlinx.coroutines.CompletableDeferred
+import kotlinx.coroutines.async
+import kotlinx.coroutines.awaitAll
+import kotlinx.coroutines.coroutineScope
 import com.music.bitchord.ui.player.MixViewRequest
 import com.music.bitchord.ui.player.MusicVideoEngine
 import com.music.bitchord.ui.player.PlayerSheetMotion
@@ -372,9 +373,6 @@ import com.music.bitchord.data.settings.HomeCardSize
 import java.time.LocalDate
 import java.time.DayOfWeek
 import com.music.bitchord.ui.screens.HomeScreen
-import com.music.bitchord.ui.screens.MixesScreen
-import com.music.bitchord.ui.screens.AdvancedDownloadsScreen
-import com.music.bitchord.ui.icons.SfIcons
 import com.music.bitchord.ui.screens.LibraryGridPage
 import com.music.bitchord.ui.screens.LibraryScreen
 import com.music.bitchord.ui.screens.rememberLocalLibraryArtists
@@ -392,6 +390,7 @@ import com.music.bitchord.ui.replay.rememberReplayState
 import com.music.bitchord.ui.theme.BitChordTheme
 import com.music.bitchord.ui.theme.rememberArtworkPalette
 import com.music.bitchord.data.canvas.AppleArtistArtRepository
+import com.music.bitchord.data.canvas.ArtistArtworkFallbacks
 import com.music.bitchord.data.canvas.keyColors
 import com.music.bitchord.ui.theme.SystemBarIcons
 import com.music.bitchord.ui.utils.guardSheetFromContentTouches
@@ -415,7 +414,7 @@ private const val TOP_FADE_RAMP = 0.3f
 private const val INITIAL_RADIO_TRACKS = 24
 
 /** Duration of the smooth scroll-to-top animation in milliseconds. */
-private const val SCROLL_TO_TOP_DURATION_MS = 550
+private const val SCROLL_TO_TOP_DURATION_MS = 220
 
 /** Number of items above which we treat a list as "far" and do a bounded jump near the top. */
 private const val FAR_LIST_THRESHOLD = 15
@@ -1045,6 +1044,25 @@ private fun BitChordApp(
     val localRecentAndMixes = remember(localMusicSongs, localHomeEvents) {
         buildLocalHomeMixes(localMusicSongs, localHomeEvents)
     }
+    val localArtistPickArtwork by produceState(
+        initialValue = emptyMap<String, String>(),
+        localRecentAndMixes.artistPicks,
+        localMusicSongs,
+    ) {
+        value = coroutineScope {
+            localRecentAndMixes.artistPicks.mapNotNull { songs ->
+                val group = LocalGroups.artistsOf("local:all", songs).firstOrNull() ?: return@mapNotNull null
+                async {
+                    val localTitles = group.songs.map { it.title }
+                    val applePhoto = AppleArtistArtRepository.artFor(group.browseId, group.title) {
+                        group.songs.map { it.title }
+                    }?.heroUrl
+                    val artistPhoto = applePhoto ?: ArtistArtworkFallbacks.afterApple(group.title, localTitles)
+                    artistPhoto?.let { group.title to it }
+                }
+            }.awaitAll().filterNotNull().toMap()
+        }
+    }
     val likeStatusOf: (Song) -> LikeStatus = { song ->
         val uri = song.localUri
         when {
@@ -1286,11 +1304,9 @@ private fun BitChordApp(
     val libraryShowAllGridState = rememberLazyGridState()
     val moodsGridState = rememberLazyGridState()
     val searchListState = rememberLazyListState()
-    val mixesListState = rememberLazyListState()
     val currentListState = when (selectedTab) {
         TAB_HOME -> homeListState
         TAB_EXPLORE -> if (selectedMoodGenre == null) exploreListState else moodGenreListState
-        TAB_RADIO -> mixesListState
         TAB_LIBRARY -> libraryListState
         else -> searchListState
     }
@@ -1307,7 +1323,6 @@ private fun BitChordApp(
         selectedTab == TAB_HOME -> MainViewModel.Feed.HOME
         selectedTab == TAB_EXPLORE -> MainViewModel.Feed.EXPLORE
         selectedTab == TAB_LIBRARY -> MainViewModel.Feed.LIBRARY
-        selectedTab == TAB_RADIO -> null
         else -> null
     }
     // The lead shelf is listening history, so opening Home after playing
@@ -1408,18 +1423,16 @@ private fun BitChordApp(
     val playLabel = stringResource(R.string.play)
     val exploreLabel = stringResource(R.string.explore)
     val libraryLabel = stringResource(R.string.library)
-    val downloadsLabel = stringResource(R.string.downloads)
     val searchLabel = stringResource(R.string.search)
     val historyLabel = stringResource(R.string.history)
     val replayLabel = stringResource(R.string.replay)
     val queueLabel = stringResource(R.string.queue)
     val sharedLinkLabel = stringResource(R.string.shared_link)
     val openedFileLabel = stringResource(R.string.opened_file)
-    val tabs = remember(homeLabel, exploreLabel, downloadsLabel, libraryLabel, searchLabel) {
+    val tabs = remember(homeLabel, exploreLabel, libraryLabel, searchLabel) {
         listOf(
             BottomTab(homeLabel, BitChordIcons.Home),
             BottomTab(exploreLabel, BitChordIcons.TabExplore),
-            BottomTab(downloadsLabel, SfIcons.Download),
             BottomTab(libraryLabel, BitChordIcons.TabLibrary),
             BottomTab(searchLabel, BitChordIcons.TabSearch),
         )
@@ -3291,11 +3304,6 @@ private fun BitChordApp(
                                 onEditSmb = { showSmbEditor = true },
                                 onConfirmJioSaavn = { confirmJioSaavn = true },
                             )
-                        } else if (pageRoute == AppRoute.Downloads) {
-                            DownloadManagerPage(
-                                onCleared = { navigator.pop() },
-                                contentPadding = listPadding,
-                            )
                         } else if (pageRoute == AppRoute.WearOs) {
                             WearOsScreen(contentPadding = listPadding)
                         } else if (pageRoute == AppRoute.DriveBackup) {
@@ -3637,6 +3645,25 @@ private fun BitChordApp(
                                 localWeeklyMix = localRecentAndMixes.weeklyMix,
                                 localArtistSpotlight = localRecentAndMixes.artistSpotlight,
                                 localArtistSpotlightName = localRecentAndMixes.artistSpotlightName,
+                                localAlbumSpotlight = localRecentAndMixes.albumSpotlight,
+                                localAlbumSpotlightName = localRecentAndMixes.albumSpotlightName,
+                                localArtistPicks = localRecentAndMixes.artistPicks,
+                                localArtistPickArtwork = localArtistPickArtwork,
+                                localAlbumPicks = localRecentAndMixes.albumPicks,
+                                localSongPicks = localRecentAndMixes.dailyMix.take(12),
+                                onOpenLocalArtist = localArtistPageOpener(viewModel, localMusicSongs),
+                                onOpenLocalAlbum = { song ->
+                                    val albumName = song.albumName.orEmpty()
+                                    if (albumName.isNotBlank()) {
+                                        viewModel.openDetail(
+                                            LocalGroups.albumPageId("local:all", albumName),
+                                            albumName,
+                                            song.artist,
+                                            song.thumbnailUrl,
+                                            BrowseType.ALBUM,
+                                        )
+                                    }
+                                },
                                 localMixCardsLarge = homeCardSize == HomeCardSize.LARGE,
                                 onOpenLocalMix = { id, title, songs ->
                                     val description = when {
@@ -3725,7 +3752,11 @@ private fun BitChordApp(
                                 recentlyPlayedLoading = homeRecentlyPlayedLoading && !hideRecents,
                                 topPicks = topPicks,
                                 topPicksLoading = topPicksLoading,
-                                listenerName = ListenTogether.nickname().ifBlank { account?.name.orEmpty() },
+                                listenerName = com.music.bitchord.data.profile.MeloraProfileStore.profile.value.name.ifBlank {
+                                    ListenTogether.nickname().ifBlank { account?.name.orEmpty() }
+                                },
+                                listenerAvatarUri = com.music.bitchord.data.profile.MeloraProfileStore.profile.value.pictureUri,
+                                listenerAvatarShape = com.music.bitchord.data.profile.MeloraProfileStore.profile.value.pictureShape,
                                 // Neither shelf is drawn without its callback.
                                 onTopPickClick = openTopPick.takeUnless { hideTopPicks },
                                 onMoodClick = playMood.takeUnless { hideHomeMoods },
@@ -3900,20 +3931,10 @@ private fun BitChordApp(
                                 showField = false,
                                 // The settings page's own two-state selector, so the
                                 // app has one look for "pick one of these".
-                                sourceSwitcher = {
-                                    SegmentedControl(
-                                        options = listOf(
-                                            stringResource(R.string.search_source_youtube),
-                                            stringResource(R.string.library),
-                                            stringResource(R.string.search_source_addons),
-                                        ),
-                                        selectedIndex = searchSource.ordinal,
-                                        onSelect = { index -> onSearchSourceChange(SearchSource.entries[index]) },
-                                    )
-                                },
+                                sourceSwitcher = {},
                                 searchingLibrary = searchSource == SearchSource.LIBRARY,
                                 libraryResults = libraryResults,
-                                searchingAddons = searchSource == SearchSource.ADDONS,
+                                searchingAddons = false,
                                 addonResults = addonResults,
                                 isBlocked = { song ->
                                     val configId = SourceRegistry.parseTrackKey(song.videoId)?.first
@@ -3948,23 +3969,6 @@ private fun BitChordApp(
                                         },
                                     )
                                 },
-                            )
-                            TAB_RADIO -> AdvancedDownloadsScreen(
-                                localSongs = localMusicSongs,
-                                hasLocalAccess = localMusicPermissionGranted,
-                                onRequestLocalAccess = { mediaPermissionLauncher.launch(mediaPermission) },
-                                onDownload = { songs, id, title, artwork ->
-                                    val target = id.takeIf { it.isNotBlank() }?.let {
-                                        DownloadTarget(
-                                            id = it,
-                                            title = title,
-                                            thumbnailUrl = artwork,
-                                        )
-                                    }
-                                    startDownload(songs, target)
-                                },
-                                onManageSources = { navigator.push(AppRoute.Sources) },
-                                contentPadding = listPadding,
                             )
                             else -> LibraryScreen(
                                 signedIn = signedIn,
@@ -4090,7 +4094,6 @@ private fun BitChordApp(
                 FrostedTopBar(
                     title = when (route) {
                         AppRoute.Spotify -> stringResource(R.string.spotify)
-                        AppRoute.Downloads -> stringResource(R.string.downloads)
                         AppRoute.Discord -> "Discord"
                         AppRoute.History -> stringResource(R.string.history)
                         is AppRoute.LibraryShowAll -> route.shelf.title
@@ -4410,14 +4413,6 @@ private fun BitChordApp(
                                         tint = MaterialTheme.colorScheme.onSurface,
                                     )
                                 }
-                            }
-                            // Left of the account photo, and only there while
-                            // there is a batch to report on — see
-                            // [TopBarDownloadButton], which decides that for
-                            // itself rather than being told. Not on the page it
-                            // opens, where it would only lead back to itself.
-                            if (route != AppRoute.Downloads) {
-                                TopBarDownloadButton(onClick = { navigator.push(AppRoute.Downloads) })
                             }
                             // Not on a release page, whose pill already carries
                             // three of its own controls — Apple Music leaves the
@@ -4871,15 +4866,18 @@ private fun BitChordApp(
                     }
                 },
                 onOpenAlbum = { id ->
-                    openPage(
-                        id,
-                        song.albumName ?: song.title,
-                        song.artist,
-                        BrowseType.ALBUM,
-                    )
+                    if (LocalGroups.folderOf(id) != null) {
+                        LocalGroups.groupOf(id, localMusicSongs)?.let(viewModel::openLocalGroup)
+                    } else {
+                        openPage(id, song.albumName ?: song.title, song.artist, BrowseType.ALBUM)
+                    }
                 },
                 onOpenArtist = { id ->
-                    openPage(id, song.artist, context.getString(R.string.artist), BrowseType.ARTIST)
+                    if (LocalGroups.folderOf(id) != null) {
+                        LocalGroups.groupOf(id, localMusicSongs)?.let(viewModel::openLocalGroup)
+                    } else {
+                        openPage(id, song.artist, context.getString(R.string.artist), BrowseType.ARTIST)
+                    }
                 },
                 // The player backfills its own track; any other row is
                 // looked up as the menu opens — see `needsLinks` above.
@@ -6744,9 +6742,8 @@ private object PlayerSheetShape : Shape {
 
 private const val TAB_HOME = 0
 private const val TAB_EXPLORE = 1
-private const val TAB_RADIO = 2
-private const val TAB_LIBRARY = 3
-private const val TAB_SEARCH = 4
+private const val TAB_LIBRARY = 2
+private const val TAB_SEARCH = 3
 
 /**
  * Smoothly scroll a LazyList back to the top with eased deceleration.
@@ -6756,41 +6753,11 @@ private const val TAB_SEARCH = 4
  * animates the remaining short distance — avoiding long-distance scroll inconsistencies.
  */
 private suspend fun LazyListState.scrollToTopEased() {
-    val firstIndex = this.firstVisibleItemIndex
-    val scrollOffset = this.firstVisibleItemScrollOffset
-    if (firstIndex == 0 && scrollOffset == 0) return // already at top
-
-    val visibleItems = this.layoutInfo.visibleItemsInfo
-    if (visibleItems.isEmpty()) return // empty list guard
-
-    val avgHeight: Float = visibleItems.sumOf { it.size }.toFloat() / visibleItems.size
-    val estimatedDistance: Float = avgHeight * firstIndex + scrollOffset
-
-    if (firstIndex > FAR_LIST_THRESHOLD) {
-        // Far list: jump to a bounded index near the top, then animate the remainder.
-        val targetIndex = firstIndex - FAR_LIST_THRESHOLD.coerceAtMost(firstIndex)
-        this.scrollToItem(targetIndex)
-        kotlinx.coroutines.delay(16L) // layout settle after scrollToItem
-        val remainingOffset: Float = this.firstVisibleItemScrollOffset.toFloat() +
-            visibleItems.getOrNull(0)?.size?.toFloat().orZero()
-        if (remainingOffset > 0) {
-            this.animateScrollBy(
-                value = -remainingOffset,
-                animationSpec = tween(SCROLL_TO_TOP_DURATION_MS, easing = FastOutSlowInEasing),
-            )
-        }
+    if (firstVisibleItemIndex == 0 && firstVisibleItemScrollOffset == 0) return
+    if (firstVisibleItemIndex > FAR_LIST_THRESHOLD) {
+        scrollToItem(0)
     } else {
-        // Near distance: animate the full estimated distance.
-        if (estimatedDistance > 0) {
-            this.animateScrollBy(
-                value = -estimatedDistance,
-                animationSpec = tween(SCROLL_TO_TOP_DURATION_MS, easing = FastOutSlowInEasing),
-            )
-        }
-    }
-    // Finish at exactly index 0 with a short settling scroll.
-    if (this.firstVisibleItemIndex != 0 || this.firstVisibleItemScrollOffset != 0) {
-        this.animateScrollToItem(0)
+        animateScrollToItem(0)
     }
 }
 
@@ -6819,6 +6786,11 @@ private fun offlinePlaylistLibraryItems(
     )
 }
 
+private fun localArtistPageOpener(viewModel: MainViewModel, songs: List<Song>): (String) -> Unit = { artistName ->
+    val artistPageId = LocalGroups.artistPageId("local:all", artistName)
+    LocalGroups.groupOf(artistPageId, songs)?.let(viewModel::openLocalGroup)
+}
+
 private data class LocalHomeMixes(
     val recentlyPlayed: List<Song>,
     val dailyMix: List<Song>,
@@ -6826,11 +6798,15 @@ private data class LocalHomeMixes(
     val weeklyMix: List<Song>,
     val artistSpotlight: List<Song>,
     val artistSpotlightName: String,
+    val artistPicks: List<List<Song>>,
+    val albumSpotlight: List<Song>,
+    val albumSpotlightName: String,
+    val albumPicks: List<List<Song>>,
 )
 
 /** Builds stable random recommendations from the device library plus a separate history row. */
 private fun buildLocalHomeMixes(songs: List<Song>, events: List<com.music.bitchord.data.LocalPlayEvent>): LocalHomeMixes {
-    if (songs.isEmpty()) return LocalHomeMixes(emptyList(), emptyList(), emptyList(), emptyList(), emptyList(), "")
+    if (songs.isEmpty()) return LocalHomeMixes(recentlyPlayed = emptyList(), dailyMix = emptyList(), autoMix = emptyList(), weeklyMix = emptyList(), artistSpotlight = emptyList(), artistSpotlightName = "", artistPicks = emptyList(), albumSpotlight = emptyList(), albumSpotlightName = "", albumPicks = emptyList())
     val byUri = songs.mapNotNull { song -> song.localUri?.let { it to song } }.toMap()
     val recent = events.asSequence().mapNotNull { byUri[it.uri] }.distinctBy { it.localUri }.take(12).toList()
     val today = LocalDate.now()
@@ -6872,15 +6848,25 @@ private fun buildLocalHomeMixes(songs: List<Song>, events: List<com.music.bitcho
         18,
     )
 
-    val artists = songs.groupBy { it.artist.trim().ifBlank { "Unknown artist" } }
-        .filterValues { it.isNotEmpty() }
-        .toSortedMap(String.CASE_INSENSITIVE_ORDER)
-        .toList()
+    val artists = LocalGroups.artistsOf("local:all", songs)
+        .map { it.title to it.songs }
     val spotlight = artists.getOrNull(Math.floorMod(daySeed, artists.size))
     val artistSongs = spotlight?.second.orEmpty().sortedWith(
         compareByDescending<Song> { it.localDateAddedSeconds ?: 0L }.thenBy { it.title.lowercase() },
     )
-    return LocalHomeMixes(recent, daily, autoMix, weekly, artistSongs, spotlight?.first.orEmpty())
+    val albums = songs.filter {
+        val albumName = it.albumName?.trim().orEmpty()
+        albumName.isNotBlank() && !albumName.equals(it.artist.trim(), ignoreCase = true)
+    }
+        .groupBy { it.albumId?.takeIf(String::isNotBlank) ?: it.albumName.orEmpty() }
+        .toSortedMap(String.CASE_INSENSITIVE_ORDER).toList()
+    val album = albums.getOrNull(Math.floorMod(daySeed * 31, albums.size))
+    val albumSongs = album?.second.orEmpty().sortedBy { it.title.lowercase() }
+    val artistPicks = artists.map { it.second }.filter { it.isNotEmpty() }
+        .shuffled(kotlin.random.Random(daySeed)).take(5)
+    val albumPicks = albums.map { it.second }.filter { it.isNotEmpty() }
+        .shuffled(kotlin.random.Random(daySeed xor 0x4D454C)).take(5)
+    return LocalHomeMixes(recent, daily, autoMix, weekly, artistSongs, spotlight?.first.orEmpty(), artistPicks, albumSongs, album?.second?.firstOrNull()?.albumName.orEmpty(), albumPicks)
 }
 
 private fun buildDailyAutoMix(daily: List<Song>, daySeed: Int): List<Song> {

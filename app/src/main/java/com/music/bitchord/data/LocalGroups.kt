@@ -100,7 +100,7 @@ object LocalGroups {
         return when (group.kind) {
             ALBUM -> folderSongs.filter { it.albumName == group.name }.sortedForAlbum()
             FOLDER -> folderSongs.filter { it.directory() == group.name }.sortedByTitle()
-            else -> folderSongs.filter { it.artist == group.name }.sortedByTitle()
+            else -> folderSongs.filter { it.artist.trim().equals(group.name.trim(), ignoreCase = true) }.sortedByTitle()
         }
     }
 
@@ -164,8 +164,20 @@ object LocalGroups {
      * a picture of whoever made it, so the page opens on a placeholder.
      */
     fun artistsOf(folderId: String, songs: List<Song>): List<LocalGroup> =
-        songs.groupBy { it.artist }
-            .map { (name, group) -> artist(folderId, name, group) }
+        songs.groupBy { it.artist.trim().ifBlank { "Unknown artist" }.lowercase(Locale.ROOT) }
+            .map { (_, group) ->
+                // Merge capitalization variants but keep the best populated
+                // metadata spelling as the label shown in the app.
+                val name = group.groupingBy { it.artist.trim().ifBlank { "Unknown artist" } }
+                    .eachCount()
+                    .entries
+                    .maxWithOrNull(
+                        compareBy<Map.Entry<String, Int>> { it.value }
+                            .thenBy { it.key.count(Char::isUpperCase) }
+                            .thenBy { it.key },
+                    )?.key ?: "Unknown artist"
+                artist(folderId, name, group)
+            }
             .sortedBy { it.title.lowercase(Locale.ROOT) }
 
     /**
@@ -194,10 +206,14 @@ object LocalGroups {
      */
     fun groupOf(browseId: String, songs: List<Song>): LocalGroup? {
         val group = parse(browseId) ?: return null
+        // The caller often has the whole local library (for example when a
+        // page is reopened from its id). Rebuild only the rows belonging to
+        // this artist/release/folder, just as the corresponding library tab.
+        val matchingSongs = songsOf(browseId, songs)
         return when (group.kind) {
-            ALBUM -> album(group.folderId, group.name, songs)
-            FOLDER -> folder(group.folderId, group.name, songs)
-            else -> artist(group.folderId, group.name, songs)
+            ALBUM -> album(group.folderId, group.name, matchingSongs)
+            FOLDER -> folder(group.folderId, group.name, matchingSongs)
+            else -> artist(group.folderId, group.name, matchingSongs)
         }
     }
 

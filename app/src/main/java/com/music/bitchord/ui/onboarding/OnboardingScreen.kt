@@ -71,7 +71,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.music.bitchord.R
 import com.music.bitchord.sharedui.resources.Res
-import com.music.bitchord.sharedui.resources.ic_google_g
 import com.music.bitchord.sharedui.resources.ic_logo
 import org.jetbrains.compose.resources.painterResource
 import com.music.bitchord.ui.icons.BitChordIcons
@@ -188,8 +187,7 @@ fun OnboardingScreen(
                     )
                     else -> ConnectPage(
                         onBack = { page = PAGE_LOCAL_MUSIC },
-                        onSignIn = onSignIn,
-                        onSkip = onFinish,
+                        onContinue = onFinish,
                     )
                 }
             }
@@ -314,8 +312,7 @@ private fun ColumnScope.NamePage(
 @Composable
 private fun ColumnScope.ConnectPage(
     onBack: () -> Unit,
-    onSignIn: () -> Unit,
-    onSkip: () -> Unit,
+    onContinue: () -> Unit,
 ) {
     Spacer(Modifier.height(16.dp))
     BackButton(onBack)
@@ -333,22 +330,9 @@ private fun ColumnScope.ConnectPage(
     Spacer(Modifier.weight(1f))
 
     PillButton(
-        label = stringResource(R.string.onboarding_sign_in_google),
-        onClick = onSignIn,
-        primary = true,
-        leading = {
-            Image(
-                painter = painterResource(Res.drawable.ic_google_g),
-                contentDescription = null,
-                modifier = Modifier.size(20.dp),
-            )
-        },
-    )
-    Spacer(Modifier.height(12.dp))
-    PillButton(
         label = stringResource(R.string.onboarding_skip_sign_in),
-        onClick = onSkip,
-        primary = false,
+        onClick = onContinue,
+        primary = true,
     )
     Spacer(Modifier.height(16.dp))
 }

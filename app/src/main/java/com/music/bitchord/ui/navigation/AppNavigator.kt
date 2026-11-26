@@ -27,7 +27,6 @@ sealed interface AppRoute {
     data object History : AppRoute
     data object Discord : AppRoute
     data object Spotify : AppRoute
-    data object Downloads : AppRoute
 
     /** Settings → Backup and Restore → Google Drive backup. */
     data object DriveBackup : AppRoute

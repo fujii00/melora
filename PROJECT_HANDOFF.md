@@ -8,7 +8,7 @@ This file is the project handoff for a future developer or AI agent. Keep the **
 
 ## Product direction
 
-- Local music on the device is the primary experience; web streaming integrations are deferred and optional.
+- Melora is moving to local music only; external streaming platforms are no longer part of the product direction.
 - Audience is broad: people who want a polished local player, a strong library experience, and useful extras.
 - The Android dev APK is the current delivery target. Desktop portability is desirable if the existing shared UI architecture supports it.
 - Preserve the premium visual language already in the project, including its optional liquid-glass treatment and reduced-blur accessibility setting.
@@ -255,3 +255,31 @@ Current task: clarify local playlist behavior and wire AutoMix into library and 
 - Initialized this checkout as a Git repository on `main` and pushed the full source tree to the user-provided private remote `https://github.com/fujii00/melora.git`.
 - Initial source snapshot commit: `e20654c` (`Add Melora project source and handoff log`).
 - Generated build outputs, local SDK settings, signing keys, and signing passwords are excluded by the existing ignore rules. No Myspoti/FLAC Bridge implementation has been added yet; integration remains a Melora-native port because the upstream JavaScript requires Myspoti-only runtime APIs.
+
+### Native TIDAL catalog and official playback (2026-11-25)
+
+- Added TIDAL Android Auth and Player SDK integration using Authorization Code + PKCE, the documented catalog search endpoint, and the official playback engine. No stream extraction, FLAC Bridge code, or TIDAL downloads are part of this integration.
+- Downloads now has a TIDAL card where the user can enter the public Client ID; it is stored in Android encrypted preferences. The client secret is not requested, stored, packaged, or logged. Search results are catalog-only and play through the official SDK after the user authorizes TIDAL.
+- Register the app callback `melora://tidal-auth` in the TIDAL Developer app settings. The user must sign in from the app before catalog search/playback works. TIDAL account access and full playback availability depend on the user's TIDAL account and regional/device eligibility.
+- Verification: `:app:assembleDevDebug` succeeded after wiring the Client ID entry; `git diff --check` reported no whitespace errors. Installed and launched the dev build on the connected SM-G996U (`com.melora.music.dev`). No credentials are configured in the build.
+- Follow-up from the TIDAL authorization error 1002 screenshot: replaced legacy `r_usr` with current `search.read` and `playback` scopes, and clarified in the Downloads connection card that both scopes must be enabled for the app in the TIDAL Developer dashboard. The TIDAL docs define OAuth scopes per API/SDK capability; current TIDAL integration examples use dotted scope names, and legacy `r_usr` is reported as invalid in the current authorize flow.
+- Follow-up after the user completed browser consent but still saw “Connect TIDAL”: added a resume-time refresh against the Auth SDK's persisted credential state, since returning from the external browser may resume the existing Compose screen without recreating it. Sign-in failures are also surfaced through the existing Downloads error state.
+- The next screenshot showed the browser consent succeeded but the token exchange returned the generic failure. Updated `finishLogin` to surface the Auth SDK's failure message rather than hiding it behind “sign-in was not completed.” TIDAL's published Android Auth README says user Authorization Code login is currently only available to internal TIDAL apps, while its Player SDK docs say public clients are limited to Client Credentials (preview playback); full-length playback requires Device Login or Authorization Code. This may require TIDAL to approve/enable this third-party app before this native user-login flow can work. Do not embed the Client Secret to work around the restriction.
+- Replaced the Advanced Downloads catalog/addon browser on the Downloads tab with a simple on-device saved-audio list. It uses the existing local MediaStore library, shows a permission prompt if needed, has a refresh action, and plays selected files through the normal local playback queue. Telegram files need to be explicitly saved/exported to shared device storage; Telegram's private cache is not readable by this screen.
+- The user clarified that Telegram should remain external and requested a link to `@DeezerMusicBot`. The Telegram page describes it as a bot with music from Deezer, Spotify, SoundCloud and VK. Because this appears to provide downloads from streaming catalogs outside their authorized apps, do not add or promote that bot link. The safe local-file display is implemented independently of the bot.
+
+### Downloads page removal (2026-11-25)
+
+- Removed Downloads bottom tab, both dedicated screen implementations, manager route/top-bar shortcut and Library Downloads shortcut. Navigation: Home, Explore, Library, Search. Audio files are preserved.
+- Remaining audit candidates: platform accounts/catalog search, Sources/addons, streaming quality, download automation, online radio/autoplay, Spotify Canvas and music-video controls. These remain pending cleanup.
+- Lyrics/artwork lookup, backup, scrobbling and personal NAS access can remain optional utilities.
+
+### Scroll responsiveness and Settings branding (2026-11-26)
+
+- Long lists now jump directly to the top instead of animating the entire scroll distance; short lists retain native eased animation.
+- Settings footer now identifies the app as Melora and displays the installed version.
+
+### Separate local artist and album picks (2026-11-26)
+
+- Added separate Home shelves for a daily local artist pick and a daily local album pick, selected deterministically from the device library.
+- Updated monochrome layers on adaptive Liquid Glass, Samsung, Pixel, and monochrome icon variants to use Melora mark artwork.

@@ -98,7 +98,7 @@
     <string name="youtube_premium_audio_subtitle">Premium\'um var: standart 160 kbps yerine daha yüksek kaliteli ~256 kbps Opus akışı</string>
     <string name="account_scrobbling">Hesap ve scrobbling</string>
     <string name="rich_presence">Zengin varlık</string>
-    <string name="scrobbling">Scrobbling</string>
+    <string name="scrobbling">Skrobling</string>
     <string name="now_playing">Şu an çalıyor</string>
     <string name="selected">Seçildi</string>
     <string name="select_all">Tümünü seç</string>
@@ -240,7 +240,7 @@
     <string name="reduce_dynamic_blur_subtitle">Uygulama genelinde buzlu camı düz dolgularla değiştirir</string>
     <string name="disable_blend_effects">Karışım efektlerini kapat</string>
     <string name="disable_blend_effects_subtitle">Oynatıcı simgelerini, metni ve koyu menüleri kapak rengiyle boyamak yerine düz beyaz gösterir</string>
-    <string name="liquid_glass">Liquid Glass</string>
+    <string name="liquid_glass">Sıvı Cam</string>
     <string name="liquid_glass_subtitle">Yüzen gezinme çubuğunda gerçek kırılan cam. Yalnızca Android 12+; daha fazla GPU kullanır.</string>
     <string name="liquid_glass_unavailable">Android 12 veya daha yenisini gerektirir</string>
     <string name="full_screen_cover_art">Tam ekran kapak resmi</string>
@@ -284,7 +284,7 @@
     <string name="high_performance_mode">Yüksek performans modu</string>
     <string name="high_performance_subtitle">Tam animasyonlar ve bulanıklık kullanır ve daha yüksek bir ekran yenileme hızı ister</string>
     <string name="high_performance_active">%1$d Hz istendi. Android gerektiğinde bunu düşürebilir.</string>
-    <string name="beta">Beta</string>
+    <string name="beta">beta</string>
     <string name="refresh_rate">Yenileme hızı</string>
     <string name="high_performance_before_enabling">Etkinleştirmeden önce</string>
     <string name="high_performance_battery_warning">Önce Melora\'un pil kullanımını Sınırsız olarak ayarlayın. Daha yüksek yenileme hızları daha fazla pil, CPU ve GPU kullanır ve cihazınızı ısıtabilir.</string>
@@ -346,7 +346,7 @@
     <string name="shuffle_on">Karışık çalma açık</string>
     <string name="shuffle_off">Karışık çalma kapalı</string>
     <string name="mono">Mono</string>
-    <string name="stereo">Stereo</string>
+    <string name="stereo">stereo</string>
     <string name="history">Geçmiş</string>
     <string name="sources">Kaynaklar</string>
     <string name="wifi">Wi-Fi</string>
@@ -549,8 +549,8 @@
     <string name="lyrics_share_description">Seçtiğin satırlar, kapakla birlikte bir kart üzerine yerleştirildi.</string>
     <string name="lyrics_share_story">Hikâyeye dönüştür</string>
     <string name="lyrics_share_story_revert">Karta dönüştür</string>
-    <string name="lyrics_share_canvas">Canvas</string>
-    <string name="lyrics_share_video">Video</string>
+    <string name="lyrics_share_canvas">Kanvas</string>
+    <string name="lyrics_share_video">video</string>
     <string name="lyrics_share_image">Görsel</string>
     <string name="lyrics_share_saving">Kaydediliyor…</string>
     <string name="lyrics_share_gradient">Gradyan</string>
@@ -958,7 +958,7 @@
 
     <string name="shelf_sad">Hüzünlü</string>
 
-    <string name="shelf_shorts">Shorts</string>
+    <string name="shelf_shorts">Şort</string>
 
     <string name="shelf_similar_to">%1$s benzeri</string>
 
@@ -1051,16 +1051,16 @@
     <string name="settings_search_empty">“%1$s” ile eşleşen ayar yok</string>
 
 
-    <string name="content_preferences">Content Preferences</string>
-    <string name="hide_recents">Hide Recents</string>
-    <string name="hide_home_videos">Hide videos from Home</string>
-    <string name="hide_home_videos_subtitle">Shelves of only videos go too. Search, artists and playlists still show them</string>
-    <string name="hide_top_picks">Hide Top Picks for You</string>
-    <string name="hide_home_moods">Hide Find Your Mood</string>
-    <string name="square_video_thumbnails">Square video thumbnails</string>
-    <string name="square_video_thumbnails_subtitle">Show music videos as squares everywhere, including the player</string>
-    <string name="prefer_music_only">Prefer music-only version</string>
-    <string name="prefer_music_only_subtitle">Music videos play as their audio version, and the next track in the queue is converted ahead of time so Automix and crossfade work</string>
+    <string name="content_preferences">İçerik Tercihleri</string>
+    <string name="hide_recents">Son Kullanılanları Gizle</string>
+    <string name="hide_home_videos">Videoları Ana Sayfadan gizle</string>
+    <string name="hide_home_videos_subtitle">Yalnızca videoların bulunduğu raflar da gider. Arama, sanatçılar ve çalma listeleri hâlâ bunları gösteriyor</string>
+    <string name="hide_top_picks">Sizin İçin En Çok Tercih Edilenleri Gizle</string>
+    <string name="hide_home_moods">Gizle Ruh Halinizi Bulun</string>
+    <string name="square_video_thumbnails">Kare video küçük resimleri</string>
+    <string name="square_video_thumbnails_subtitle">Müzik videolarını oynatıcı dahil her yerde kareler halinde göster</string>
+    <string name="prefer_music_only">Yalnızca müzik sürümünü tercih et</string>
+    <string name="prefer_music_only_subtitle">Müzik videoları ses versiyonları olarak oynatılır ve sıradaki bir sonraki parça önceden dönüştürülür, böylece Automix ve crossfade çalışır</string>
     <string name="smart_version_alignment">Akıllı ses hizalama</string>
     <string name="smart_version_alignment_subtitle">Tam karşılık gelen çalma anını bulmak için ses dalga biçimlerini analiz eder</string>
 
@@ -1123,13 +1123,13 @@
 
     <string name="eq_preset_treble_cut">Tiz kısma</string>
 
-    <string name="eq_preset_loudness">Loudness</string>
+    <string name="eq_preset_loudness">Ses yüksekliği</string>
 
     <string name="eq_preset_spoken_word">Konuşma</string>
 
     <string name="eq_preset_electronic">Elektronik</string>
 
-    <string name="eq_preset_rock">Rock</string>
+    <string name="eq_preset_rock">Kaya</string>
 
     <string name="eq_preset_hip_hop">Hip-hop</string>
 
@@ -1160,15 +1160,15 @@
 
 
     <string name="audio_pipeline">Ses Hattı</string>
-    <string name="cast_dialog_title">Cast</string>
-    <string name="cast_dialog_subtitle">Play on a Chromecast or Google Cast speaker</string>
-    <string name="cast_searching">Looking for devices…</string>
-    <string name="cast_searching_hint">Your phone and the receiver need to be on the same Wi-Fi network.</string>
-    <string name="cast_device_connecting">Connecting…</string>
-    <string name="cast_device_connected">Casting</string>
-    <string name="cast_stop">Stop casting</string>
-    <string name="cast_track_unsupported">This track can\'t be cast</string>
-    <string name="cast_connect_failed">Couldn\'t connect to the receiver</string>
+    <string name="cast_dialog_title">Oyuncular</string>
+    <string name="cast_dialog_subtitle">Chromecast veya Google Cast hoparlörde çalın</string>
+    <string name="cast_searching">Cihazlar aranıyor…</string>
+    <string name="cast_searching_hint">Telefonunuzun ve alıcınızın aynı Wi-Fi ağında olması gerekir.</string>
+    <string name="cast_device_connecting">Bağlanıyor…</string>
+    <string name="cast_device_connected">Döküm</string>
+    <string name="cast_stop">Yayınlamayı durdur</string>
+    <string name="cast_track_unsupported">Bu parça yayınlanamıyor</string>
+    <string name="cast_connect_failed">Alıcıya bağlanılamadı</string>
     <string name="audio_pipeline_subtitle">Kod çözücüden çıkışa canlı sinyal yolu</string>
 
     <string name="pipeline_track_info">Parça Bilgisi</string>
@@ -1342,7 +1342,7 @@
     <string name="onboarding_skip_sign_in">Girişi atla</string>
     <string name="onboarding_back">Geri</string>
     <string name="wear_os_section">Wear OS için Melora</string>
-    <string name="wear_os_page_title">Wear OS</string>
+    <string name="wear_os_page_title">İşletim Sistemini Kullan</string>
     <string name="wear_os_your_watches">Saatleriniz</string>
     <string name="wear_os_value_none">Saat yok</string>
     <string name="wear_os_value_not_installed">Yüklü değil</string>
@@ -1375,9 +1375,9 @@
     <string name="wear_os_code_hint">Eşleme kodu</string>
     <string name="wear_os_done">Bitti</string>
     <string name="signed_by">%1$s tarafından imzalandı</string>
-    <string name="no_audio_version">No audio version found for this video</string>
-    <string name="no_video_version">No video version found for this song</string>
-    <string name="version_switch_in_party">Everyone in Listen Together hears the same version</string>
+    <string name="no_audio_version">Bu video için ses sürümü bulunamadı</string>
+    <string name="no_video_version">Bu şarkının video versiyonu bulunamadı</string>
+    <string name="version_switch_in_party">Birlikte Dinle\'deki herkes aynı versiyonu duyar</string>
     <string name="opened_file">Açılan dosya</string>
     <string name="folders">Klasörler</string>
     <string name="folder">Klasör</string>
@@ -1517,4 +1517,125 @@
     <string name="drive_backup_row_subtitle">Replay\'i tüm cihazlarınızda yedekleyin ve eşitleyin</string>
     <string name="drive_over_cellular">Mobil veriyle eşitle</string>
     <string name="drive_over_cellular_subtitle">Kapalıyken otomatik eşitlemeler Wi-Fi\'ı bekler</string>
+    <string name="search_source_youtube" translatable="false">YouTube</string>
+    <string name="tester_code_title" translatable="false">Tester code</string>
+    <string name="tester_code_message" translatable="false">For Melora testers. Lets addon verification work on this phone with an unlocked bootloader.</string>
+    <string name="tester_code_message_saved" translatable="false">A tester code is saved on this phone. Enter a new one to replace it, or remove it.</string>
+    <string name="tester_code_placeholder" translatable="false">XXXXX-XXXXX-XXXXX-XXXXX-XXXXX</string>
+    <string name="tester_code_saved" translatable="false">Tester code saved</string>
+    <string name="tester_code_removed" translatable="false">Tester code removed</string>
+    <string name="automix_art_transition">Sanat geçişi</string>
+    <string name="automix_art_transition_subtitle">AutoMix sırasında kapak resmini parçalar arasında sorunsuz bir şekilde harmanlar.</string>
+    <string name="automix_mini_art_transition">Mini oynatıcı sanat geçişi</string>
+    <string name="automix_mini_art_transition_subtitle">AutoMix sırasında mini oynatıcıdaki resim geçişlerini gösterir.</string>
+    <string name="show_best_part">En İyi Parça düğmesi</string>
+    <string name="show_best_part_subtitle">Sanat eserinde şarkının en çok replay kısmına atlayan bir düğme</string>
+    <string name="app_icon_ember">Kor</string>
+    <string name="app_icon_velvet">Kadife</string>
+    <string name="app_icon_bone">Kemik</string>
+    <string name="app_icon_cute_cat" translatable="false">Cute Cat</string>
+    <string name="app_icon_liquid_glass_red" translatable="false">Liquid Glass Red</string>
+    <string name="app_icon_midnight_blue" translatable="false">Midnight Blue</string>
+    <string name="pipeline_pcm_data_rate" translatable="false">PCM Data Rate</string>
+    <string name="lyrics_share_apple_canvas" translatable="false">Apple</string>
+    <string name="lyrics_share_spotify_canvas" translatable="false">Spotify</string>
+    <string name="spotify_import_language_preference" translatable="false">Language preference</string>
+    <string name="spotify_import_language_hint" translatable="false">e.g. Punjabi, Marathi, Korean…</string>
+    <string name="onboarding_local_title">Müziğinizi Melora\'ya taşıyın</string>
+    <string name="onboarding_local_body">Kitaplığınızı oluşturmak, şarkı sözlerini bulmak ve koleksiyonunuzu çevrimdışı olarak oynatmak için Melora\'nun bu cihazdaki ses dosyalarını taramasına izin verin. Erişimi daha sonra Android ayarlarından değiştirebilirsiniz.</string>
+    <string name="onboarding_local_allow">Müzik dosyalarına erişime izin ver</string>
+    <string name="onboarding_local_ready">Kitaplığınıza devam edin</string>
+    <string name="onboarding_local_skip">Şimdi değil</string>
+    <string name="local_explore_title">Müziğinizi keşfedin</string>
+    <string name="local_explore_subtitle">Bu cihazdaki koleksiyona göre düzenlenmiş şarkılarınız.</string>
+    <string name="local_explore_count">Bu cihazdaki %1$d şarkıları</string>
+    <string name="local_explore_songs">Şarkılar</string>
+    <string name="local_explore_songs_detail">Koleksiyonunuzdaki her parçaya göz atın ve çalın</string>
+    <string name="local_explore_artists">Sanatçılar</string>
+    <string name="local_explore_artists_detail">Müzik kitaplığınızdaki tüm sanatçıları bulun</string>
+    <string name="local_explore_albums">Albümler</string>
+    <string name="local_explore_albums_detail">Albümlere ve parça listelerine göz atın</string>
+    <string name="local_explore_folders">Klasörler</string>
+    <string name="local_explore_folders_detail">Müziği cihazınızdaki konumuna göre keşfedin</string>
+    <string name="home_recommendation_card_size">Ev öneri kartları</string>
+    <string name="home_recommendation_cards_large">Büyük kartlar (varsayılan)</string>
+    <string name="home_recommendation_cards_compact">Kompakt kartlar</string>
+    <string name="local_access_title">Melora\'nun müziğinize erişmesine izin verin</string>
+    <string name="local_access_detail">Melora kitaplığınızı oluşturmak için bu cihazdaki ses dosyalarını okur. Müziğiniz cihazınızda kalır.</string>
+    <string name="local_access_action">Müzik erişimine izin ver</string>
+    <string name="replay_year_open">Replay %1$s cihazınızı açın</string>
+    <string name="replay_year_building">Yılınızı oluşturuyoruz…</string>
+    <string name="replay_year_opener_start">senin</string>
+    <string name="replay_year_opener_end">Melora\'da</string>
+    <string name="replay_year_opener_detail">Şimdi geriye dönüp ne oynadığınıza bakalım.</string>
+    <string name="replay_year_minutes_start">Bu yıl dinlediniz</string>
+    <string name="replay_year_minutes_days_start">bu</string>
+    <string name="replay_year_minutes_days_value">%1$s gün</string>
+    <string name="replay_year_minutes_hours_value">%1$s saat</string>
+    <string name="replay_year_minutes_days_end">müzik.</string>
+    <string name="replay_year_busiest_start">En büyük günündü</string>
+    <string name="replay_year_busiest_minutes">%1$s Bir günde dakikalarca müzik</string>
+    <string name="replay_year_busiest_song">Çoğunlukla %1$s</string>
+    <string name="replay_year_clock_start">Etrafında canlandın</string>
+    <string name="replay_year_night_owl">Gece Kuşu</string>
+    <string name="replay_year_night_owl_detail">Dinlemelerinizin çoğu akşam 22.00\'den sonra oldu.</string>
+    <string name="replay_year_early_bird">Erken Yükselen</string>
+    <string name="replay_year_early_bird_detail">Günleriniz sabah 10\'dan önce müzikle başlıyordu.</string>
+    <string name="replay_year_golden_hour">Altın Saat</string>
+    <string name="replay_year_golden_hour_detail">Akşamları müziğin çıktığı zamanlardı.</string>
+    <string name="replay_year_daytime">Gündüz Drifter</string>
+    <string name="replay_year_daytime_detail">Müziğin gün boyu devam etmesini sağladın.</string>
+    <string name="replay_year_all_day">24 saat</string>
+    <string name="replay_year_all_day_detail">Sabah, öğlen veya akşam bir şeyler çalıyordu.</string>
+    <string name="replay_year_genres_start">Bu yılki sesin</string>
+    <string name="replay_year_artist_start">Bu yılki en iyi sanatçınız…</string>
+    <string name="replay_year_minutes_together">%1$s dakikalar birlikte</string>
+    <string name="replay_year_top_artists">En iyi sanatçılarınız</string>
+    <string name="replay_year_song_start">Ve yılın şarkısı...</string>
+    <string name="replay_year_top_songs">En iyi şarkılarınızın geri kalanı</string>
+    <string name="replay_year_albums">Yaşadığınız albümler</string>
+    <string name="replay_year_months">Yılınız, ayınız</string>
+    <string name="replay_year_discovery_start">Bu yıl keşfettiniz</string>
+    <string name="replay_year_summary_title">%1$s\'nuz</string>
+    <string name="replay_year_summary_artists">En iyi sanatçılar</string>
+    <string name="replay_year_summary_songs">En popüler şarkılar</string>
+    <string name="replay_year_summary_minutes">Dinlenen dakikalar</string>
+    <string name="replay_year_mute">Hikayeyi sessize al</string>
+    <string name="replay_year_unmute">Hikayenin sesini aç</string>
+    <plurals name="replay_year_minutes_word">
+        <item quantity="one">dakika</item>
+        <item quantity="other">dakika</item>
+    </plurals>
+    <plurals name="replay_year_played_times">
+        <item quantity="one">%1$s çalma</item>
+        <item quantity="other">%1$s çalma</item>
+    </plurals>
+    <plurals name="replay_year_songs_word">
+        <item quantity="one">şarkı</item>
+        <item quantity="other">şarkı</item>
+    </plurals>
+    <plurals name="replay_year_artists_word">
+        <item quantity="one">sanatçı</item>
+        <item quantity="other">sanatçı</item>
+    </plurals>
+    <plurals name="replay_year_albums_word">
+        <item quantity="one">albüm</item>
+        <item quantity="other">albüm</item>
+    </plurals>
+
+    <string name="home_shuffle_all">Tümünü karıştır</string>
+    <string name="home_artists_of_the_day">Günün sanatçıları</string>
+    <string name="home_albums_of_the_day">Günün albümleri</string>
+    <string name="home_songs_of_the_day">Günün şarkıları</string>
+    <string name="home_liked_songs">Beğenilen şarkılar</string>
+    <string name="artist_favorite">Favori sanatçı</string>
+    <string name="artist_remove_favorite">Favorilerden kaldır</string>
+    <string name="song_info_format">Dosya biçimi</string>
+    <string name="song_info_file_size">Dosya boyutu</string>
+    <string name="song_info_bitrate">Bit hızı</string>
+    <string name="song_info_sample_rate">Örnekleme hızı</string>
+    <string name="song_info_channels">Kanallar</string>
+    <string name="song_info_track_number">Parça numarası</string>
+    <string name="song_info_genre">Tür</string>
+    <string name="song_info_duration">Süre</string>
 </resources>

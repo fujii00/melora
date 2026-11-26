@@ -62,6 +62,7 @@ import coil3.compose.AsyncImage
 import com.music.bitchord.data.model.LikeStatus
 import com.music.bitchord.data.model.ROW_ART_PX
 import com.music.bitchord.data.model.Song
+import com.music.bitchord.data.LocalGroups
 import com.music.bitchord.data.model.artworkAt
 import com.music.bitchord.data.webdav.WebDavUploads
 import com.music.bitchord.download.DownloadState
@@ -359,8 +360,14 @@ fun SongActionsMenu(
         if (startsGroup()) IosMenuSeparator()
         // Names where each one leads under it, as a menu's "Go to" does.
         when (val id = song.albumId) {
-            null -> if (resolvingLinks) {
-                LoadingActionRow(SfIcons.Album, stringResource(R.string.open_album), palette)
+            null -> when {
+                song.localUri != null && !song.albumName.isNullOrBlank() -> ActionRow(
+                    SfIcons.Album,
+                    stringResource(R.string.open_album),
+                    accent = palette.accent,
+                    description = song.albumName,
+                ) { onOpenAlbum(LocalGroups.albumPageId("local:all", song.albumName!!.trim())) }
+                resolvingLinks -> LoadingActionRow(SfIcons.Album, stringResource(R.string.open_album), palette)
             }
             else -> ActionRow(
                 SfIcons.Album,
@@ -370,8 +377,14 @@ fun SongActionsMenu(
             ) { onOpenAlbum(id) }
         }
         when (val id = song.artistId) {
-            null -> if (resolvingLinks) {
-                LoadingActionRow(SfIcons.Artist, stringResource(R.string.open_artist), palette)
+            null -> when {
+                song.localUri != null && song.artist.isNotBlank() -> ActionRow(
+                    SfIcons.Artist,
+                    stringResource(R.string.open_artist),
+                    accent = palette.accent,
+                    description = song.artist,
+                ) { onOpenArtist(LocalGroups.artistPageId("local:all", song.artist.trim())) }
+                resolvingLinks -> LoadingActionRow(SfIcons.Artist, stringResource(R.string.open_artist), palette)
             }
             else -> ActionRow(
                 SfIcons.Artist,

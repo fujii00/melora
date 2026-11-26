@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Melora</string>
     <string name="playback_channel_name">מתנגן כעת</string>
@@ -203,7 +203,7 @@
     <string name="blocking">חוסם</string>
     <string name="crossfade">Crossfade</string>
     <string name="crossfade_subtitle">ממזג רצועה אחת לתוך הבאה</string>
-    <string name="automix">Automix [BETA]</string>
+    <string name="automix">Automix [ביטא]</string>
     <string name="automix_overview">סקירה כללית של Automix</string>
     <string name="skip_silence">דילוג על שקט</string>
     <string name="skip_silence_subtitle">קיצוץ הפסקות ארוכות משנייה</string>
@@ -244,7 +244,7 @@
     <string name="medium">בינוני</string>
     <string name="high">גבוה</string>
     <string name="standard">סטנדרטי</string>
-    <string name="lossless">Lossless</string>
+    <string name="lossless">ללא אובדן</string>
     <string name="system">מערכת</string>
     <string name="light">בהיר</string>
     <string name="dark">כהה</string>
@@ -580,7 +580,7 @@
     <string name="smb_not_configured">חברו תיקייה משותפת בקטע „מקורות”</string>
     <string name="smb_empty">לא נמצאו קובצי שמע בתיקיית ה-SMB. בדקו את השרת בקטע „מקורות”.</string>
     <string name="smb_description">כוונו את Melora לתיקיית מוזיקה משותפת — NAS או שיתוף Windows דרך SMB.</string>
-    <string name="smb_server_hint">nas.local or 192.168.1.10:4445</string>
+    <string name="smb_server_hint">nas.local או 192.168.1.10:4445</string>
     <string name="smb_share_hint">שם השיתוף, למשל Music</string>
     <string name="smb_folder_hint">תיקייה (אופציונלי)</string>
     <string name="smb_disconnect">ניתוק</string>
@@ -1002,7 +1002,7 @@
 
     <string name="shelf_sad">עצוב</string>
 
-    <string name="shelf_shorts">Shorts</string>
+    <string name="shelf_shorts">מכנסיים קצרים</string>
 
     <string name="shelf_similar_to">דומה ל-%1$s</string>
 
@@ -1060,220 +1060,220 @@
     <string name="use_this_profile">השתמש בפרופיל זה</string>
 
 
-    <string name="lyrics_offset">Lyrics offset</string>
+    <string name="lyrics_offset">קיזוז מילים</string>
 
 
 
 
 
-    <string name="auto_quick_picks">Quick picks</string>
+    <string name="auto_quick_picks">בחירות מהירות</string>
 
-    <string name="auto_recents">Recent</string>
+    <string name="auto_recents">לאחרונה</string>
 
-    <string name="auto_liked">Liked songs</string>
+    <string name="auto_liked">אהב שירים</string>
 
-    <string name="auto_login_title">Sign in to YouTube on your phone</string>
+    <string name="auto_login_title">היכנס ל-YouTube בטלפון שלך</string>
 
-    <string name="auto_login_subtitle">Open Melora on your phone to sign in</string>
+    <string name="auto_login_subtitle">פתח את Melora בטלפון שלך כדי להיכנס</string>
 
-    <string name="auto_empty_recents_title">No recent songs</string>
+    <string name="auto_empty_recents_title">אין שירים אחרונים</string>
 
-    <string name="auto_empty_recents_subtitle">Songs you play will appear here</string>
+    <string name="auto_empty_recents_subtitle">שירים שתנגן יופיעו כאן</string>
 
-    <string name="auto_empty_quick_picks_title">No suggestions</string>
+    <string name="auto_empty_quick_picks_title">אין הצעות</string>
 
-    <string name="auto_empty_quick_picks_subtitle">Check your connection and try again</string>
+    <string name="auto_empty_quick_picks_subtitle">בדוק את החיבור שלך ונסה שוב</string>
 
-    <string name="auto_empty_playlists_title">No playlists available</string>
+    <string name="auto_empty_playlists_title">אין רשימות השמעה זמינות</string>
 
-    <string name="auto_empty_playlists_subtitle">Check your connection and try again</string>
+    <string name="auto_empty_playlists_subtitle">בדוק את החיבור שלך ונסה שוב</string>
 
-    <string name="auto_empty_liked_title">No liked songs</string>
+    <string name="auto_empty_liked_title">אין שירים שאוהבים</string>
 
-    <string name="auto_empty_liked_subtitle">Tap the heart on a song to save it here</string>
+    <string name="auto_empty_liked_subtitle">הקש על הלב על שיר כדי לשמור אותו כאן</string>
 
-    <string name="auto_empty_offline_title">No offline songs</string>
+    <string name="auto_empty_offline_title">אין שירים לא מקוונים</string>
 
-    <string name="auto_empty_offline_subtitle">Download songs on your phone to listen here</string>
+    <string name="auto_empty_offline_subtitle">הורד שירים בטלפון שלך כדי להאזין כאן</string>
 
-    <string name="auto_unavailable_title">Content unavailable</string>
+    <string name="auto_unavailable_title">תוכן לא זמין</string>
 
-    <string name="auto_unavailable_subtitle">Reopen the folder and try again</string>
+    <string name="auto_unavailable_subtitle">פתח מחדש את התיקיה ונסה שוב</string>
 
-    <string name="settings_search_hint">Search settings</string>
+    <string name="settings_search_hint">הגדרות חיפוש</string>
 
-    <string name="settings_search_empty">No settings match “%1$s”</string>
+    <string name="settings_search_empty">אין הגדרות שמתאימות ל-"%1$s"</string>
 
 
-    <string name="content_preferences">Content Preferences</string>
-    <string name="hide_recents">Hide Recents</string>
-    <string name="hide_home_videos">Hide videos from Home</string>
-    <string name="hide_home_videos_subtitle">Shelves of only videos go too. Search, artists and playlists still show them</string>
-    <string name="hide_top_picks">Hide Top Picks for You</string>
-    <string name="hide_home_moods">Hide Find Your Mood</string>
-    <string name="square_video_thumbnails">Square video thumbnails</string>
-    <string name="square_video_thumbnails_subtitle">Show music videos as squares everywhere, including the player</string>
-    <string name="prefer_music_only">Prefer music-only version</string>
-    <string name="prefer_music_only_subtitle">Music videos play as their audio version, and the next track in the queue is converted ahead of time so Automix and crossfade work</string>
+    <string name="content_preferences">העדפות תוכן</string>
+    <string name="hide_recents">הסתר אחרונים</string>
+    <string name="hide_home_videos">הסתר סרטונים מהבית</string>
+    <string name="hide_home_videos_subtitle">גם מדפים של רק סרטונים הולכים. חיפוש, אמנים ופלייליסטים עדיין מראים אותם</string>
+    <string name="hide_top_picks">הסתר עבורך את הבחירות המובילות</string>
+    <string name="hide_home_moods">הסתר מצא את מצב הרוח שלך</string>
+    <string name="square_video_thumbnails">תמונות ממוזערות של וידאו מרובעות</string>
+    <string name="square_video_thumbnails_subtitle">הצג סרטוני מוזיקה כריבועים בכל מקום, כולל הנגן</string>
+    <string name="prefer_music_only">העדיפו גרסה למוזיקה בלבד</string>
+    <string name="prefer_music_only_subtitle">סרטוני מוזיקה מתנגנים כגרסת האודיו שלהם, והרצועה הבאה בתור מומרת מבעוד מועד כך ש-Automix ו-Crossfade עובדים</string>
     <string name="smart_version_alignment">יישור אודיו חכם</string>
     <string name="smart_version_alignment_subtitle">ניתוח צורות הגל כדי למצוא בדיוק את רגע ההשמעה התואם</string>
 
-    <string name="equalizer_footer">Shapes the sound inside Melora, before it reaches the system.</string>
+    <string name="equalizer_footer">מעצב את הצליל בתוך Melora, לפני שהוא מגיע למערכת.</string>
 
-    <string name="equalizer_dynamic">Dynamic</string>
+    <string name="equalizer_dynamic">דינמי</string>
 
-    <string name="equalizer_manual">Manual</string>
+    <string name="equalizer_manual">ידני</string>
 
-    <string name="equalizer_tone">Tone</string>
+    <string name="equalizer_tone">טון</string>
 
-    <string name="equalizer_tilt">Tilt</string>
+    <string name="equalizer_tilt">הטיה</string>
 
-    <string name="equalizer_contour">Contour</string>
+    <string name="equalizer_contour">קו מתאר</string>
 
-    <string name="equalizer_broad">Broad</string>
+    <string name="equalizer_broad">רחב</string>
 
-    <string name="equalizer_focused">Focused</string>
+    <string name="equalizer_focused">ממוקד</string>
 
-    <string name="equalizer_broad_footer">Drag left for a warmer sound and right for a brighter one; down scoops the middle, up brings it forward. Broad moves wide stretches of the spectrum at once.</string>
+    <string name="equalizer_broad_footer">גרור שמאלה לצליל חם יותר וימינה לצליל בהיר יותר; למטה שולף את האמצע, למעלה מביא אותו קדימה. רחב מזיז חלקים רחבים של הספקטרום בבת אחת.</string>
 
-    <string name="equalizer_focused_footer">Drag left for a warmer sound and right for a brighter one; down scoops the middle, up brings it forward. Focused works on narrower stretches, so it changes less around what it moves.</string>
+    <string name="equalizer_focused_footer">גרור שמאלה לצליל חם יותר וימינה לצליל בהיר יותר; למטה שולף את האמצע, למעלה מביא אותו קדימה. ממוקד עובד על מתיחות צרות יותר, כך שהוא משתנה פחות סביב מה שהוא זז.</string>
 
-    <string name="equalizer_preset">Preset</string>
+    <string name="equalizer_preset">מוגדר מראש</string>
 
-    <string name="equalizer_bands">Bands</string>
+    <string name="equalizer_bands">להקות</string>
 
-    <string name="equalizer_bands_footer">Moving a band leaves the preset behind and the curve becomes your own.</string>
+    <string name="equalizer_bands_footer">הזזת להקה משאירה את הקביעה המוגדרת מאחור והעקומה הופכת לשלך.</string>
 
-    <string name="equalizer_reset">Reset all bands</string>
+    <string name="equalizer_reset">אפס את כל הלהקות</string>
 
-    <string name="equalizer_balance">Balance</string>
+    <string name="equalizer_balance">איזון</string>
 
     <string name="equalizer_balance_left">L</string>
 
     <string name="equalizer_balance_right">R</string>
 
-    <string name="equalizer_balance_footer">Shifts the sound towards one ear by quietening the other.</string>
+    <string name="equalizer_balance_footer">מעביר את הצליל לכיוון אוזן אחת על ידי השתקת האוזן השנייה.</string>
     <string name="equalizer_bitstream_title">לא פועל כרגע</string>
     <string name="equalizer_bitstream_subtitle">הרצועה הזו נשלחת לפלט בלי פענוח</string>
     <string name="equalizer_bitstream_footer">האקולייזר פועל על אודיו מפוענח. הרצועה הזו מועברת כ-bitstream שהמכשיר שלכם מפענח בעצמו, כך שאין כאן דגימות לסנן.</string>
 
-    <string name="system_equalizer">System equalizer</string>
+    <string name="system_equalizer">אקולייזר מערכת</string>
 
-    <string name="system_equalizer_subtitle">Your device\'s own panel</string>
+    <string name="system_equalizer_subtitle">הפאנל של המכשיר שלך</string>
 
-    <string name="system_equalizer_footer">Runs after Melora\'s, on the whole audio session. Using both applies both.</string>
+    <string name="system_equalizer_footer">פועל אחרי של Melora, על כל סשן האודיו. השימוש בשניהם חל על שניהם.</string>
 
-    <string name="eq_preset_flat">Flat</string>
+    <string name="eq_preset_flat">שטוח</string>
 
-    <string name="eq_preset_acoustic">Acoustic</string>
+    <string name="eq_preset_acoustic">אקוסטית</string>
 
-    <string name="eq_preset_bass_boost">Bass boost</string>
+    <string name="eq_preset_bass_boost">הגברת בס</string>
 
-    <string name="eq_preset_bass_cut">Bass cut</string>
+    <string name="eq_preset_bass_cut">חתך בס</string>
 
-    <string name="eq_preset_vocal">Vocal</string>
+    <string name="eq_preset_vocal">ווקאלי</string>
 
-    <string name="eq_preset_treble_boost">Treble boost</string>
+    <string name="eq_preset_treble_boost">חיזוק טרבל</string>
 
-    <string name="eq_preset_treble_cut">Treble cut</string>
+    <string name="eq_preset_treble_cut">חתך טרבל</string>
 
-    <string name="eq_preset_loudness">Loudness</string>
+    <string name="eq_preset_loudness">קולניות</string>
 
-    <string name="eq_preset_spoken_word">Spoken word</string>
+    <string name="eq_preset_spoken_word">מילה מדוברת</string>
 
-    <string name="eq_preset_electronic">Electronic</string>
+    <string name="eq_preset_electronic">אלקטרוני</string>
 
-    <string name="eq_preset_rock">Rock</string>
+    <string name="eq_preset_rock">רוק</string>
 
-    <string name="eq_preset_hip_hop">Hip-hop</string>
+    <string name="eq_preset_hip_hop">היפ הופ</string>
 
-    <string name="eq_preset_jazz">Jazz</string>
+    <string name="eq_preset_jazz">ג\'אז</string>
 
-    <string name="eq_preset_classical">Classical</string>
+    <string name="eq_preset_classical">קלאסי</string>
 
-    <string name="eq_preset_small_speakers">Small speakers</string>
+    <string name="eq_preset_small_speakers">רמקולים קטנים</string>
 
-    <string name="eq_preset_late_night">Late night</string>
+    <string name="eq_preset_late_night">מאוחר בלילה</string>
 
-    <string name="eq_preset_custom">Custom</string>
+    <string name="eq_preset_custom">מותאם אישית</string>
 
-    <string name="translation_language">Translation language</string>
+    <string name="translation_language">שפת תרגום</string>
 
-    <string name="translation_language_description">The language the translate button turns lyrics into.</string>
+    <string name="translation_language_description">השפה אליה כפתור התרגום הופך את המילים.</string>
 
-    <string name="translation_language_app_default">App language</string>
+    <string name="translation_language_app_default">שפת האפליקציה</string>
 
-    <string name="translation_language_subtitle">Follows the app language</string>
+    <string name="translation_language_subtitle">עוקב אחר שפת האפליקציה</string>
 
-    <string name="search_languages">Search languages</string>
+    <string name="search_languages">חיפוש שפות</string>
 
-    <string name="no_languages_match">No languages match</string>
+    <string name="no_languages_match">אין שפות תואמות</string>
 
 
 
-    <string name="audio_pipeline">Audio Pipeline</string>
-    <string name="cast_dialog_title">Cast</string>
-    <string name="cast_dialog_subtitle">Play on a Chromecast or Google Cast speaker</string>
-    <string name="cast_searching">Looking for devices…</string>
-    <string name="cast_searching_hint">Your phone and the receiver need to be on the same Wi-Fi network.</string>
-    <string name="cast_device_connecting">Connecting…</string>
-    <string name="cast_device_connected">Casting</string>
-    <string name="cast_stop">Stop casting</string>
-    <string name="cast_track_unsupported">This track can\'t be cast</string>
-    <string name="cast_connect_failed">Couldn\'t connect to the receiver</string>
+    <string name="audio_pipeline">צינור אודיו</string>
+    <string name="cast_dialog_title">שחקנים</string>
+    <string name="cast_dialog_subtitle">שחק ברמקול Chromecast או Google Cast</string>
+    <string name="cast_searching">מחפש מכשירים...</string>
+    <string name="cast_searching_hint">הטלפון והמקלט שלך צריכים להיות באותה רשת Wi-Fi.</string>
+    <string name="cast_device_connecting">מתחבר...</string>
+    <string name="cast_device_connected">ליהוק</string>
+    <string name="cast_stop">תפסיק ללהק</string>
+    <string name="cast_track_unsupported">לא ניתן להעלות את הרצועה הזו</string>
+    <string name="cast_connect_failed">לא ניתן היה להתחבר למקלט</string>
     <string name="audio_pipeline_subtitle">נתיב האות בזמן אמת, מהמפענח ועד הפלט</string>
 
-    <string name="pipeline_track_info">Track Info</string>
+    <string name="pipeline_track_info">מידע על המסלול</string>
 
-    <string name="pipeline_decoder">Decoder</string>
+    <string name="pipeline_decoder">מפענח</string>
 
-    <string name="pipeline_resampler">Resampler</string>
+    <string name="pipeline_resampler">דגימה מחדש</string>
 
     <string name="pipeline_dsp">DSP</string>
 
-    <string name="pipeline_output_device">Output Device</string>
+    <string name="pipeline_output_device">מכשיר פלט</string>
 
-    <string name="pipeline_source">Source</string>
+    <string name="pipeline_source">מקור</string>
 
-    <string name="pipeline_format">Format</string>
+    <string name="pipeline_format">פורמט</string>
 
-    <string name="pipeline_bit_depth">Bit Depth</string>
+    <string name="pipeline_bit_depth">קצת עומק</string>
 
-    <string name="pipeline_sample_rate">Sample Rate</string>
+    <string name="pipeline_sample_rate">קצב דגימה</string>
 
-    <string name="pipeline_bitrate">Bitrate</string>
+    <string name="pipeline_bitrate">קצב סיביות</string>
 
-    <string name="pipeline_channels">Channels</string>
+    <string name="pipeline_channels">ערוצים</string>
 
-    <string name="pipeline_decoder_name">Decoder Name</string>
+    <string name="pipeline_decoder_name">שם המפענח</string>
 
-    <string name="pipeline_io_rate">I/O Rate</string>
+    <string name="pipeline_io_rate">קצב קלט/פלט</string>
 
-    <string name="pipeline_type">Type</string>
+    <string name="pipeline_type">הקלד</string>
 
-    <string name="pipeline_cutoff">Cutoff</string>
+    <string name="pipeline_cutoff">ניתוק</string>
 
-    <string name="pipeline_quality">Quality</string>
+    <string name="pipeline_quality">איכות</string>
 
-    <string name="pipeline_pcm_format">PCM Format</string>
+    <string name="pipeline_pcm_format">פורמט PCM</string>
 
-    <string name="pipeline_eq_preset">EQ Preset</string>
+    <string name="pipeline_eq_preset">EQ מראש</string>
 
-    <string name="pipeline_stereo_expand">Stereo Expand</string>
+    <string name="pipeline_stereo_expand">הרחבת סטריאו</string>
 
-    <string name="pipeline_buffers">Buffers</string>
+    <string name="pipeline_buffers">חוצצים</string>
 
-    <string name="pipeline_output_api">Output API</string>
+    <string name="pipeline_output_api">פלט API</string>
 
-    <string name="pipeline_device_name">Device Name</string>
+    <string name="pipeline_device_name">שם המכשיר</string>
 
 
 
-    <string name="shared_link">Shared link</string>
+    <string name="shared_link">קישור משותף</string>
 
-    <string name="song_will_play_next">Song will play next</string>
+    <string name="song_will_play_next">השיר יתנגן הבא</string>
 
-    <string name="song_added_to_queue">Song added to queue</string>
+    <string name="song_added_to_queue">השיר נוסף לתור</string>
     <string name="song_added_to_playlist">נוסף לרשימת ההשמעה</string>
     <string name="song_already_in_playlist">כבר ברשימת ההשמעה</string>
     <plurals name="add_to_playlists_count">
@@ -1286,11 +1286,11 @@
     </plurals>
     <string name="party_queue_full">התור מלא (עד %d שירים במסיבה)</string>
 
-    <string name="paxsenix_api_key">PaxSenix API key</string>
+    <string name="paxsenix_api_key">מפתח API של PaxSenix</string>
 
-    <string name="paxsenix_api_key_configured">PaxSenix API key — configured</string>
+    <string name="paxsenix_api_key_configured">מפתח API PaxSenix - מוגדר</string>
 
-    <string name="paxsenix_api_key_missing">PaxSenix API key — optional, not configured</string>
+    <string name="paxsenix_api_key_missing">מפתח API של PaxSenix - אופציונלי, לא מוגדר</string>
 
 
 
@@ -1385,7 +1385,7 @@
     <string name="onboarding_skip_sign_in">דילוג על ההתחברות</string>
     <string name="onboarding_back">חזרה</string>
     <string name="wear_os_section">Melora ל-Wear OS</string>
-    <string name="wear_os_page_title">Wear OS</string>
+    <string name="wear_os_page_title">ללבוש מערכת הפעלה</string>
     <string name="wear_os_your_watches">השעונים שלך</string>
     <string name="wear_os_value_none">אין שעון</string>
     <string name="wear_os_value_not_installed">לא מותקן</string>
@@ -1427,9 +1427,9 @@
     <string name="song_info_unavailable">לא זמין</string>
     <string name="song_info_error">לא ניתן לטעון חלק מהמידע.</string>
     <string name="song_info_retry">ניסיון חוזר</string>
-    <string name="no_audio_version">No audio version found for this video</string>
-    <string name="no_video_version">No video version found for this song</string>
-    <string name="version_switch_in_party">Everyone in Listen Together hears the same version</string>
+    <string name="no_audio_version">לא נמצאה גרסת אודיו עבור סרטון זה</string>
+    <string name="no_video_version">לא נמצאה גרסת וידאו לשיר זה</string>
+    <string name="version_switch_in_party">כולם ב- Listen Together שומעים את אותה גרסה</string>
     <string name="opened_file">קובץ שנפתח</string>
     <string name="folders">תיקיות</string>
     <string name="folder">תיקייה</string>
@@ -1565,4 +1565,125 @@
     <string name="drive_backup_row_subtitle">גיבוי וסנכרון של Replay בין המכשירים שלך</string>
     <string name="drive_over_cellular">סנכרון בחבילת גלישה</string>
     <string name="drive_over_cellular_subtitle">כשכבוי, סנכרונים אוטומטיים ממתינים ל-Wi-Fi</string>
+    <string name="search_source_youtube" translatable="false">YouTube</string>
+    <string name="tester_code_title" translatable="false">Tester code</string>
+    <string name="tester_code_message" translatable="false">For Melora testers. Lets addon verification work on this phone with an unlocked bootloader.</string>
+    <string name="tester_code_message_saved" translatable="false">A tester code is saved on this phone. Enter a new one to replace it, or remove it.</string>
+    <string name="tester_code_placeholder" translatable="false">XXXXX-XXXXX-XXXXX-XXXXX-XXXXX</string>
+    <string name="tester_code_saved" translatable="false">Tester code saved</string>
+    <string name="tester_code_removed" translatable="false">Tester code removed</string>
+    <string name="automix_art_transition">מעבר אמנות</string>
+    <string name="automix_art_transition_subtitle">משלב בצורה חלקה אמנות כיסוי בין רצועות במהלך AutoMix.</string>
+    <string name="automix_mini_art_transition">מעבר אמנות מיני-שחקן</string>
+    <string name="automix_mini_art_transition_subtitle">מציג מעברי גרפיקה במיני-נגן במהלך AutoMix.</string>
+    <string name="show_best_part">כפתור החלק הטוב ביותר</string>
+    <string name="show_best_part_subtitle">כפתור על הגרפיקה שמדלג לחלק של השיר אנשים replay הכי הרבה</string>
+    <string name="app_icon_ember">גחלת</string>
+    <string name="app_icon_velvet">קטיפה</string>
+    <string name="app_icon_bone">עצם</string>
+    <string name="app_icon_cute_cat" translatable="false">Cute Cat</string>
+    <string name="app_icon_liquid_glass_red" translatable="false">Liquid Glass Red</string>
+    <string name="app_icon_midnight_blue" translatable="false">Midnight Blue</string>
+    <string name="pipeline_pcm_data_rate" translatable="false">PCM Data Rate</string>
+    <string name="lyrics_share_apple_canvas" translatable="false">Apple</string>
+    <string name="lyrics_share_spotify_canvas" translatable="false">Spotify</string>
+    <string name="spotify_import_language_preference" translatable="false">Language preference</string>
+    <string name="spotify_import_language_hint" translatable="false">e.g. Punjabi, Marathi, Korean…</string>
+    <string name="onboarding_local_title">תביא את המוזיקה שלך ל-Melora</string>
+    <string name="onboarding_local_body">תן ל-Melora לסרוק קבצי אודיו במכשיר זה כדי לבנות את הספרייה שלך, למצוא מילים ולהשמיע את האוסף שלך במצב לא מקוון. תוכל לשנות גישה מאוחר יותר בהגדרות אנדרואיד.</string>
+    <string name="onboarding_local_allow">אפשר גישה לקבצי מוזיקה</string>
+    <string name="onboarding_local_ready">המשך עם הספרייה שלך</string>
+    <string name="onboarding_local_skip">לא עכשיו</string>
+    <string name="local_explore_title">חקור את המוזיקה שלך</string>
+    <string name="local_explore_subtitle">השירים שלך, מאורגנים סביב האוסף במכשיר הזה.</string>
+    <string name="local_explore_count">שירים %1$d במכשיר זה</string>
+    <string name="local_explore_songs">שירים</string>
+    <string name="local_explore_songs_detail">דפדף והפעל בכל רצועה באוסף שלך</string>
+    <string name="local_explore_artists">אמנים</string>
+    <string name="local_explore_artists_detail">מצא את כל האמנים בספריית המוזיקה שלך</string>
+    <string name="local_explore_albums">אלבומים</string>
+    <string name="local_explore_albums_detail">עיין באלבומים וברשימות הרצועות שלהם</string>
+    <string name="local_explore_folders">תיקיות</string>
+    <string name="local_explore_folders_detail">חקור מוזיקה לפי מיקומה במכשיר שלך</string>
+    <string name="home_recommendation_card_size">כרטיסי המלצה לבית</string>
+    <string name="home_recommendation_cards_large">כרטיסים גדולים (ברירת מחדל)</string>
+    <string name="home_recommendation_cards_compact">כרטיסים קומפקטיים</string>
+    <string name="local_access_title">תן ל-Melora גישה למוזיקה שלך</string>
+    <string name="local_access_detail">Melora קורא קובצי שמע במכשיר זה כדי לבנות את הספרייה שלך. המוזיקה שלך נשארת במכשיר שלך.</string>
+    <string name="local_access_action">אפשר גישה למוזיקה</string>
+    <string name="replay_year_open">פתח את Replay %1$s שלך</string>
+    <string name="replay_year_building">בונים את השנה שלך...</string>
+    <string name="replay_year_opener_start">שלך</string>
+    <string name="replay_year_opener_end">ב-Melora</string>
+    <string name="replay_year_opener_detail">בוא נסתכל אחורה על מה ששיחקת.</string>
+    <string name="replay_year_minutes_start">השנה אתה הקשבת</string>
+    <string name="replay_year_minutes_days_start">זהו</string>
+    <string name="replay_year_minutes_days_value">%1$s ימים</string>
+    <string name="replay_year_minutes_hours_value">%1$s שעות</string>
+    <string name="replay_year_minutes_days_end">של מוזיקה.</string>
+    <string name="replay_year_busiest_start">היום הכי גדול שלך היה</string>
+    <string name="replay_year_busiest_minutes">%1$s דקות של מוזיקה ביום אחד</string>
+    <string name="replay_year_busiest_song">בעיקר %1$s</string>
+    <string name="replay_year_clock_start">הגעת בחיים</string>
+    <string name="replay_year_night_owl">ינשוף לילה</string>
+    <string name="replay_year_night_owl_detail">כל כך הרבה מההאזנה שלך התרחשה אחרי 22:00.</string>
+    <string name="replay_year_early_bird">קם מוקדם</string>
+    <string name="replay_year_early_bird_detail">הימים שלך התחילו עם מוזיקה לפני 10 בבוקר.</string>
+    <string name="replay_year_golden_hour">שעת הזהב</string>
+    <string name="replay_year_golden_hour_detail">ערבים היו כשהמוזיקה יצאה.</string>
+    <string name="replay_year_daytime">דרייטר בשעות היום</string>
+    <string name="replay_year_daytime_detail">השארת את המוזיקה לאורך היום.</string>
+    <string name="replay_year_all_day">מסביב לשעון</string>
+    <string name="replay_year_all_day_detail">בוקר, צהריים או לילה, משהו התנגן.</string>
+    <string name="replay_year_genres_start">הסאונד שלך השנה</string>
+    <string name="replay_year_artist_start">האמן המוביל שלך השנה היה...</string>
+    <string name="replay_year_minutes_together">%1$s דקות ביחד</string>
+    <string name="replay_year_top_artists">האמנים המובילים שלך</string>
+    <string name="replay_year_song_start">ושיר השנה שלך...</string>
+    <string name="replay_year_top_songs">שאר השירים המובילים שלך</string>
+    <string name="replay_year_albums">אלבומים שחיית בהם</string>
+    <string name="replay_year_months">השנה שלך, חודש אחר חודש</string>
+    <string name="replay_year_discovery_start">השנה חקרתם</string>
+    <string name="replay_year_summary_title">%1$s שלך</string>
+    <string name="replay_year_summary_artists">אמנים מובילים</string>
+    <string name="replay_year_summary_songs">שירים מובילים</string>
+    <string name="replay_year_summary_minutes">דקות הקשיבו</string>
+    <string name="replay_year_mute">השתיק את הסיפור</string>
+    <string name="replay_year_unmute">בטל את השתקת הסיפור</string>
+    <plurals name="replay_year_minutes_word">
+        <item quantity="one">דקה</item>
+        <item quantity="other">דקות</item>
+    </plurals>
+    <plurals name="replay_year_played_times">
+        <item quantity="one">הפעלה %1$s</item>
+        <item quantity="other">%1$s הפעלות</item>
+    </plurals>
+    <plurals name="replay_year_songs_word">
+        <item quantity="one">שיר</item>
+        <item quantity="other">שירים</item>
+    </plurals>
+    <plurals name="replay_year_artists_word">
+        <item quantity="one">אמן</item>
+        <item quantity="other">אמנים</item>
+    </plurals>
+    <plurals name="replay_year_albums_word">
+        <item quantity="one">אלבום</item>
+        <item quantity="other">אלבומים</item>
+    </plurals>
+
+    <string name="home_shuffle_all">ערבב הכול</string>
+    <string name="home_artists_of_the_day">אמני היום</string>
+    <string name="home_albums_of_the_day">אלבומי היום</string>
+    <string name="home_songs_of_the_day">שירי היום</string>
+    <string name="home_liked_songs">שירים שאהבתי</string>
+    <string name="artist_favorite">אמן מועדף</string>
+    <string name="artist_remove_favorite">הסר מהמועדפים</string>
+    <string name="song_info_format">פורמט קובץ</string>
+    <string name="song_info_file_size">גודל קובץ</string>
+    <string name="song_info_bitrate">קצב סיביות</string>
+    <string name="song_info_sample_rate">קצב דגימה</string>
+    <string name="song_info_channels">ערוצים</string>
+    <string name="song_info_track_number">מספר רצועה</string>
+    <string name="song_info_genre">ז׳אנר</string>
+    <string name="song_info_duration">משך</string>
 </resources>

@@ -5,6 +5,7 @@ import androidx.compose.runtime.remember
 import com.music.bitchord.data.LocalGroup
 import com.music.bitchord.data.LocalGroups
 import com.music.bitchord.data.canvas.AppleArtistArtRepository
+import com.music.bitchord.data.canvas.ArtistArtworkFallbacks
 import com.music.bitchord.data.model.ShelfItem
 import com.music.bitchord.data.model.Song
 
@@ -32,7 +33,8 @@ fun rememberLocalLibraryArtists(songs: List<Song>, favorites: Set<String>): List
 
 suspend fun resolveLocalLibraryArtistArtwork(item: ShelfItem, songs: List<Song>): String? {
     val group = item.browseId?.let { LocalGroups.groupOf(it, songs) } ?: return null
-    return AppleArtistArtRepository.artFor(group.browseId, group.title) {
+    val apple = AppleArtistArtRepository.artFor(group.browseId, group.title) {
         group.songs.map { it.title }
     }?.heroUrl
+    return apple ?: ArtistArtworkFallbacks.afterApple(group.title, group.songs.map { it.title })
 }

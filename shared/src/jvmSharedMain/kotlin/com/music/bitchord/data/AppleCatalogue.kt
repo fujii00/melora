@@ -31,7 +31,11 @@ object AppleCatalogue {
      * `$` standing in for an S is read as one: Apple's KR$NA is YouTube's Krsna.
      */
     fun matchKey(name: String): String =
-        java.text.Normalizer.normalize(name.lowercase(Locale.ROOT).replace('$', 's'), java.text.Normalizer.Form.NFD)
+        java.text.Normalizer.normalize(
+            java.text.Normalizer.normalize(name, java.text.Normalizer.Form.NFKC)
+                .lowercase(Locale.ROOT).replace('$', 's'),
+            java.text.Normalizer.Form.NFD,
+        )
             .filter { it.isLetterOrDigit() }
 
     /**
@@ -43,7 +47,12 @@ object AppleCatalogue {
         matchKey(
             title.substringBefore(" (").substringBefore(" [")
                 .removeSuffix(" - Single").removeSuffix(" - EP"),
-        ).takeIf { it.length >= 4 }
+        ).takeIf { key ->
+            // Short Japanese titles are common and still useful identity evidence;
+            // a four-character minimum incorrectly discarded many of them.
+            val minimum = if (key.any { it in '\u3040'..'\u30ff' || it in '\u3400'..'\u9fff' }) 2 else 4
+            key.length >= minimum
+        }
 
     /** [titles] as the keys [sharesTitles] compares; empty means nothing to prove with. */
     fun keys(titles: Collection<String>): Set<String> = titles.mapNotNullTo(HashSet(), ::titleKey)

@@ -146,6 +146,7 @@ import com.music.bitchord.ui.components.CoverPlaceholder
 import com.music.bitchord.data.canvas.AppleArtistArt
 import com.music.bitchord.data.DebugLog as Log
 import com.music.bitchord.data.canvas.AppleArtistArtRepository
+import com.music.bitchord.data.canvas.ArtistArtworkFallbacks
 import com.music.bitchord.data.canvas.appleCatalogue
 import com.music.bitchord.data.canvas.ArtistSignature
 import com.music.bitchord.data.canvas.ArtistSignatureRepository
@@ -416,10 +417,14 @@ fun DetailScreen(
     var appleArt by remember(page.browseId) {
         mutableStateOf(if (isArtist) AppleArtistArtRepository.cached(page.browseId) else null)
     }
+    var fallbackArtistArt by remember(page.browseId) { mutableStateOf<String?>(null) }
     val songsLoading = page.songs is UiState.Loading
     LaunchedEffect(page.browseId, page.title, songsLoading) {
         if (isArtist && !songsLoading) {
             appleArt = AppleArtistArtRepository.artFor(page.browseId, page.title) { page.appleCatalogue() } ?: appleArt
+            if (appleArt?.heroUrl == null) {
+                fallbackArtistArt = ArtistArtworkFallbacks.afterApple(page.title, page.appleCatalogue())
+            }
         }
     }
     // Secondary provider: handwritten signature from the user's own
@@ -607,7 +612,7 @@ fun DetailScreen(
                         canvas = visibleCanvas,
                         artHeight = artHeight,
                         listState = listState,
-                        heroUrl = appleArt?.heroUrl,
+                        heroUrl = appleArt?.heroUrl ?: fallbackArtistArt,
                         modifier = Modifier.matchParentSize(),
                     )
                 }
@@ -647,6 +652,8 @@ fun DetailScreen(
                         appleArt = appleArt,
                         signature = signature,
                         appleProfile = appleArtistProfile,
+                        fallbackArtistArt = fallbackArtistArt,
+                        localTrackCount = songs.size.takeIf { LocalGroups.isArtist(page.browseId) },
                     )
                 } else {
                     ReleaseHeader(
@@ -879,7 +886,7 @@ fun DetailScreen(
                 item(key = "local-artist-albums") {
                     Column(Modifier.padding(top = 22.dp)) {
                         SectionHeading(
-                            title = "Albums",
+                            title = stringResource(R.string.albums),
                             palette = palette,
                             horizontalPadding = ARTIST_CONTENT_GUTTER,
                         )
@@ -1438,12 +1445,14 @@ private fun ArtistHeader(
     appleArt: AppleArtistArt?,
     signature: ArtistSignature?,
     appleProfile: Boolean = true,
+    fallbackArtistArt: String? = null,
+    localTrackCount: Int? = null,
 ) {
     Box(Modifier.fillMaxWidth()) {
         Spacer(Modifier.fillMaxWidth().height(artHeight + HEADER_DROP - ARTIST_HEADER_LIFT))
         if (!appleProfile) {
             AsyncImage(
-                model = appleArt?.heroUrl ?: page.thumbnailUrl.artworkAt(HEADER_ART_PX),
+                model = appleArt?.heroUrl ?: fallbackArtistArt ?: page.thumbnailUrl.artworkAt(HEADER_ART_PX),
                 contentDescription = page.title,
                 contentScale = ContentScale.Crop,
                 modifier = Modifier
@@ -1556,20 +1565,32 @@ private fun ArtistHeader(
             }
             }
         }
-        if (!logoShown) Text(
-            text = page.title,
-            style = MaterialTheme.typography.displayLarge,
-            color = palette.onBackground,
-            textAlign = TextAlign.Center,
-            maxLines = 2,
-            overflow = TextOverflow.Ellipsis,
+        if (!logoShown) Column(
             modifier = Modifier
                 .align(Alignment.BottomCenter)
-                // Bottom is half the top inset — the stats pills (or, absent
-                // those, the action row) sit closer under the name than the
-                // name sits under the artwork.
                 .padding(start = HEADER_GUTTER, end = HEADER_GUTTER, top = 14.dp, bottom = 7.dp),
-        )
+            horizontalAlignment = Alignment.CenterHorizontally,
+        ) {
+            Text(
+                text = page.title,
+                style = MaterialTheme.typography.displayLarge,
+                color = palette.onBackground,
+                textAlign = TextAlign.Center,
+                maxLines = 2,
+                overflow = TextOverflow.Ellipsis,
+            )
+            if (localTrackCount != null) {
+                Text(
+                    text = "$localTrackCount songs in your library",
+                    style = MaterialTheme.typography.bodyLarge,
+                    color = palette.onBackgroundVariant,
+                    textAlign = TextAlign.Center,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis,
+                    modifier = Modifier.padding(top = 6.dp),
+                )
+            }
+        }
     }
 }
 
@@ -1746,7 +1767,7 @@ private fun ActionRow(
 
         CircleIconButton(
             icon = if (isFavorite) Icons.Rounded.Star else Icons.Rounded.StarBorder,
-            contentDescription = if (isFavorite) "Remove favorite artist" else "Favorite artist",
+            contentDescription = stringResource(if (isFavorite) R.string.artist_remove_favorite else R.string.artist_favorite),
             onClick = onToggleFavorite,
             haptic = if (isFavorite) Haptic.ToggleOff else Haptic.ToggleOn,
             size = ARTIST_SIDE_BUTTON,
