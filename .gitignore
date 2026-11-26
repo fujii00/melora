@@ -42,6 +42,7 @@ keystore.properties
 
 # AI agent configuration
 AGENTS.md
+PROJECT_HANDOFF.md
 /output/
 
 # Built packages — release APKs/bundles are handed out, never committed
