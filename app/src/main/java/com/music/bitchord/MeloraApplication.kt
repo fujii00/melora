@@ -49,7 +49,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlin.concurrent.thread
 
-class BitChordApplication : Application(), SingletonImageLoader.Factory, Configuration.Provider {
+class MeloraApplication : Application(), SingletonImageLoader.Factory, Configuration.Provider {
 
     init {
         // SLF4J (through Ktor) has no provider here and says so on System.err, which

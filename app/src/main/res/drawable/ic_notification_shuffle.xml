@@ -1,8 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
-  Shuffle, on, on the media notification: BitChordIcons.Shuffle, the same
-  crossed strands the player's queue pill draws, in place of Material's.
--->
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
     android:width="24dp"
     android:height="24dp"

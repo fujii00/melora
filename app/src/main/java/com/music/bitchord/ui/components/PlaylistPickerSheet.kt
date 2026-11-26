@@ -77,7 +77,7 @@ import com.music.bitchord.data.model.Song
 import com.music.bitchord.data.model.UserPlaylist
 import com.music.bitchord.data.model.artworkAt
 import com.music.bitchord.ui.components.thumbnailBorder
-import com.music.bitchord.ui.icons.BitChordIcons
+import com.music.bitchord.ui.icons.MeloraIcons
 import java.util.Locale
 import kotlinx.coroutines.launch
 
@@ -207,7 +207,7 @@ fun PlaylistPickerSheet(
                 )
 
                 ActionRow(
-                    icon = BitChordIcons.Plus,
+                    icon = MeloraIcons.Plus,
                     label = stringResource(R.string.new_playlist),
                     onClick = { creating = true },
                 )

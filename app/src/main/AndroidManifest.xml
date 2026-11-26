@@ -69,7 +69,7 @@
         tools:node="remove" />
 
     <application
-        android:name=".BitChordApplication"
+        android:name=".MeloraApplication"
         android:allowBackup="true"
         android:appCategory="audio"
         android:usesCleartextTraffic="false"
@@ -80,7 +80,7 @@
         android:localeConfig="@xml/locales_config"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.BitChord"
+        android:theme="@style/Theme.Melora"
         tools:targetApi="34">
 
         <!--
@@ -139,7 +139,7 @@
             android:exported="true"
             android:launchMode="singleTask"
             android:configChanges="orientation|screenSize|screenLayout|smallestScreenSize|keyboardHidden"
-            android:theme="@style/Theme.BitChord">
+            android:theme="@style/Theme.Melora">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <!--

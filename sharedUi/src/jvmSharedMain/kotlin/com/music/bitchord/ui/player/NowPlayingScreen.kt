@@ -160,7 +160,7 @@ import com.music.bitchord.ui.theme.topBandScrimAlpha
 import com.music.bitchord.ui.LyricsProviderState
 import com.music.bitchord.ui.haptics.Haptic
 import com.music.bitchord.ui.haptics.rememberHaptics
-import com.music.bitchord.ui.icons.BitChordIcons
+import com.music.bitchord.ui.icons.MeloraIcons
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.music.bitchord.data.canvas.CanvasArtwork
 import com.music.bitchord.data.canvas.CanvasSource
@@ -3838,7 +3838,7 @@ fun NowPlayingScreen(
                             ) {
                                 if (!coverLoaded() && (!canvasRendered || gesturePair != null)) {
                                     Icon(
-                                        imageVector = BitChordIcons.MusicNote,
+                                        imageVector = MeloraIcons.MusicNote,
                                         contentDescription = null,
                                         tint = Color.White.copy(alpha = 0.35f),
                                         modifier = Modifier
@@ -4262,7 +4262,7 @@ fun NowPlayingScreen(
                                 if (signedIn || song.localUri != null) {
                                     val liked = likeStatus == LikeStatus.LIKE
                                     CircleGlyph(
-                                        icon = if (liked) BitChordIcons.StarFilled else BitChordIcons.Star,
+                                        icon = if (liked) MeloraIcons.StarFilled else MeloraIcons.Star,
                                         contentDescription = stringResource(
                                             if (liked) Res.string.remove_from_liked else Res.string.like,
                                         ),

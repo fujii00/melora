@@ -127,7 +127,7 @@ import com.music.bitchord.ui.components.LINE_FADE
 import com.music.bitchord.ui.graphics.fadingEdges
 import com.music.bitchord.ui.haptics.Haptic
 import com.music.bitchord.ui.haptics.rememberHaptics
-import com.music.bitchord.ui.icons.BitChordIcons
+import com.music.bitchord.ui.icons.MeloraIcons
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.music.bitchord.data.NerdStats
 import com.music.bitchord.data.listentogether.PartyMember
@@ -592,7 +592,7 @@ internal fun BestPartPill(
                 modifier = Modifier.padding(start = 12.dp, end = 15.dp, top = 7.dp, bottom = 7.dp),
             ) {
                 Icon(
-                    imageVector = BitChordIcons.MusicNote,
+                    imageVector = MeloraIcons.MusicNote,
                     contentDescription = null,
                     tint = Color.White,
                     modifier = Modifier.size(15.dp),
@@ -819,7 +819,7 @@ internal fun PlayerActionRow(
                     .offset { IntOffset((closeIn.toPx() * compactness.value).roundToInt(), 0) },
             ) {
                 BottomGlyph(
-                    icon = BitChordIcons.LyricsQuote,
+                    icon = MeloraIcons.LyricsQuote,
                     contentDescription = stringResource(if (lyricsOpen) Res.string.close_lyrics else Res.string.open_lyrics),
                     // Lyrics and the queue are two things to show in one place, so
                     // opening either closes the other; lit to say which is up.
@@ -844,7 +844,7 @@ internal fun PlayerActionRow(
                     // read as one control growing a segment.
                     Pill {
                         PillSegment(
-                            icon = BitChordIcons.Shuffle,
+                            icon = MeloraIcons.Shuffle,
                             contentDescription = stringResource(
                                 if (shuffleEnabled) Res.string.shuffle_on else Res.string.shuffle_off,
                             ),
@@ -855,7 +855,7 @@ internal fun PlayerActionRow(
                         )
                         PillDivider()
                         PillSegment(
-                            icon = if (repeatMode == RepeatModes.ONE) null else BitChordIcons.Repeat,
+                            icon = if (repeatMode == RepeatModes.ONE) null else MeloraIcons.Repeat,
                             label = if (repeatMode == RepeatModes.ONE) "1" else null,
                             contentDescription = when (repeatMode) {
                                 RepeatModes.ONE -> stringResource(Res.string.repeat_one)
@@ -876,7 +876,7 @@ internal fun PlayerActionRow(
                         )
                         PillDivider()
                         PillSegment(
-                            icon = BitChordIcons.Infinity,
+                            icon = MeloraIcons.Infinity,
                             contentDescription = stringResource(
                                 if (autoplayEnabled) Res.string.autoplay_on else Res.string.autoplay_off,
                             ),
@@ -900,7 +900,7 @@ internal fun PlayerActionRow(
                     .offset { IntOffset(-(closeIn.toPx() * compactness.value).roundToInt(), 0) },
             ) {
                 BottomGlyph(
-                    icon = BitChordIcons.Queue,
+                    icon = MeloraIcons.Queue,
                     contentDescription = stringResource(Res.string.up_next),
                     onClick = onToggleQueue,
                     highlighted = queueOpen,
@@ -1000,7 +1000,7 @@ private fun sliderInk(): SliderInk? =
  * [active] brightens the disc rather than only the glyph: this sits on album
  * artwork of any colour, and a white icon on a white-ish sleeve has no tint
  * change left to make. The filled star carries the state as a shape too —
- * see [BitChordIcons.StarFilled].
+ * see [MeloraIcons.StarFilled].
  */
 @Composable
 internal fun CircleGlyph(
@@ -1442,7 +1442,7 @@ private fun rememberOutputGlyph(): OutputGlyph {
             // No active row is the phone too — the caption under the pill
             // says "This phone" in the same case. AirPlay rather than a phone:
             // on the phone itself the button's job is to send it elsewhere.
-            null, AudioOutputKind.PHONE -> OutputGlyph(BitChordIcons.AirPlay, PILL_OUTPUT_AIRPLAY_SIZE)
+            null, AudioOutputKind.PHONE -> OutputGlyph(MeloraIcons.AirPlay, PILL_OUTPUT_AIRPLAY_SIZE)
             AudioOutputKind.BLUETOOTH -> when (active.form) {
                 BluetoothForm.BUDS -> OutputGlyph(vectorResource(Res.drawable.ic_output_buds), PILL_OUTPUT_BUDS_SIZE)
                 BluetoothForm.SPEAKER -> OutputGlyph(vectorResource(Res.drawable.ic_output_speaker))

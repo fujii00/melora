@@ -1,9 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
-  Favorite, unset. The same star BitChordIcons.Star draws in the player, carried
-  over as a drawable because a widget can't render an ImageVector. Stroked at
-  the transport's 2.4 rather than the app's 2.2 so it matches its neighbours.
--->
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
     android:width="24dp"
     android:height="24dp"

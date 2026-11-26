@@ -12,14 +12,8 @@ import androidx.compose.ui.graphics.vector.group
 import androidx.compose.ui.graphics.vector.path
 import androidx.compose.ui.unit.dp
 
-/**
- * Thick-stroke, round-capped icons in the spirit of Telegram's modern icon set.
- * Drawn as strokes so the 2.2px weight + round joins read as a single polished
- * family. Tint is applied by [androidx.compose.material3.Icon].
- *
- * [Home] is the exception and says why it is one.
- */
-object BitChordIcons {
+/** Custom Compose icons used across Melora's playback and navigation UI. */
+object MeloraIcons {
 
     private const val STROKE = 2.2f
     private val stroke = SolidColor(Color.Black)

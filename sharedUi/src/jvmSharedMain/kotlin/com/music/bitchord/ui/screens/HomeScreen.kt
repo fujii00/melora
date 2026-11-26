@@ -69,7 +69,7 @@ import androidx.compose.material.icons.rounded.Favorite
 import androidx.compose.material.icons.rounded.History
 import androidx.compose.material.icons.rounded.Person
 import androidx.compose.material.icons.rounded.GraphicEq
-import com.music.bitchord.ui.icons.BitChordIcons
+import com.music.bitchord.ui.icons.MeloraIcons
 import coil3.compose.AsyncImage
 import com.music.bitchord.data.model.CARD_ART_PX
 import com.music.bitchord.data.model.HomeShelf
@@ -1383,7 +1383,7 @@ internal fun ShelfCard(
                         blurRadius = 24.dp,
                     )
                     Icon(
-                        imageVector = BitChordIcons.Download,
+                        imageVector = MeloraIcons.Download,
                         contentDescription = null,
                         tint = Color.White,
                         modifier = Modifier.size(40.dp),
@@ -1436,7 +1436,7 @@ internal fun ShelfCard(
         ) {
             if (isPinned) {
                 Icon(
-                    imageVector = BitChordIcons.Pin,
+                    imageVector = MeloraIcons.Pin,
                     contentDescription = stringResource(Res.string.pinned),
                     tint = MaterialTheme.colorScheme.onSurfaceVariant,
                     modifier = Modifier.size(14.dp),

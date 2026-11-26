@@ -311,7 +311,7 @@ import com.music.bitchord.ui.components.ServerEditorHost
 import com.music.bitchord.ui.components.UpdateAvailableDialog
 import com.music.bitchord.ui.components.WebDavConflictAlert
 import com.music.bitchord.ui.components.FieldConfig
-import com.music.bitchord.ui.icons.BitChordIcons
+import com.music.bitchord.ui.icons.MeloraIcons
 import androidx.media3.common.Player
 import com.music.bitchord.data.YtMusicRepository
 import com.music.bitchord.data.TopPicks
@@ -1431,10 +1431,10 @@ private fun BitChordApp(
     val openedFileLabel = stringResource(R.string.opened_file)
     val tabs = remember(homeLabel, exploreLabel, libraryLabel, searchLabel) {
         listOf(
-            BottomTab(homeLabel, BitChordIcons.Home),
-            BottomTab(exploreLabel, BitChordIcons.TabExplore),
-            BottomTab(libraryLabel, BitChordIcons.TabLibrary),
-            BottomTab(searchLabel, BitChordIcons.TabSearch),
+            BottomTab(homeLabel, MeloraIcons.Home),
+            BottomTab(exploreLabel, MeloraIcons.TabExplore),
+            BottomTab(libraryLabel, MeloraIcons.TabLibrary),
+            BottomTab(searchLabel, MeloraIcons.TabSearch),
         )
     }
 
@@ -4328,7 +4328,7 @@ private fun BitChordApp(
                                 if (releaseSongs.isNotEmpty()) {
                                     IconButton(onClick = { detailSearching = !detailSearching }) {
                                         Icon(
-                                            if (detailSearching) Icons.Rounded.Close else BitChordIcons.Search,
+                                            if (detailSearching) Icons.Rounded.Close else MeloraIcons.Search,
                                             contentDescription = stringResource(
                                                 if (detailSearching) R.string.close_search else R.string.search_this_list,
                                             ),
@@ -6532,7 +6532,7 @@ private fun FrostedFolderMenu(
             label = stringResource(if (grid) R.string.switch_to_list_view else R.string.switch_to_grid_view),
             checked = false,
             onClick = onToggleViewType,
-            icon = if (grid) BitChordIcons.ListView else BitChordIcons.GridView,
+            icon = if (grid) MeloraIcons.ListView else MeloraIcons.GridView,
         )
         HorizontalDivider(
             modifier = Modifier.padding(vertical = 4.dp),

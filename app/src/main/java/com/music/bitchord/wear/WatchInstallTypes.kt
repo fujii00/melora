@@ -19,7 +19,7 @@ enum class WatchAppStatus {
     /** Asked; no answer yet. */
     CHECKING,
 
-    /** This build of BitChord (dev or prod) isn't on the watch. */
+    /** This build of Melora (dev or prod) isn't on the watch. */
     NOT_INSTALLED,
 
     /** The watch has exactly the build this phone carries. */

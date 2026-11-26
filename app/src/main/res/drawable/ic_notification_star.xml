@@ -1,8 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
-  Favorite, unset, on the media notification. The same star BitChordIcons.Star
-  draws in the player; Media3's own ICON_STAR is Material's sharp-tipped one.
--->
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
     android:width="24dp"
     android:height="24dp"

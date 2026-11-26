@@ -6,7 +6,7 @@ package com.music.bitchord.wear
  * has the type.
  */
 data class WatchOutputState(
-    /** A watch with BitChord on it is in reach. */
+    /** A watch with Melora on it is in reach. */
     val available: Boolean = false,
     /** What the watch calls itself — "Galaxy Watch4 Classic (KX4F)". */
     val name: String? = null,

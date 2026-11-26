@@ -61,7 +61,7 @@ import androidx.compose.ui.unit.dp
 import com.music.bitchord.ui.components.ExplicitBadge
 import com.music.bitchord.ui.components.menuAnchor
 import com.music.bitchord.ui.haptics.Haptic
-import com.music.bitchord.ui.icons.BitChordIcons
+import com.music.bitchord.ui.icons.MeloraIcons
 import com.music.bitchord.ui.theme.stableStatusBarInsets
 import com.music.bitchord.data.canvas.CanvasArtwork
 import com.music.bitchord.data.canvas.CanvasSource
@@ -333,7 +333,7 @@ internal fun LandscapeArtwork(
         ) {
             if (!artLoaded && !canvasRendered) {
                 Icon(
-                    imageVector = BitChordIcons.MusicNote,
+                    imageVector = MeloraIcons.MusicNote,
                     contentDescription = null,
                     tint = Color.White.copy(alpha = 0.35f),
                     modifier = Modifier.fillMaxSize(0.36f),
@@ -514,7 +514,7 @@ internal fun LandscapeCredits(
             if (signedIn || song.localUri != null) {
                 val liked = likeStatus == LikeStatus.LIKE
                 CircleGlyph(
-                    icon = if (liked) BitChordIcons.StarFilled else BitChordIcons.Star,
+                    icon = if (liked) MeloraIcons.StarFilled else MeloraIcons.Star,
                     contentDescription = stringResource(
                         if (liked) Res.string.remove_from_liked else Res.string.like,
                     ),

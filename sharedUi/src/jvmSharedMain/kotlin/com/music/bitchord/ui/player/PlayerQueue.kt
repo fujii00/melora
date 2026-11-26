@@ -101,7 +101,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.Velocity
 import coil3.compose.AsyncImage
 import com.music.bitchord.ui.components.thumbnailBorder
-import com.music.bitchord.ui.icons.BitChordIcons
+import com.music.bitchord.ui.icons.MeloraIcons
 import com.music.bitchord.data.model.QueueEntryIdentity
 import com.music.bitchord.data.model.QueueTier
 import com.music.bitchord.data.model.Song
@@ -881,7 +881,7 @@ private fun AutoplayHeading(
         verticalAlignment = Alignment.CenterVertically,
     ) {
         Icon(
-            BitChordIcons.Infinity,
+            MeloraIcons.Infinity,
             contentDescription = null,
             tint = Color.White.copy(alpha = 0.75f),
             modifier = Modifier.size(18.dp),

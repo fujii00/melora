@@ -7,7 +7,7 @@ plugins {
 }
 
 /*
- * BitChord for Wear OS: a remote for the phone app, not a second player.
+ * Melora for Wear OS: a remote for the phone app, not a second player.
  *
  * It holds no library, streams nothing and runs no Palette or blur of its own —
  * the phone sends it what is playing, the cover as a 240px JPEG, and the mesh

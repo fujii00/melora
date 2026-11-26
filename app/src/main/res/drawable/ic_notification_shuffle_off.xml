@@ -1,8 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
-  Shuffle, off: ic_notification_shuffle at 30% opacity, the dimming Media3's
-  own shuffle-off icon uses, so the two states still read apart.
--->
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
     android:width="24dp"
     android:height="24dp"
