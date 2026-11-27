@@ -1,26 +1,21 @@
-# Code of Conduct
+# Melora Code of Conduct
 
-## Expected Behavior
-Contributors and maintainers participating in BitChord discussions, issues, and pull requests are expected to:
-- Communicate constructively and professionally.
-- Treat fellow contributors, maintainers, and users with respect.
-- Focus on technical merits and what is best for the project.
-- Gracefully accept constructive criticism.
+Melora welcomes people who contribute to the app, its documentation, and its community. Everyone participating in project spaces is expected to help keep them respectful and constructive.
 
-## Unacceptable Behavior
-The following behaviors are unacceptable within the project:
-- Harassment, derogatory comments, or personal attacks.
-- Trolling, insulting, or disruptive behavior.
-- Publishing private information without explicit permission.
-- Unwelcome sexual attention, advances, or inappropriate language.
+## Expected behavior
 
-## Reporting
-If you experience or witness unacceptable behavior, report it privately to the project maintainer:
-- Email: `fujiisenpai9@gamil.com`
+- Be considerate and professional.
+- Discuss ideas and code in good faith; focus criticism on the work.
+- Respect different backgrounds, experience levels, and viewpoints.
+- Accept reasonable feedback and corrections.
 
-Reports will be handled privately and with appropriate discretion.
+## Unacceptable behavior
 
-## Enforcement
-The project maintainer reserves the right to:
-- Remove, edit, or reject comments, commits, code, issues, or pull requests that violate this code of conduct.
-- Temporarily or permanently restrict or block participation in project repositories for repeated or severe violations.
+- Harassment, threats, discrimination, or personal attacks.
+- Sexual attention or language that is unwelcome.
+- Trolling or repeated disruptive conduct.
+- Sharing someone's private information without their consent.
+
+## Reporting and enforcement
+
+Report a conduct concern privately to a Melora maintainer through the contact method on the repository's GitHub page. Maintainers will review reports discreetly and may remove content or restrict participation when needed to protect the community.

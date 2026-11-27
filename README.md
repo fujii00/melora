@@ -8,7 +8,7 @@
 
 ### Your music, beautifully played.
 
-Melora is an Android music player for the music stored on your device. Browse your collection, organize playlists, and enjoy a polished listening experience built around your own files.
+Melora is a music player for the music stored on your devices. Browse your collection, organize playlists, and enjoy a polished listening experience built around your own files.
 
 [Download](#download) · [Features](#features) · [Build](#build) · [Contributing](#contributing) · [License](#license)
 

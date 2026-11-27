@@ -59,7 +59,7 @@ adb connect <watch-ip>:<port>
 adb -s <watch-ip>:<port> install -r wearos/build/outputs/apk/dev/debug/BitChordWear-dev-debug.apk
 ```
 
-The phone needs a BitChord build that includes `WearBridge` (anything from this
+The phone needs a Melora build that includes `WearBridge` (anything from this
 change on), from the same flavor and signed with the same key.
 
 Debug builds are shrunk and non-debuggable, because an un-R8'd, debuggable
